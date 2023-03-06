@@ -1,0 +1,42 @@
+@import url("../../../template.css"); 
+@import url("../../../Style/Generales.css"); 
+
+
+mat-form-field{
+  padding: 5px;
+    width: 100% !important;
+}
+.mat-column-Grado{
+  width: 5% !important;  
+  text-align: left;
+  color: black;
+}
+  
+.mat-column-Nombres{
+  width: 10% !important;  
+  text-align: left;
+  color: black;
+}
+  .mat-column-Apellidos{
+    width: 10% !important;
+    text-align: left;
+    color: black;
+  }
+  .mat-column-Correo{
+    width: 10% !important;
+    text-align: left;
+    color: black;
+  }
+  .mat-column-Representante{
+    width: 10% !important;
+    text-align: left;
+    padding-right: 5%;
+    color: black;
+  }
+  
+  .mat-column-Enviar{
+    width: 5% !important;
+    text-align: center;
+    color: black;
+  }
+    

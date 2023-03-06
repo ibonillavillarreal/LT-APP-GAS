@@ -1,0 +1,26 @@
+@import url("../../../template.css"); 
+@import url("../../../style/Generales.css"); 
+
+a { color: inherit; } 
+
+.ancho{
+  width: 100% !important;  
+}
+
+  .mat-column-IdAgenda{
+    width: 15% !important;
+  }
+
+  .mat-column-DescripcionAgenda{
+      width: 40% !important;
+  }
+
+  .mat-column-FechaRegristro{
+    width: 10% !important;
+    text-align:left;
+  } 
+
+  .mat-column-acciones {
+    width: 10% !important;
+    text-align:left;
+  }

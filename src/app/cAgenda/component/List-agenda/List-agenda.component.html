@@ -1,0 +1,83 @@
+<div *ngIf="!isAllowed()">
+    <div class="alert alert-danger">ACCESO DENEGADO</div>
+</div>
+
+
+<div *ngIf="isAllowed()">
+
+    <div class="row" class="mat-elevation-z3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><span class="lstick"></span>AGENDAS</h4>
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                        <div class="p-2 bd-highlight">
+                            <a class="btn btn-liosa" href="Agenda/add">
+                                <i class="bi bi-person-plus-fill"></i>➕ Agendar
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="div-center uploader-status" *ngIf="tools.getisLoadingDetails()">
+                        <br>
+                        <mat-spinner [diameter]="50"></mat-spinner>
+                    </div>
+
+                    <div [hidden]="tools.getisLoadingDetails()">
+                        <div class="row">
+                            <div class="col-4">
+                                <mat-form-field appearance="standard">
+                                    <mat-label>🔎 Buscar</mat-label>
+                                    <input matInput (keyup)="applyFilter($event)"
+                                        placeholder="Introduzca una palabra clave" #input>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+                        <table mat-table #table [dataSource]="dataSourceAgenda" matSort>
+
+                            <ng-container matColumnDef="IdAgenda">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Identificador. </th>
+                                <td mat-cell *matCellDef="let element"> {{element.IdAgenda}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="DescripcionAgenda">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Agenda Descripción </th>
+                                <td mat-cell *matCellDef="let element"> {{element.DescripcionAgenda}} </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="FechaRegristro">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha</th>
+                                <td mat-cell *matCellDef="let element"> {{element.FechaRegristro|date: 'dd-MM-yyyy'}} </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="acciones">
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                    <span class="pointer" style="color: #0a46c7;" matTooltip="Detalles">
+                                        <mat-icon routerLink="{{element.CodAgenda}}">remove_red_eye</mat-icon>
+                                    </span>
+                                    <span class="pointer" style="color: #198754;" matTooltip="Editar">
+                                        <mat-icon (click)="openForm(2,element.CodAgenda)"> edit</mat-icon>
+                                    </span>
+                                    <span  (click)="openForm(3,element.CodAgenda)"
+                                    class="pointer" style="color: #dc3545;" matTooltip="Eliminar">
+                                        <mat-icon>delete</mat-icon>
+                                    </span>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Items por pagina"
+                            (page)="getPaginatorData($event)"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
