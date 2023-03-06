@@ -54,12 +54,9 @@ export class AgendaService {
   }
 
   DelEditMiembroAgenda(i:any): Observable<any> {
-    
-    console.log('path '+this.url+'Eliminar/')
-
     return this.http.post<any>
       (
-        this.url+'Eliminar/', JSON.stringify(i)
+        this.url_DelMiembro , JSON.stringify(i)
       )
       .pipe(retry(1), catchError(this.error.handleError))
   }
