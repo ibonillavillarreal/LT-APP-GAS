@@ -72,6 +72,7 @@ export class DetailsAgendaComponent implements OnInit {
   iniciar_FormAgenda() {
     this.frmAgenda = this._builder.group({
       IdAgenda: [''],
+      Local: [''],
       DescripcionAgenda: [''],
       FechaRegristro: ['']
     });
@@ -81,10 +82,10 @@ export class DetailsAgendaComponent implements OnInit {
     this.tools.setisLoadingDetails(true)
 
     this.Data_AgendaCompleta = await this.src_Agenda.getVerAgenda(this.id_Agenda).toPromise();
-
-    this.Data_AgendaMaestro = this.Data_AgendaCompleta.Maestro //Maestro Agenda    
+    this.Data_AgendaMaestro = this.Data_AgendaCompleta.Maestro //Maestro Agenda        
     
     this.frmAgenda.controls['IdAgenda'].setValue(this.Data_AgendaMaestro[0].IdAgenda);
+    this.frmAgenda.controls['Local'].setValue(this.Data_AgendaMaestro[0].LOCAL);
     this.frmAgenda.controls['DescripcionAgenda'].setValue(this.Data_AgendaMaestro[0].DescripcionAgenda);
     const fechaBaseGet:  Date  =(new Date(this.Data_AgendaMaestro[0].FechaRegristro));
     

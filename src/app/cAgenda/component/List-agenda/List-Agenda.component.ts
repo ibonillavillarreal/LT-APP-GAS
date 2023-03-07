@@ -1,13 +1,11 @@
-//import { Component, OnInit } from '@angular/core';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AgendaService } from 'src/app/services/agenda.service';
 import { MatDialog } from '@angular/material/dialog';
-//import { DetailsClienteComponent } from '../details-cliente/details-cliente.component';
-import { AddAgendaComponent } from '../add-agenda/add-agenda.component';
-//import { AnularClienteComponent } from '../anular-cliente/anular-cliente.component';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { SubCatalogoService } from 'src/app/services/subcatalogo.service';
 import { EditAgendaComponent } from '../editar-agenda/edit-agenda.component';

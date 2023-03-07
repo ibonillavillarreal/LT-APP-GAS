@@ -104,6 +104,7 @@ export class AddAgendaComponent implements OnInit {
   async iniciar_FormAgenda() {
     this.frmAgenda = this._builder.group({
       IdAgenda: ['', Validators.required],
+      Local: ['', Validators.required],
       DescripcionAgenda: ['', Validators.required],
       FechaRegristro: ['', Validators.required]
     });
@@ -303,7 +304,7 @@ export class AddAgendaComponent implements OnInit {
       };
 
 
-      console.log('registro agenda : '+ JSON.stringify(enviar_Registro_Json.Master_Agenda));
+      //console.log('registro agenda : '+ JSON.stringify(enviar_Registro_Json.Master_Agenda));
 
       this.srcAgenda.add_Agenda(enviar_Registro_Json).subscribe(res => {
         if (res) {
@@ -313,6 +314,14 @@ export class AddAgendaComponent implements OnInit {
           this.toast.showToast('Ha ocurrido un error ❌', 'Aceptar')
         }
       });
+
+      if (this.firstLoad) {
+        setTimeout(() => {
+          this.tools.setisLoadingDetails(false)
+        }, 450);
+        this.firstLoad = false;
+      }
+
       this.frmAgenda.reset();
       formDirective.resetForm();
       this.router.navigate(['/Agenda']);

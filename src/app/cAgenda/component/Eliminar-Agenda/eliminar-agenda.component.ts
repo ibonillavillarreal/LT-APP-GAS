@@ -34,7 +34,7 @@ export class EliminarAgenda implements OnInit {
 
   confirmar(operacion: number) {
 
-    let id_User: any = { CodAgenda: this.CodAgenda, idUser: 1, operacion: operacion }
+    let id_User: any = { CodAgenda: this.CodAgenda, idUser: 1, estado: operacion }
 
     this.tools.setIsLoading(true);
 
@@ -59,3 +59,4 @@ export class EliminarAgenda implements OnInit {
 }
 
 
+    

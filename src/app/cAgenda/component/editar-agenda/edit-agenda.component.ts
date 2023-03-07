@@ -90,6 +90,7 @@ export class EditAgendaComponent implements OnInit {
   async iniciar_FormAgenda() {
     this.frmAgenda = this._builder.group({
       IdAgenda: ['', Validators.required],
+      Local: ['', Validators.required],
       DescripcionAgenda: ['', Validators.required],
       FechaRegristro: ['', Validators.required]
     });
@@ -99,10 +100,11 @@ export class EditAgendaComponent implements OnInit {
     //this.tools.setisLoadingDetails(true)
 
     this.Data_AgendaCompleta = await this.srcAgenda.getVerAgenda(this.Id_Agenda).toPromise();
-
     this.Data_AgendaMaestro = this.Data_AgendaCompleta.Maestro //Maestro Agenda    
 
     this.frmAgenda.controls['IdAgenda'].setValue(this.Data_AgendaMaestro[0].IdAgenda);
+    this.frmAgenda.controls['Local'].setValue(this.Data_AgendaMaestro[0].LOCAL);
+
     this.frmAgenda.controls['DescripcionAgenda'].setValue(this.Data_AgendaMaestro[0].DescripcionAgenda);
 
 
@@ -368,7 +370,7 @@ export class EditAgendaComponent implements OnInit {
       };
 
 
-      console.log('EDITANDO AGENDA  : ' + JSON.stringify(enviar_Registro_Json));
+      //console.log('EDITANDO AGENDA  : ' + JSON.stringify(enviar_Registro_Json));
 
       this.srcAgenda.editAgenda(enviar_Registro_Json).subscribe(res => {
         if (res) {
