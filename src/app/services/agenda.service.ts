@@ -1,11 +1,12 @@
 
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
 import { ErrorService } from './error.service';
 import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
 import { Observable } from 'rxjs';
+
 
 
 
@@ -53,10 +54,10 @@ export class AgendaService {
       ).pipe(retry(1), catchError(this.error.handleError))
   }
 
-  DelEditMiembroAgenda(i:any): Observable<any> {
+  DelEditMiembroAgenda(i: any): Observable<any> {
     return this.http.post<any>
       (
-        this.url_DelMiembro , JSON.stringify(i)
+        this.url_DelMiembro, JSON.stringify(i)
       )
       .pipe(retry(1), catchError(this.error.handleError))
   }
@@ -67,5 +68,16 @@ export class AgendaService {
   }
 
 
+  getPrint(i: number): Observable<any> {  
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/pdf');
+    return this.http.get
+      (
+        this.url + 'imprimir/print/' + i,
+        { headers: headers, responseType: 'blob' }
+      )
+      .pipe(retry(1), catchError(this.error.handleError));
+  }
+  //{headers: headers}    
 
 }
