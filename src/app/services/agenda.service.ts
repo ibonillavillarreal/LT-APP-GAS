@@ -68,8 +68,7 @@ export class AgendaService {
   }
 
 
-  getPrint(i: number): Observable<any> {  
-
+  getPrint(i: number): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/pdf');
     return this.http.get
       (
@@ -78,6 +77,6 @@ export class AgendaService {
       )
       .pipe(retry(1), catchError(this.error.handleError));
   }
-  //{headers: headers}    
+
 
 }

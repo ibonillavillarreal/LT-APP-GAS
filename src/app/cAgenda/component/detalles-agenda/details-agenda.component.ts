@@ -155,21 +155,21 @@ export class DetailsAgendaComponent implements OnInit {
   printAgenda() {
 
     this.src_Agenda.getPrint(this.CodAgenda).subscribe((res) => {
-      
-      let blob: Blob = res as Blob;      
+
+      let blob: Blob = res as Blob;
       if (res != undefined) {
-        this.toast.showToast('Imprimiendo el Registro ✔️ ', 'Aceptar')        
-        
+        this.toast.showToast('Imprimiendo el Registro ✔️ ', 'Aceptar')
+
       } else {
         this.toast.showToast('Ha ocurrido un error ❌', 'Aceptar')
       }
-            
+
       setTimeout(() => {
         this.tools.setisLoadingDetails(false)
         let url = window.URL.createObjectURL(blob);
         return window.open(url);
       }, 900);
-      
+
 
     },
       (error: any) => {
