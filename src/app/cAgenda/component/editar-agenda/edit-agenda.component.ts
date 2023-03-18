@@ -1,7 +1,5 @@
 
 
-
-
 import { Component, Inject, OnInit, NgZone, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
@@ -16,7 +14,7 @@ import { AddItemSComponent } from '../add-item-puntos/add-itemPuntos.component';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { EditafilaCampoComponent } from '../editFilaUso/editfila-Campo.component';
 import { AgendaService } from 'src/app/services/agenda.service';
-import { AgendaDelete } from '../../../services/AgendaDelete.service';
+import { Time } from '@angular/common';
 
 
 @Component({
@@ -64,7 +62,7 @@ export class EditAgendaComponent implements OnInit {
     private srcAgenda: AgendaService, private dialog: MatDialog,
     private dialog2: MatDialog, private _builder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EditAgendaComponent>,
+    private dialogRef: MatDialogRef<EditAgendaComponent>
   ) {
 
     this.tools = GlobalUtilities.getInstance();
@@ -92,7 +90,8 @@ export class EditAgendaComponent implements OnInit {
       IdAgenda: ['', Validators.required],
       Local: ['', Validators.required],
       DescripcionAgenda: ['', Validators.required],
-      FechaRegristro: ['', Validators.required]
+      FechaRegristro: ['', Validators.required],
+      HoraRegristro:['',Validators.required]
     });
   }
 
@@ -114,10 +113,13 @@ export class EditAgendaComponent implements OnInit {
     const fecha_Edit = fecha_Splite[1] + '-' + fecha_Splite[2] + '-' + fecha_Splite[0];  /// mm-dd-yyyy
     this.frmAgenda.controls['FechaRegristro'].setValue(new Date(fecha_Edit)); // MM-DD-YYYY
 
+      //  Extraer la  HoraRegristro         
+      let hora = this.Data_AgendaMaestro[0].Hora; 
+      this.frmAgenda.controls['HoraRegristro'].setValue(hora); // hora Formato 24
+      
     /////
     this.Data_AgendaAsistencia = this.Data_AgendaCompleta.Asistencia;
-    this.list_asistencia = this.Data_AgendaAsistencia;
-    console.log('CARGA ASISTENCIA : ' + JSON.stringify(this.list_asistencia))
+    this.list_asistencia = this.Data_AgendaAsistencia;    
     this.dataSourceAgendaAsitencia.data = this.Data_AgendaAsistencia;
 
 
@@ -369,7 +371,7 @@ export class EditAgendaComponent implements OnInit {
         Delete_PuntosAgenda:this.Delete_PuntosAgenda
       };
 
-
+      
       //console.log('EDITANDO AGENDA  : ' + JSON.stringify(enviar_Registro_Json));
 
       this.srcAgenda.editAgenda(enviar_Registro_Json).subscribe(res => {

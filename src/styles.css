@@ -1,28 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height:100%;}
+html,
+body {
+    height: 100%;
+}
 
-body { 
-    margin:0;    
+body {
+    margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-drawer-inner-container::-webkit-scrollbar {
-    display: none !important;    
+    display: none !important;
 }
 
-.primary-gas{
-    background:rgb(4, 4, 102);
+.primary-gas {
+    background: rgb(4, 4, 102);
     color: #fff;
 }
 
-.secondary-gas{
+.secondary-gas {
     background: rgb(0, 13, 128);
     color: #fff;
 }
 
-.footer-gas{
-    background:rgb(4, 4, 102);
+.footer-gas {
+    background: rgb(4, 4, 102);
     color: #fff;
     text-align: center;
-    
+
+}
+
+
+/***  para el time piker */
+/* .cdk-overlay-container {
+    z-index: 500 !important;
+} */
+
+
+
+.timepicker-overlay {
+    z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay {
+    z-index: 10000000 !important;
 }

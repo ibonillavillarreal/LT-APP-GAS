@@ -13,6 +13,8 @@ import { EliminarAgenda } from './component/Eliminar-Agenda/eliminar-agenda.comp
 import { EditafilaCampoComponent } from './component/editFilaUso/editfila-Campo.component';
 import { ImprimirComponent } from "./component/imprimir/imprimir.component";
 import { NgxPrintModule } from "ngx-print";
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 
 @NgModule({
     declarations:[
@@ -32,11 +34,10 @@ import { NgxPrintModule } from "ngx-print";
         AgendaRoutingModule,
         CommonModule,
         SharedModule,
-        NgxPrintModule
+        NgxPrintModule,
+        NgxMaterialTimepickerModule.setLocale('ar-AE')
     ]
 })
 
-export class AgendaModule{
-
-}
+export class AgendaModule {}
 

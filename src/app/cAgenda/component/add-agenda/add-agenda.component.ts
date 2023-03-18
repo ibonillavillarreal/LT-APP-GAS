@@ -106,7 +106,8 @@ export class AddAgendaComponent implements OnInit {
       IdAgenda: ['', Validators.required],
       Local: ['', Validators.required],
       DescripcionAgenda: ['', Validators.required],
-      FechaRegristro: ['', Validators.required]
+      FechaRegristro: ['', Validators.required],
+      HoraRegristro:['',Validators.required]
     });
   }
 

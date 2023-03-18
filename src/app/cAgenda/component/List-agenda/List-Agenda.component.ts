@@ -79,7 +79,9 @@ async cargando(){
       //case 1: { dialogRef = this.dialog.open(AddAgendaComponent,  { height: '780px', width: '1200px' }) } break;
       case 2: { dialogRef = this.dialog.open(EditAgendaComponent, 
         { height: '790px', width: '1300px', 
-        data: { CodAgenda: id } })
+        data: { CodAgenda: id },
+        disableClose: false, autoFocus: false 
+      })
       } break;
       case 3: { 
         dialogRef = this.dialog.open(EliminarAgenda, 

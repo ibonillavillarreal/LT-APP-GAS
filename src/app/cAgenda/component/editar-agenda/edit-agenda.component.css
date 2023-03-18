@@ -176,6 +176,7 @@ input.example-right-align::-webkit-inner-spin-button {
 
 input{
 color: black;
+width: 100%;
 }
 
 
@@ -234,3 +235,18 @@ color: black;
   mat-form-field {
     width: 100%;
   }
+  
+  .hora_centrada{
+    align-items: center;
+    text-align: center;
+    
+  }
+
+/* .timepicker-overlay {
+    z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay {
+    z-index: 10000000 !important;
+} */
+

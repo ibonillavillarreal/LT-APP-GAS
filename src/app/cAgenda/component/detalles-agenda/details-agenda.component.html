@@ -6,39 +6,50 @@
                     <div class="col-11">
                         <h6 class="card-title"><span class="lstick"></span>DATOS DE AGENDA</h6>
                     </div>
-                    <div class="col-1">                                                         
-                        <h6 class="card-title">                                    
-                            <span class="lstick">                                                                
-                                <mat-icon routerLink="/Agenda">🗙</mat-icon>                                                                
-                            </span> 
+                    <div class="col-1">
+                        <h6 class="card-title">
+                            <span class="lstick">
+                                <mat-icon routerLink="/Agenda">🗙</mat-icon>
+                            </span>
                         </h6>
                     </div>
                 </div>
-                
+
                 <div class="mat-elevation-z3" style="border-color: #0a46c7;">
                     <!--*ngIf="!tools.getisLoadingDetails()" -->
                     <br>
                     <div class="row col-12" [formGroup]="frmAgenda" #formDirective="ngForm">
                         <div class="row col-12">
-                            <div class="col-3 ">
+                            <div class="col-2 ">
                                 <mat-form-field appearance="legacy" style="margin-left: 5px;color: #0a46c7;">
                                     <mat-label>CODIGO </mat-label>
-                                    <input type="text" class='Nombres' matInput placeholder="Codigo" 
-                                    formControlName="IdAgenda" readonly="true">
+                                    <input type="text" class='Nombres' matInput placeholder="Codigo"
+                                        formControlName="IdAgenda" readonly="true">
                                 </mat-form-field>
                             </div>
                             <div class="col-6">
-                                <mat-form-field appearance="legacy" style="color: #0a46c7;">
-                                    <mat-label>LOCAL</mat-label>
-                                    <input type="text"  matInput placeholder="Local Agenda" 
-                                    formControlName="Local" readonly="true">
-                                </mat-form-field>
+
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <mat-form-field appearance="legacy" style="color: #0a46c7;">
                                     <mat-label>FECHA AGENDA</mat-label>
-                                    <input matInput placeholder="Fecha de Agenda" 
-                                    formControlName="FechaRegristro" readonly="true">
+                                    <input matInput placeholder="Fecha de Agenda" formControlName="FechaRegristro"
+                                        readonly="true">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-2">                                
+                                <mat-form-field appearance="legacy" style="color: #0a46c7;">
+                                    <mat-label>HORA AGENDA</mat-label>
+                                    <input matInput placeholder="Fecha de Agenda" formControlName="HoraRegristro" readonly="true">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-12">
+                                <mat-form-field appearance="legacy" style="color: #0a46c7;">
+                                    <mat-label>LOCAL</mat-label>
+                                    <input type="text" matInput placeholder="Local Agenda" formControlName="Local"
+                                        readonly="true">
                                 </mat-form-field>
                             </div>
                         </div>
@@ -46,12 +57,12 @@
                             <div class="col-12">
                                 <mat-form-field appearance="legacy" style="color: #0a46c7;">
                                     <mat-label>EXPRESION DE AGENDA </mat-label>
-                                    <textarea type="text"  matInput placeholder="Descripción de Agenda" 
-                                    formControlName="DescripcionAgenda" readonly="true">
+                                    <textarea type="text" rows="4%" matInput placeholder="Descripción de Agenda"
+                                        formControlName="DescripcionAgenda" readonly="true">
                                     </textarea>
                                 </mat-form-field>
                             </div>
-    
+
                         </div>
                     </div>
 
@@ -72,14 +83,14 @@
             <div class="card-body mat-elevation-z3">
                 <mat-tab-group animationDuration="0ms">
                     <mat-tab label="ASISTENCIAS Y EXPOSITORES">
-                                                                    <!-- sortAsistencia -->
+                        <!-- sortAsistencia -->
                         <table mat-table #table [dataSource]="dataSourceAgendaAsitencia" matSort>
 
                             <ng-container matColumnDef="Grado">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Grado</th>
                                 <td mat-cell *matCellDef="let element"> {{element.CodGradoAcademico}} </td>
-                            </ng-container>                                             
-                                                                            <!-- Grado -->
+                            </ng-container>
+                            <!-- Grado -->
                             <ng-container matColumnDef="Nombres">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres</th>
                                 <td mat-cell *matCellDef="let element"> {{element.Nombres}} </td>
@@ -98,8 +109,8 @@
                             <ng-container matColumnDef="Tipo">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Representante</th>
                                 <td mat-cell *matCellDef="let element"> {{element.TxtCodClaustro}} </td>
-                            </ng-container> 
-                                                                        <!-- Tipo_Representante -->
+                            </ng-container>
+                            <!-- Tipo_Representante -->
 
                             <ng-container matColumnDef="Observacion">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Observación</th>
@@ -115,8 +126,8 @@
                     </mat-tab>
 
                     <mat-tab label="PUNTOS DE AGENDA">
-                                                                            <!-- sortPuntosAgenda -->
-                        <table mat-table #table [dataSource]="dataSourceAgendaPuntosAgenda"  matSort >
+                        <!-- sortPuntosAgenda -->
+                        <table mat-table #table [dataSource]="dataSourceAgendaPuntosAgenda" matSort>
 
                             <ng-container matColumnDef="PuntosAgenda">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Puntos de Agenda</th>
@@ -130,7 +141,7 @@
 
                             <tr mat-header-row *matHeaderRowDef="displayedColumnsPuntosAgenda"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumnsPuntosAgenda;"></tr>
-                        
+
                         </table>
                         <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Items por pagina"
                             (page)="getPaginatorData($event)"></mat-paginator>
@@ -141,7 +152,7 @@
 
             </div>
             <div class="modal-footer">
-              <button (click)="printAgenda()" type="submit" class="btn btn-liosa">🖨️Imprimir</button>              
+                <button (click)="printAgenda()" type="submit" class="btn btn-liosa">🖨️Imprimir</button>
             </div>
 
         </div>

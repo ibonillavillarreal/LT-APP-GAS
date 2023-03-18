@@ -25,6 +25,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+//NgxMatDatetimePickerModule
+//import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatListModule} from '@angular/material/list';
 
@@ -56,6 +60,7 @@ import {MatListModule} from '@angular/material/list';
     MatTabsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    NgxMaterialTimepickerModule,
     MatNativeDateModule, 
     MatRippleModule, 
     MatListModule
@@ -87,6 +92,7 @@ import {MatListModule} from '@angular/material/list';
     MatTabsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    NgxMaterialTimepickerModule,
     MatNativeDateModule, 
     MatRippleModule, 
     MatListModule

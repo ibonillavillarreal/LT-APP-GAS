@@ -29,7 +29,7 @@ import { LoginComponent } from './auth/login/login.component';
     HttpClientModule,
     NgxSpinnerModule,
     SharedModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule    
   ],
 
   providers: [

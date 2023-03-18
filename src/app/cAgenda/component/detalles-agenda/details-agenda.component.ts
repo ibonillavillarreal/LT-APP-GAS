@@ -1,5 +1,4 @@
 
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -79,7 +78,8 @@ export class DetailsAgendaComponent implements OnInit {
       IdAgenda: [''],
       Local: [''],
       DescripcionAgenda: [''],
-      FechaRegristro: ['']
+      FechaRegristro: [''],
+      HoraRegristro:['']
     });
   }
 
@@ -94,10 +94,12 @@ export class DetailsAgendaComponent implements OnInit {
     this.frmAgenda.controls['Local'].setValue(this.Data_AgendaMaestro[0].LOCAL);
     this.frmAgenda.controls['DescripcionAgenda'].setValue(this.Data_AgendaMaestro[0].DescripcionAgenda);
     const fechaBaseGet: Date = (new Date(this.Data_AgendaMaestro[0].FechaRegristro));
+    const HoraRegristro = this.Data_AgendaMaestro[0].Hora +' H';
 
     //console.log(' fecha base Detail  ' +JSON.stringify(fechaBaseGet)); 
     const FechaCorta = JSON.stringify(fechaBaseGet).substring(1, 11);
     this.frmAgenda.controls['FechaRegristro'].setValue(FechaCorta);
+    this.frmAgenda.controls['HoraRegristro'].setValue(HoraRegristro);
     //console.log(' fecha base Detail  ' +JSON.stringify(fechaBaseGet)) 
 
     //
@@ -168,7 +170,7 @@ export class DetailsAgendaComponent implements OnInit {
         this.tools.setisLoadingDetails(false)
         let url = window.URL.createObjectURL(blob);
         return window.open(url);
-      }, 900);
+      }, 300);
 
 
     },
