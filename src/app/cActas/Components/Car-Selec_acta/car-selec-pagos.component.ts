@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throwIfEmpty } from 'rxjs/operators';
-import { Actas } from 'src/app/services/Factura.service';
+import { Actas } from 'src/app/services/Acta.service';
 import { Toast } from 'src/app/utils/Toast';
 
 @Component({

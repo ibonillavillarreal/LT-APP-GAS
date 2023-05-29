@@ -1,8 +1,8 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListFacturaComponent } from './Components/List-acta/list-factura.component';
-import { DetailFacturaComponent } from './Components/Detail-acta/detail-factura.component';
+import { ListActaComponent } from './Components/List-acta/list-acta.component';
+import { DetailActaComponent } from './Components/Detail-acta/detail-Acta.component';
 import { SharedModule } from '../shared/Material.module';
 import { Add_ActasComponent } from './Components/Add-actas/add-actas.component';
 import { EditFacturaComponent } from './Components/Edit-acta/edit-factura.component';
@@ -14,12 +14,13 @@ import { VerItemDetalleComponent } from './Components/Ver-ItemDetail/ver-item-de
 import { EditarCantidadComponent } from './Components/Edit-Cantidad/editar-cantidad.component';
 import { TrackingComponent } from './Components/Seg-Tracking/tracking.component';
 import { SeguirTrackComponent } from './Components/Seg-Estaciones/seguir-track.component';
+import { ActaRoutingModule } from './actas-routing.module';
 
 
 @NgModule({
   declarations: [    
-    ListFacturaComponent,
-    DetailFacturaComponent,
+    ListActaComponent,
+    DetailActaComponent,
     Add_ActasComponent,
     EditFacturaComponent,
     DelEstadoFacturaComponent,
@@ -33,7 +34,8 @@ import { SeguirTrackComponent } from './Components/Seg-Estaciones/seguir-track.c
 
   ],
   imports: [    
-    CommonModule,    
+    ActaRoutingModule, 
+    CommonModule,   
     SharedModule
     
   ]

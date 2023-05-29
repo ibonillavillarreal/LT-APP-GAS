@@ -1,0 +1,29 @@
+@import url("../../../template.css"); 
+@import url("../../../style/Generales.css"); 
+
+a { color: inherit; } 
+
+.mat-column-CodActas{
+    width: 15% !important;
+  }
+  .mat-column-ActaDedicatoria{
+      width: 25% !important;
+  }
+  .mat-column-FechaSesion{
+    width: 15% !important;
+    text-align:left;
+  }  
+  .mat-column-Hora{
+    width: 10% !important;
+  }  
+  .mat-column-Local{
+    width: 20% !important;
+  }  
+  .mat-column-acciones {
+    width: 15% !important;
+    text-align:left;
+  }
+  
+.ancho{
+  width: 95% !important;  
+}

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
-import { Actas } from 'src/app/services/Factura.service';
+import { Actas } from 'src/app/services/Acta.service';
 
 @Component({
   selector: 'app-seguir-track',

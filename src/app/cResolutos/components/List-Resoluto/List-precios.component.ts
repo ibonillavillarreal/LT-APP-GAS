@@ -36,7 +36,7 @@ export class List_ResolutoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(' iniciando carga');
-    this.loadModules();
+   // this.loadModules();
   }
   //Load list
   async loadModules() {

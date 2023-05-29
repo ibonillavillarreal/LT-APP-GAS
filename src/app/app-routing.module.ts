@@ -8,25 +8,25 @@ import { DetailsAgendaComponent } from './cAgenda/component/detalles-agenda/deta
 import { EditAgendaComponent } from './cAgenda/component/editar-agenda/edit-agenda.component';
 import { ImprimirComponent } from './cAgenda/component/imprimir/imprimir.component';
 import { AddResolutoComponent } from './cResolutos/components/add-Resoluto/add-resoluto.component';
-import { ListFacturaComponent } from './cActas/Components/List-acta/list-factura.component';
+import { ListActaComponent } from './cActas/Components/List-acta/list-acta.component';
 import { Add_ActasComponent } from './cActas/Components/Add-actas/add-actas.component';
 
 
 const routes: Routes = [
-  
-    /* Rutas vacia -- validar contra permisos */
+
+  /* Rutas vacia -- validar contra permisos */
   {
-    path:"localhost",    
-    pathMatch: 'full',    
-    component:Component,
-    redirectTo:"",
+    path: "localhost",
+    pathMatch: 'full',
+    component: Component,
+    redirectTo: "",
   },
 
   {
-    path:"",
+    path: "",
     pathMatch: 'full',
-    component:Component, 
-    
+    component: Component,
+
   },
 
   /*Personas*/
@@ -38,11 +38,11 @@ const routes: Routes = [
 
 
   {
-    path:'Personas/:id',
-    component:DetailsPersonaComponent
+    path: 'Personas/:id',
+    component: DetailsPersonaComponent
   },
- 
-  
+
+
   /*Agendas*/
   {
     path: 'Agenda',
@@ -51,63 +51,61 @@ const routes: Routes = [
   },
 
   {
-    path:'Agenda/add', 
-    component:AddAgendaComponent
-    
+    path: 'Agenda/add',
+    component: AddAgendaComponent
+
   },
   {
-    path:'Agenda/:id', 
-    component:DetailsAgendaComponent
+    path: 'Agenda/:id',
+    component: DetailsAgendaComponent
   },
   {
-    path:'Agenda/:id/:id', 
-    component:ImprimirComponent
+    path: 'Agenda/:id/:id',
+    component: ImprimirComponent
   },
-  
-
- {
-  path:'Agenda/VistaDetalle/:id', 
-  component:EditAgendaComponent
-
- },
 
 
- /**** RESOLUCIONES  - alias:  Resolutos  ******/
- {
-  path:'Precio',
-  pathMatch: 'full',
-  loadChildren: () => import('./cResolutos/Resoluto.module').then(O => O.Resolutos_Module)
-},
-{
-  path:'Precio/add', 
-  component:AddResolutoComponent
-  
-},
+  {
+    path: 'Agenda/VistaDetalle/:id',
+    component: EditAgendaComponent
+
+  },
 
 
+  /******* MODULO DE ACTAS ******/
+  {
+    //path:'Factura',
+    path: 'Acta',
+    pathMatch: 'full',
+    loadChildren: () => import('./cActas/actas.module').then(m => m.Acta_Module)
+  },
+  {
+    //path:'ListFactura', 
+    path: 'ListActa',
+    component: ListActaComponent
+
+  },
+
+  {
+    //path:'ListFactura/Add', 
+    path: 'ListActa/Add',
+    component: Add_ActasComponent
+
+  },
 
 
+  /**** RESOLUCIONES  - alias:  Resolutos  ******/
+  {
+    path: 'Resoluciones',
+    pathMatch: 'full',
+    loadChildren: () => import('./cResolutos/Resoluto.module').then(O => O.Resolutos_Module)
+  },
+  {
+    path: 'Precio/add',
+    component: AddResolutoComponent
 
-/******* MODULO DE ACTAS ******/
-{
-  //path:'Factura',
-  path:'Acta',
-  pathMatch: 'full',
-  loadChildren: () => import('./cActas/actas.module').then(O => O.Acta_Module)
-},
-{
-  //path:'ListFactura', 
-  path:'ListActa', 
-  component:ListFacturaComponent
-  
-},
+  },
 
-{
-  //path:'ListFactura/Add', 
-  path:'ListActa/Add', 
-  component:Add_ActasComponent
-  
-},
 ];
 
 

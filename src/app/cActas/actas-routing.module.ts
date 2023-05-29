@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListFacturaComponent } from './Components/List-acta/list-factura.component';
+import { ListActaComponent } from './Components/List-acta/list-acta.component';
 
 const routes: Routes = [
   {
     path: '',
-    component:ListFacturaComponent,
+    component:ListActaComponent,
 }
 ];
 
