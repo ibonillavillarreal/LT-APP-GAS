@@ -3,41 +3,20 @@
 
 a { color: inherit; } 
 
-
-.mat-column-NumeroCotizacion{       
-  color: black;
-  width: 13% !important;
-  
-  }
-  .mat-column-ARTICULO{    
-    color: black;
-    width: 16% !important;
-  }
-  .mat-column-Descripcion{      
-      color: black;
-      width: 18% !important;
-  }
-  .mat-column-Cantidad{
+  .mat-column-IdAgenda{    
     color: black;
     width: 15% !important;
-    text-align:center;
-    
-  }  
-  .mat-column-Precio{
-    color: black;
-    width: 10% !important;
-  }  
-  .mat-column-iva{
-    color: black;
-    width: 10% !important;
+    text-align:left;
   }
-  .mat-column-subTotal{
-    color: black;
-    width: 10% !important;
-  }  
+  .mat-column-Local{      
+      color: black;
+      width: 70% !important;
+      text-align:left;
+  }
+  
   .mat-column-acciones {
     color: black;
-    width:  12% !important;
+    width:  10% !important;
     text-align:left;
   }
   
@@ -45,7 +24,10 @@ a { color: inherit; }
     width: 85%;
     color: black;
 }
-
+.mat-column-acciones-input{
+  width: 90% !important;
+  color: black;
+}
 
 .button-Toolstip {
   margin-top: 16px;

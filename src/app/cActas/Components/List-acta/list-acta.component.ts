@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,10 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { DetailActaComponent } from '../Detail-acta/detail-Acta.component';
 import { EditFacturaComponent } from '../Edit-acta/edit-factura.component';
-import { DelEstadoFacturaComponent } from '../Del-Estado_acta/del-estado-factura.component';
 import { Actas } from 'src/app/services/Acta.service';
-import { CcService } from 'src/app/services/Cc.service';
 import { SubCatalogoService } from 'src/app/services/subcatalogo.service';
+import { Add_ActasComponent } from '../Add-actas/add-actas.component';
 
 @Component({
   selector: 'app-acta',
@@ -46,12 +46,14 @@ export class ListActaComponent implements OnInit {
 
     let data = await this.srcActas.getActaListado().toPromise();    
     this.list_ActaDB = data;
-    this.dataSourceActa.data = this.list_ActaDB;
-
-    //this.Estado_subCatalogo = await this.srvSubCatalogos.get_Sub_Estados_Cotizacion({'op':3}).toPromise();    
+    this.dataSourceActa.data = this.list_ActaDB;    
+    
     this.Estado_subCatalogo.push({ id: '0', descripcion: 'SIN FILTRO' })
     this.Estado_subCatalogo.push({ id: '1', descripcion: 'ORDINARIAS' })
     this.Estado_subCatalogo.push({ id: '2', descripcion: 'EXTRA - ORDINARIAS' })
+    this.Estado_subCatalogo.push({ id: '3', descripcion: 'ORDINARIAS - VIRTUAL'})
+    this.Estado_subCatalogo.push({ id: '4', descripcion: 'EXTRA - ORDINARIAS - VIRTUAL' })
+
 
     if (this.firstLoad) {
       setTimeout(() => {
@@ -67,21 +69,31 @@ export class ListActaComponent implements OnInit {
     switch (type) {
       case 1: {
         dialogRef = this.dialog.open(DetailActaComponent, 
-        { height: '780px', width: '1200px',
+        { height: '780px', width: '1600px',
           data: { ActaMaestro: this.list_ActaDB.find((reg: any) => { return (reg.CodActas === id) }) }
         })
-
+        
       } break;
       case 2: {
         dialogRef = this.dialog.open(EditFacturaComponent, 
-        { height: '780px', width: '1200px', 
+        { height: '780px', width: '1600px', 
           data: { id: id } 
         })
         dialogRef.afterClosed().subscribe((result: any) => {
-          location.reload();
+          //location.reload();
+          this.firstLoad = true;
+          this.loadModules();
         });
       } break;
-      case 3: { dialogRef = this.dialog.open(DelEstadoFacturaComponent, { height: '780px', width: '1200px', data: { id: id } }); } break;
+      case 3: { dialogRef = this.dialog.open(Add_ActasComponent, 
+        { height: '780px', width: '1600px'})
+        dialogRef.afterClosed().subscribe((result: any) => {
+          //location.reload();
+          this.firstLoad = true;
+          this.loadModules();
+        }); 
+      }break;
+      
       default: { dialogRef = this.dialog.open(DetailActaComponent); } break;
     }
   }
@@ -119,7 +131,14 @@ export class ListActaComponent implements OnInit {
         this.dataSourceActa.data =  this.list_ActaDB.filter((f: any) => f.TipoSesion === 'Extra-Ordinaria');        
         break;
       }
-      
+      case '3': {  //por Ordinaria - Virtual
+        this.dataSourceActa.data =  this.list_ActaDB.filter((f: any) => f.TipoSesion === 'Ordinaria-Virtual');        
+        break;
+      }
+      case '4': {  //por Extra-Ordinaria - Virtual
+        this.dataSourceActa.data =  this.list_ActaDB.filter((f: any) => f.TipoSesion === 'Extra-Ordinaria-Virtual');        
+        break;
+      }
     }
   }
 

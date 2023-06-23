@@ -1,0 +1,79 @@
+<div class="row" class="mat-elevation-z3">
+    <div class="card-body">
+
+        <div class="row" style="border-color: #0a46c7;">
+            <div class="card col-12">
+                <h4 class="card-title accordion-item">
+                    <div class="col-10">
+                        <mat-icon>add_shopping_cart</mat-icon> Acuerdos por Puntos de Agenda
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-1">
+                        <span class="lstick">
+                            <mat-icon (click)="cerrar()"> 🗙</mat-icon>
+                        </span>
+
+                    </div>
+                </h4>
+            </div>
+
+            <br>
+
+            <div class="card-body">
+                <form [formGroup]="frmPuntosAgenda" #formDirective="ngForm" class="card-body">
+                    <div class="row" style="border-color: #0a46c7;">
+                        <div class="col-12">
+                            <mat-form-field appearance="legacy" style="color: #0a46c7; width: 100%;">
+                                <mat-label> DIGITE EL ACUERDO - LUEGO SELECCIONE EL PUNTO DE AGENDA</mat-label>
+                                <textarea type="text" rows="3" matInput placeholder="Acuerdos por puntos de Agenda"
+                                    readonly="false" formControlName="Acuerdos">
+                                </textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <div class="col-10"></div>
+                            <div class="col-1">
+                                <span
+                                (click)="enviar(0)" style="color: green;">
+                                    <mat-icon matTooltip="Caragr Acuerdo libre">
+                                        check</mat-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <table mat-table #table [dataSource]="dataSourcePuntosAgendas" matSort class="card-body">
+
+                <ng-container matColumnDef="PuntosAgenda">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> PuntosAgenda </th>
+                    <td mat-cell *matCellDef="let element"> {{element.PuntosAgenda}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="NotaObservacion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> NotaObservacion </th>
+                    <td mat-cell *matCellDef="let element"> {{element.NotaObservacion}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element" style="text-align: right;">
+
+                        <span class="pointer accordion-item" style="color: green;" 
+                        matTooltip="Relacionar Punto de Agenda "
+                        (click)="enviar(element.CodAgendaDetalles)">                                                
+                            <mat-icon>spellcheck</mat-icon>
+                        </span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Items por pagina"
+             (page)="getPaginatorData($event)"></mat-paginator>
+        </div>
+    </div>
+</div>

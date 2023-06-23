@@ -78,8 +78,6 @@ export class EditPersonaComponent {
 
     this.src.getPersonaEdit(this.data.id).subscribe((data: any) => {
 
-      console.log('retorno observable ' + JSON.stringify(data[0]))
-
       this.editar.controls['CodMiembro'].setValue(data[0].CodMiembro);
       this.editar.controls['CodCargo'].setValue(data[0].Cod_Cargo);
       this.editar.controls['CodClaustro'].setValue(data[0].Cod_Claustro);

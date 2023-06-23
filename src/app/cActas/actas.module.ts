@@ -8,7 +8,7 @@ import { Add_ActasComponent } from './Components/Add-actas/add-actas.component';
 import { EditFacturaComponent } from './Components/Edit-acta/edit-factura.component';
 import { DelEstadoFacturaComponent } from './Components/Del-Estado_acta/del-estado-factura.component';
 import { CarItemAddComponent } from './Components/Car-add-Items/car-item-add.component';
-import { CarPagosAddComponent } from './Components/Car-add-fil/car-pagos-add.component';
+import { carAcuerdosAddComponent } from './Components/Car-add-fil/car-acuerdos-add.component';
 import { CarSelecPagosComponent } from './Components/Car-Selec_acta/car-selec-pagos.component';
 import { VerItemDetalleComponent } from './Components/Ver-ItemDetail/ver-item-detalle.component';
 import { EditarCantidadComponent } from './Components/Edit-Cantidad/editar-cantidad.component';
@@ -25,7 +25,7 @@ import { ActaRoutingModule } from './actas-routing.module';
     EditFacturaComponent,
     DelEstadoFacturaComponent,
     CarItemAddComponent,
-    CarPagosAddComponent,
+    carAcuerdosAddComponent,
     CarSelecPagosComponent,
     VerItemDetalleComponent,
     EditarCantidadComponent,

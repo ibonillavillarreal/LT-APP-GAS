@@ -15,30 +15,27 @@ td{
 a { color: inherit; } 
 
 
-.mat-column-Cotizacion{     
-  width: 20% !important;
-  text-align:left;
+.mat-column-IdAcuerdos{       
+  width: 15% !important;
+  color: black;
  
   }
-  .mat-column-ARTICULO{
-    width: 25% !important;
-    text-align:left;
+  .mat-column-Acuerdos{
+    width: 32% !important;
+    color: black;
+  }   
+  .mat-column-PuntosAgenda{
+    width: 36% !important;
+    color: black;
+  } 
+
+  .mat-column-AudioAcuerdo{
+    width: 17% !important;
+    color: black;
   }
-  .mat-column-Descripcion{
-      width: 35% !important;
-      text-align:left;
-  }
-  .mat-column-Cantidad{
-    width: 10% !important;
-    text-align:left;
-  }  
-  .mat-column-Precio{
-    width: 9% !important;
-    text-align:left;
-  }  
-    
   .mat-column-acciones {
-    width: 1% !important;
+    width: 5% !important;
+    color: black;
     text-align:left;
   }
 

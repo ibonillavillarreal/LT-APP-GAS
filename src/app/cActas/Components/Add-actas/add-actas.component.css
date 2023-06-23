@@ -3,38 +3,26 @@
 
 a { color: inherit; } 
 
-   .mat-column-NumeroCotizacion{     
-    width: 8% !important;
+   .mat-column-IdAcuerdos{     
+    width: 15% !important;
     color: black;
     
     }
-  .mat-column-ARTICULO{
-    width: 8% !important;
+  .mat-column-Acuerdos{
+    width: 35% !important;
     color: black;
   }
-  .mat-column-Descripcion{
+
+  .mat-column-PuntosAgenda{
+    width: 35% !important;
+    color: black;
+  }  
+  .mat-column-AudioAcuerdo{
       width: 15% !important;
       color: black;
-  }
-  .mat-column-Cantidad{
-    width: 5% !important;
-    color: black;
-    text-align:left;
   }  
-  .mat-column-Precio{
+  .mat-column-acciones{
     width: 5% !important;
-    color: black;
-  }  
-  .mat-column-iva{
-    width: 5% !important;
-    color: black;
-  }
-  .mat-column-subTotal{
-    width: 5% !important;
-    color: black;
-  }  
-  .mat-column-acciones {
-    width: 4% !important;
     color: black;
     text-align:left;
   }
@@ -42,7 +30,7 @@ a { color: inherit; }
   mat-form-field{
     width: 100%;    
   }
-
+  
   .alinear_izquierda{
     text-align: left;
     

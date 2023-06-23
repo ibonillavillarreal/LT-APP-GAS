@@ -1,20 +1,24 @@
-import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Actas } from 'src/app/services/Acta.service';
-import { MonedaService } from 'src/app/services/Moneda.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Toast } from 'src/app/utils/Toast';
-import { CarItemAddComponent } from '../Car-add-Items/car-item-add.component';
-import { CarPagosAddComponent } from '../Car-add-fil/car-pagos-add.component';
 import { __values } from 'tslib';
-import { Router } from '@angular/router';
-import { CcService } from 'src/app/services/Cc.service';
-import { DICTIONARYKEYS } from 'src/app/utils/DICTIONARYKEYS';
+import { MatTableDataSource } from '@angular/material/table';
+import { CarItemAddComponent } from '../Car-add-Items/car-item-add.component';
+import { Data } from '@angular/router';
+import { carAcuerdosAddComponent } from '../Car-add-fil/car-acuerdos-add.component';
+import { concat } from 'rxjs';
+
+
+
+
+
 
 
 @Component({
@@ -25,233 +29,269 @@ import { DICTIONARYKEYS } from 'src/app/utils/DICTIONARYKEYS';
 export class Add_ActasComponent implements OnInit {
 
   public tools: GlobalUtilities
+  public toast: Toast;
   public permission: boolean = true;
   public firstLoad: boolean = true;
-  displayedColumns: string[] = ['NumeroCotizacion', 'ARTICULO', 'Descripcion', 'Cantidad', 'Precio', 'iva', 'subTotal', 'acciones'];
+  newFrmActa!: FormGroup
+  public new_ActaID: any;
+  public list_PuntosDeAgenda: any[] = [];
+  public Cod_Agendas: any;
+  public Id_Acuerdo: any;
+  public tb_Acuerdos: any[] = [];
+  public Data_Acuerdos: any[] = [];
+  public list_TipoSesion: any[] = [];
+  public list_Agendas: any[] = [];
 
-  list_Items_Tmp: any[] = [];
-  list_factura_Item_DB_Grid: any[] = [];
-  dataSourceFacturaItems = new MatTableDataSource(this.list_factura_Item_DB_Grid);
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  public toast: Toast;
-  public idcliente: any;
-  public razonSocial: any;
-  public list_plazos: any = [];  
-  public id_plazos: any;  
-  public tipoFactura: any;
-  public tipo_factura_Desc: any;
-  public itsCredit!: boolean;
-  public idMoneda: any;  
-  public list_ClienteCotizaciones: any;
-  public list_ArticulosTerminados: any;
-  public list_cliente: any;
-  public list_tipoFactura: any;
-  public Lista_Monedas: any;    
-  public frmClienteCotizacion!: FormGroup;  
-  public Sub_Total_USD: any = 0;
-  public IVA_USD: any = 0;
-  public TOTAL_USD: any = 0;
-  public Sub_Total_NIO: any = 0;
-  public IVA_NIO: any = 0;
-  public TOTAL_NIO: any = 0;
-  public tsCambio: number = 0.00;
-  public fechaDia: Date = new Date(Date.now());  
-  public fecha_factura = new Date(Date.now()).toISOString().substring(0,10);
-  public json_factura_detalle: any;
-    
+  /*** NUEVA ACTA  */
+  displayedColumnsAcuerdos: string[] = ['IdAcuerdos', 'Acuerdos', 'PuntosAgenda', 'AudioAcuerdo', 'acciones'];
+  dataSourceActasAcuerdos = new MatTableDataSource(this.tb_Acuerdos);
+  @ViewChild(MatPaginator) paginatorAcuerdos!: MatPaginator;
+  @ViewChild(MatSort) sortAcuerdos!: MatSort;
+  @ViewChild('selectSesion') select_Sesion!: ElementRef
+
+
   constructor(
-    private _builder: FormBuilder, public dialog: MatDialog, private srvMonedas: MonedaService, private srcFactura: Actas, 
-    private srcCc: CcService, private _snackbar: MatSnackBar,private router: Router) {
+    private dialoRef: MatDialogRef<Add_ActasComponent>,
+    public dialog: MatDialog, private srcNuevaActa: Actas,
+    private _builder: FormBuilder, private _snackbar: MatSnackBar
+  ) {
     this.toast = new Toast(this._snackbar);
     this.tools = GlobalUtilities.getInstance();
-    this.iniciarForm();
-    this.setListadosClienteTipoFactura();
-    this.loadModules();    
-  }
-  ngOnInit(): void {
-    this.eventAdd();
-  }
-  iniciarForm() {
-    this.frmClienteCotizacion = this._builder.group({
-      id_cliente: [], razon_social: [], Cotizacion: [], TipoFactura: [], FechaFactura: [this.fecha_factura] , 
-      id_moneda: ['USD'] , id_plazo_interes: [1]     
-    });
-    this.idMoneda = 'USD'; // valor inicial por default 
-    
+    this.FormularioActa();
+    this.loadModules();
   }
 
-  async eventAdd() {
-    this.srcFactura.addFacturaTerminada.subscribe(res => {
-      this.list_factura_Item_DB_Grid.push(res.list_factura_Item_DB_Grid);
-      this.dataSourceFacturaItems.data = this.list_factura_Item_DB_Grid;      
+  ngOnInit(): void {
+    this.data();
+    this.getAgenda();
+  }
+
+  async data() {
+    this.firstLoad = true;
+    this.tools.setisLoadingDetails(true)
+
+    this.new_ActaID = await this.srcNuevaActa.getNroActa().toPromise();
+    this.newFrmActa.controls['IdSesion'].setValue(this.new_ActaID);
+    this.newFrmActa.controls['TipoSesion'].setValue(11);
+
+    const localTime: string = Date().toString().substring(16, 21).toString();
+    this.newFrmActa.controls['Hora'].setValue(localTime);
+    this.newFrmActa.controls['FechaSesion'].setValue(new Date());
+
+    this.list_TipoSesion.push(
+      { id: 11, nombre: 'Ordinaria' },
+      { id: 12, nombre: 'Extra-Ordinaria' },
+      { id: 50, nombre: 'Ordinaria-Virtual' },
+      { id: 51, nombre: 'Extra-Ordinaria-Virtual' }
+    )
+
+    setTimeout(() => {
+      this.tools.setisLoadingDetails(false)
+    }, 450);
+
+  }
+
+  async getAgenda() {
+    this.firstLoad = true;
+    this.tools.setisLoadingDetails(true)
+
+    this.list_Agendas = await this.srcNuevaActa.getAgendaActa().toPromise();
+
+    setTimeout(() => {
+      this.tools.setisLoadingDetails(false)
+    }, 450);
+  }
+
+  ngAfterViewInit() {
+    this.dataSourceActasAcuerdos.paginator = this.paginatorAcuerdos;
+    this.dataSourceActasAcuerdos.sort = this.sortAcuerdos;
+  }
+
+
+  async FormularioActa() {
+    this.newFrmActa = this._builder.group({
+      CodAgenda: ['', Validators.required],
+      IdSesion: ['', Validators.required],
+      TipoSesion: ['', Validators.required],
+      IdAgenda: ['', Validators.required],
+      localAgenda: ['', Validators.required],
+      Hora: ['', Validators.required],
+      FechaSesion: ['', Validators.required],
+      Local: ['', Validators.required],
+      ActaDedicatoria: ['', Validators.required],
     });
   }
-  //Load Cliente , tipo, y moneda
-  async setListadosClienteTipoFactura() {
-    const pjson = '{"Cliente":"0","idCOT":"0","Oper":"1"}';
-    this.list_cliente = await this.srcFactura.add_Json_FacturaItems(pjson).toPromise();        
-    let data = await this.srcFactura.getTipoFacturacion().toPromise();
-    this.list_tipoFactura = data;
-    let Json_Fecha = '{"fecha":"'+this.fecha_factura+'"}';
-    this.tsCambio = parseFloat((await this.srcFactura.gettasaKambio(Json_Fecha).toPromise())[0].Tasa);    
-    
-    let moneda = await this.srvMonedas.getMonedas().toPromise();
-    this.Lista_Monedas = moneda;
-  } 
-  //Load list
-  //-- json={Cliente:'39',idCOT:'2285',Oper:'6'}
+
+  //Load Acta 
   async loadModules() {
+    this.firstLoad = true;
     this.tools.setisLoadingDetails(true)
-    this.dataSourceFacturaItems.data = this.list_factura_Item_DB_Grid;
-    this.list_plazos = await this.srcCc.getPlazos().toPromise();
-    const jsonarticulos = '{"Cliente":"0","idCOT":"0","Oper":"9"}';
-    this.list_ArticulosTerminados = await this.srcFactura.add_Json_FacturaItems(jsonarticulos).toPromise();
-    
+
     if (this.firstLoad) {
       setTimeout(() => {
         this.tools.setisLoadingDetails(false)
       }, 450);
       this.firstLoad = false;
     }
+
   }
 
-  openForm(type: number, id: number) {
+  async get_DetalleAcuerdos() {
+    this.Data_Acuerdos = await this.srcNuevaActa.getDetalleAcuerdos(this.new_ActaID.CodActas).toPromise();
+    this.dataSourceActasAcuerdos.data = this.Data_Acuerdos;
+  }
+
+
+  getPaginatorData(event: any) {
+  }
+
+  setComboSesion(id: number) {
+    this.newFrmActa.controls['TipoSesion'].setValue(id);
+  }
+
+
+
+  async openForm(type: number) {
     let dialogRef;
     switch (type) {
       case 1: {
-        if ((this.idcliente !== undefined)&&(this.tipoFactura !== undefined)&&(this.idMoneda !== undefined)) {
-          
-          dialogRef = this.dialog.open(CarItemAddComponent,
-            {
-              height: '700px', width: '1200px',
-              data: { id_cliente: this.idcliente, razonSocial: this.razonSocial, fecha_factura:this.fecha_factura, idMoneda:this.idMoneda, tsCambio:this.tsCambio, clienteCotizaciones: this.list_ClienteCotizaciones, list_ArticulosTerminados:this.list_ArticulosTerminados }
-            });
-          dialogRef.afterClosed().subscribe((result: any) => {
-            if (result !== undefined) {
-              result.map((t: any[]) => { this.list_factura_Item_DB_Grid.push(t) });
-              this.dataSourceFacturaItems.data = this.list_factura_Item_DB_Grid;
-            }
-            this.calculos_totales();
-          });
-        } else {
-          this.toast.showToast("SELECCIONE: CLIENTE,TIPO FACTURA Y MONEDA ❗ ❗ ❗ ", "Aceptar");
+        if (this.Cod_Agendas > 0) {
+          this.Data_Acuerdos = [];
+          this.dataSourceActasAcuerdos.data = this.Data_Acuerdos;
+          this.toast.showToast("CAMBIO DE AGENDA - SE LIMPIA EL DETALLE DE ACUERDOS - ❌", "ACCION DE CAMBIO");
         }
+        dialogRef = this.dialog.open(CarItemAddComponent,
+          {
+            height: '600px', width: '800px',
+            data: { list_Agendas: this.list_Agendas }
+          })
+        dialogRef.afterClosed().subscribe((res: any) => {
+          if (res === undefined) {
+            this.toast.showToast("ACCION CANCELADA CORRECTAMENTE  ✔️", "Aceptar");
+          }
+          else {
+
+            this.newFrmActa.controls['CodAgenda'].setValue(res.CodAgenda);
+            this.newFrmActa.controls['IdAgenda'].setValue(res.IdAgenda);
+            this.newFrmActa.controls['localAgenda'].setValue(res.Local);
+            this.newFrmActa.controls['Local'].setValue(res.Local);
+            this.Cod_Agendas = res.CodAgenda;
+          }
+        });
       } break;
       case 2: {
-        if (this.tipoFactura !== undefined) {
-              if(this.TOTAL_NIO ===0 || this.TOTAL_USD ===0){
-                this.toast.showToast("MONTO DE FACTURA EN CERO ❗ ❗ ❗ ", "Aceptar");      
-              }else{
-                this.json_cargar();
-                dialogRef = this.dialog.open(CarPagosAddComponent,
-                  {
-                    height: '700px', width: '1100px',
-                    data: {fecha_factura: this.fecha_factura, idMoneda: this.idMoneda, id_plazos: this.id_plazos, TOTAL_NIO:this.TOTAL_NIO,TOTAL_USD:this.TOTAL_USD,tsCambio:this.tsCambio, fechaDia:this.fechaDia, json:this.json_factura_detalle},
-                    disableClose: true, autoFocus:true       
-                  });
-                dialogRef.afterClosed().subscribe((result: any) => {
-                  if (result !== undefined) {      
-                    this.router.navigate(['/Factura']);
-                  }      
-                });
-              }
-          
+
+        this.list_PuntosDeAgenda = await this.srcNuevaActa.postgetPuntosDeAgenda(this.Cod_Agendas).toPromise();
+        this.Id_Acuerdo = await this.srcNuevaActa.getNroIdAcuerdo().toPromise();
+        //console.log('valor this.Id_Acuerdo : '+JSON.stringify(this.Id_Acuerdo))
+
+        let txtAcuerdos = this.Id_Acuerdo.substring(0, 8);
+        let txtNumeros = this.Id_Acuerdo.substring(8, 11);
+        let nVal = Number(txtNumeros) - 1;
+        let nfilas = this.dataSourceActasAcuerdos.data.length;
+        nVal = nVal + nfilas + 1;
+        let strVal;
+        if (nVal < 10) {
+          strVal = txtAcuerdos + '00' + nVal;
+        } else if (nVal < 100) {
+          strVal = txtAcuerdos + '0' + nVal;
         } else {
-          this.toast.showToast("SELECCIONE TIPO DE FACTURACIÓN  ❗ ❗ ❗ ", "Aceptar");
+          strVal = txtAcuerdos + '' + nVal;
         }
+        this.Id_Acuerdo = strVal;
 
+        // console.log('txtAcuerdos : '+ txtAcuerdos);
+        // console.log('txtNumeros : '+ txtNumeros);
+        // console.log('nVal : '+ nVal);
+        // console.log('strVal : '+ strVal);
+
+        dialogRef = this.dialog.open(carAcuerdosAddComponent,
+          {
+            height: '600px', width: '1200px',
+            data: { list_PuntosDeAgenda: this.list_PuntosDeAgenda, Id_Acuerdo: this.Id_Acuerdo }
+          })
+        dialogRef.afterClosed().subscribe((res: any) => {
+          if (res === undefined) {
+            this.toast.showToast("ACCION CANCELADA CORRECTAMENTE  ✔️", "Aceptar");
+          } else {
+            this.Data_Acuerdos.push(res);
+            this.dataSourceActasAcuerdos.data = this.Data_Acuerdos;
+          }
+        });
       } break;
-      default: { dialogRef = this.dialog.open(CarItemAddComponent, {}) } break;
+
+    }
+  }
+
+  cerrar() {
+    this.newFrmActa.reset();
+    this.dialoRef.close();
+
+  }
+
+
+  /* Sumit: Nueva Acta */
+  async Guardar(values: any, formDirective: FormGroupDirective) {
+    let Dedicatoria: number = (this.newFrmActa.controls['ActaDedicatoria'].value).length;
+
+    if (Dedicatoria <= 10) {
+      this.toast.showToast("INCONSISTENCIA DE DATOS  - ❌", "ERROR DE ACCION");
+
+    } else if (this.Data_Acuerdos.length === 0) {
+      this.toast.showToast("ACUERDOS VACIOS O INCONSISTENCIA DE DATOS  - ❌", "ERROR DE ACCION");
+    } else {
+
+      const Acta_ful = {
+        Acta_Maestro: this.newFrmActa.value,
+        Acta_Detalle: this.Data_Acuerdos
+      }
+
+      this.srcNuevaActa.Add_Json_Acta(Acta_ful).subscribe((res: any) => {
+
+        console.log('Respuesta  res : ' + JSON.stringify(res));
+      });
+      
+      this.dialoRef.close();
+
     }
 
   }
-  async Cliente_change(id_cliente: any, nombre: any) {
-    this.idcliente = id_cliente;
-    this.razonSocial = this.list_cliente.find((x: any) => x.id_cliente === this.idcliente).razon_social;
-    const pjson = '{"Cliente":"' + id_cliente + '","idCOT":"0000","Oper":"2"}';
-    this.list_ClienteCotizaciones = await this.srcFactura.add_Json_FacturaItems(pjson).toPromise();
+
+  EditaSonido(op: any, CodAcuerdo: any) {
   }
 
-  async tipoFactura_change(id_tipo_Factura: any, tipo_factura_Desc: any) {    
-    this.tipoFactura = id_tipo_Factura
-    this.tipo_factura_Desc = tipo_factura_Desc
-    if (id_tipo_Factura === DICTIONARYKEYS.IDTIPO) 
-    { this.itsCredit = true; 
-
-    } else { this.itsCredit = false; }
-
-  }
-  async plazoFactura_change(plazo_id:any){
-    this.id_plazos = plazo_id;
-  }
-
-  async FechaFactura_change($event:any){
-    let  dateStr = $event.target.value;     
-      this.fecha_factura = dateStr;      
-      let Json_Fecha = '{"fecha":"'+this.fecha_factura+'"}';
-      this.tsCambio = parseFloat((await this.srcFactura.gettasaKambio(Json_Fecha).toPromise())[0].Tasa);    
-    ///
-      this.fechaDia = dateStr;
-  }
-
-  async moneda_change(id_moneda:any,desc_moneda:any){
-      this.idMoneda = id_moneda;
-      console.log('Moneda desde Factura :  '+this.idMoneda);
-  }
-  calculos_totales() {
-    if(this.idMoneda === 'USD'){
-      const factura = this.list_factura_Item_DB_Grid;
-      this.Sub_Total_USD = parseFloat(factura.map((t: any) => t.subTotal).reduce((acc, value) => acc + value, 0));
-      this.IVA_USD = parseFloat(factura.map((t: any) => t.iva).reduce((acc, value) => acc + value, 0));
-      this.TOTAL_USD = parseFloat(this.Sub_Total_USD) + parseFloat(this.IVA_USD);
-      /// Cordobisar 
-      this.Sub_Total_NIO = parseFloat(this.Sub_Total_USD) * this.tsCambio;
-      this.IVA_NIO = parseFloat(this.IVA_USD) * this.tsCambio;
-      this.TOTAL_NIO = parseFloat(this.Sub_Total_NIO) + parseFloat(this.IVA_NIO);
-
-    }else // si la moneda es Cortdobas
-    {
-      const factura = this.list_factura_Item_DB_Grid;
-      this.Sub_Total_NIO  = parseFloat(factura.map((t: any) => t.subTotal).reduce((acc, value) => acc + value, 0));
-      this.IVA_NIO = parseFloat(factura.map((t: any) => t.iva).reduce((acc, value) => acc + value, 0));
-      this.TOTAL_NIO = parseFloat(this.Sub_Total_NIO) + parseFloat(this.IVA_NIO);
-      /// ...DOLARIZAR 
-      this.Sub_Total_USD = parseFloat(this.Sub_Total_NIO) / this.tsCambio;
-      this.IVA_USD = parseFloat(this.IVA_NIO) / this.tsCambio;
-      this.TOTAL_USD = parseFloat(this.Sub_Total_USD) + parseFloat(this.IVA_USD);
-
-    }
-    
+  isAllowed() {
+    return this.permission;
   }
 
 
-json_cargar(){
 
-  const MaestroFaacturaDetalle = 
-  {
-    idcliente:this.idcliente, 
-    tipoFactura:this.tipoFactura, 
-    id_plazos:this.id_plazos,
-    fecha_factura:this.fecha_factura,
-    idMoneda:this.idMoneda,
-    Sub_Total_USD:this.Sub_Total_USD, 
-    IVA_USD:this.IVA_USD, 
-    TOTAL_USD:this.TOTAL_USD, 
-    Sub_Total_NIO:this.Sub_Total_NIO,
-    IVA_NIO:this.IVA_NIO,
-    TOTAL_NIO:this.TOTAL_NIO, 
-    tsCambio:this.tsCambio,
-    fechaDia:this.fechaDia,
-    DetFactura:this.list_factura_Item_DB_Grid
-  }
+  // calculos_totales() {
+  //   if(this.idMoneda === 'USD'){
+  //     const factura = this.list_factura_Item_DB_Grid;
+  //     this.Sub_Total_USD = parseFloat(factura.map((t: any) => t.subTotal).reduce((acc, value) => acc + value, 0));
+  //     this.IVA_USD = parseFloat(factura.map((t: any) => t.iva).reduce((acc, value) => acc + value, 0));
+  //     this.TOTAL_USD = parseFloat(this.Sub_Total_USD) + parseFloat(this.IVA_USD);
+  //     /// Cordobisar 
+  //     this.Sub_Total_NIO = parseFloat(this.Sub_Total_USD) * this.tsCambio;
+  //     this.IVA_NIO = parseFloat(this.IVA_USD) * this.tsCambio;
+  //     this.TOTAL_NIO = parseFloat(this.Sub_Total_NIO) + parseFloat(this.IVA_NIO);
 
-  this.json_factura_detalle =  MaestroFaacturaDetalle;
-}
+  //   }else // si la moneda es Cortdobas
+  //   {
+  //     const factura = this.list_factura_Item_DB_Grid;
+  //     this.Sub_Total_NIO  = parseFloat(factura.map((t: any) => t.subTotal).reduce((acc, value) => acc + value, 0));
+  //     this.IVA_NIO = parseFloat(factura.map((t: any) => t.iva).reduce((acc, value) => acc + value, 0));
+  //     this.TOTAL_NIO = parseFloat(this.Sub_Total_NIO) + parseFloat(this.IVA_NIO);
+  //     /// ...DOLARIZAR 
+  //     this.Sub_Total_USD = parseFloat(this.Sub_Total_NIO) / this.tsCambio;
+  //     this.IVA_USD = parseFloat(this.IVA_NIO) / this.tsCambio;
+  //     this.TOTAL_USD = parseFloat(this.Sub_Total_USD) + parseFloat(this.IVA_USD);
+
+  //   }
+
+  // }
 
 
-
-  isAllowed() { return this.permission; }
-  getPaginatorData(event: any) { }
 
 }
