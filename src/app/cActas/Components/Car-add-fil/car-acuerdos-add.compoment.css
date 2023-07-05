@@ -4,7 +4,7 @@
 a { color: inherit; } 
 
 
-.mat-column-NumeroCotizacion{     
+.mat-column-NumeroCotizacion{      
   width: 5% !important;
   
   }
@@ -35,7 +35,7 @@ a { color: inherit; }
   }
 
   
-  mat-form-field{
+  mat-form-field {
     width: 85%;
 }
 

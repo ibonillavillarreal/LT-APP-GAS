@@ -13,14 +13,15 @@ import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
 export class Actas {
 
   url_local = new DICTIONARYKEYS().url + '/API';
-  url = new DICTIONARYKEYS().url + '/API/Acta/';  
+  url = new DICTIONARYKEYS().url + '/API/Acta/';
+  urlsubir = new DICTIONARYKEYS().url + '/api';
 
-  
+
   constructor(private http: HttpClient, private error: ErrorService) { }
   @Output() addFacturaTerminada: EventEmitter<any> = new EventEmitter();
 
-  getActaListado(): Observable<any> {    
-    return this.http.get<any>(this.url_local +'/Acta')
+  getActaListado(): Observable<any> {
+    return this.http.get<any>(this.url_local + '/Acta')
       .pipe(retry(1), catchError(this.error.handleError));
   }
   getDetalleAcuerdos(id_Acta: any): Observable<any> {
@@ -38,17 +39,17 @@ export class Actas {
   }
 
   getAgendaActa(): Observable<any> {
-    return this.http.get<any>(this.url +'/getAgendaActa')
-    .pipe(retry(1), catchError(this.error.handleError));
+    return this.http.get<any>(this.url + '/getAgendaActa')
+      .pipe(retry(1), catchError(this.error.handleError));
   }
 
   postgetPuntosDeAgenda(Cod_Agenda: any): Observable<any> {
-    return this.http.post<any>(this.url + 'postgetPuntosDeAgenda',{"Cod_Agenda":Cod_Agenda})
+    return this.http.post<any>(this.url + 'postgetPuntosDeAgenda', { "Cod_Agenda": Cod_Agenda })
       .pipe(retry(1), catchError(this.error.handleError));
   }
-  
+
   Add_Json_Acta(Acta_ful: any): Observable<any[]> {
-    return this.http.post<any>(this.url_local + '/Acta/AddJsonActa', {"Acta_ful":Acta_ful})
+    return this.http.post<any>(this.url_local + '/Acta/AddJsonActa', { "Acta_ful": Acta_ful })
       .pipe(retry(1), catchError(this.error.handleError));
   }
 
@@ -64,13 +65,27 @@ export class Actas {
   }
 
 
+  subir(formData: any): Observable<any> {
+    return this.http.post<any>(this.url_local + '/Acta/Subir', formData)
+      .pipe(retry(1), catchError(this.error.handleError));
+  }
+
+
+  bajrDoc(cod_acta: any): Observable<any> {      
+    return this.http.post(this.url + 'Bajar/Docx/',{filename:cod_acta},
+    { responseType:'blob',headers: new HttpHeaders().append('Content-Type', 'application/json')}
+    ).pipe(retry(1), catchError(this.error.handleError));
+  }
 
 
 
 
 
-  /* ---===========================================================--- */ 
-  /* ---===========================================================--- */ 
+
+
+
+  /* ---===========================================================--- */
+  /* ---===========================================================--- */
   seguir_Tracking(id_Acta: any): Observable<any> {
     return this.http.get<any>(this.url + '/ordenTracking/' + JSON.stringify(id_Acta)).
       pipe(retry(1), catchError(this.error.handleError));
@@ -80,13 +95,13 @@ export class Actas {
     return this.http.get<any>(this.url + '/estacionrastreo/' + numero_factura).
       pipe(retry(1), catchError(this.error.handleError));
   }
-  
+
   gettasaKambio(Json_Fecha: any): Observable<any> {
     return this.http.post<any>(this.url_local + '/Acta/tasaKambio', JSON.parse(Json_Fecha))
       .pipe(retry(1), catchError(this.error.handleError));
   }
 
-  
+
   //-- json={Cliente:'39',idCOT:'2285',Oper:'6'}
   add_Json_FacturaItems(jsonCadena: any): Observable<any[]> {
     return this.http.post<any>(this.url_local + '/Acta/add_Json_ActaItems', JSON.parse(jsonCadena))

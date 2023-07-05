@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SeguirTrackComponent } from './seguir-track.component';
+import { addfilesComponent } from './addfiles.component';
 
 describe('SeguirTrackComponent', () => {
-  let component: SeguirTrackComponent;
-  let fixture: ComponentFixture<SeguirTrackComponent>;
+  let component: addfilesComponent;
+  let fixture: ComponentFixture<addfilesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SeguirTrackComponent ]
+      declarations: [ addfilesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SeguirTrackComponent);
+    fixture = TestBed.createComponent(addfilesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

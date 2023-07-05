@@ -10,6 +10,10 @@ import { EditFacturaComponent } from '../Edit-acta/edit-factura.component';
 import { Actas } from 'src/app/services/Acta.service';
 import { SubCatalogoService } from 'src/app/services/subcatalogo.service';
 import { Add_ActasComponent } from '../Add-actas/add-actas.component';
+import { addfilesComponent } from '../Add-files/addfiles.component';
+import { carAcuerdosAddComponent } from '../Car-add-fil/car-acuerdos-add.component';
+
+
 
 @Component({
   selector: 'app-acta',
@@ -91,6 +95,17 @@ export class ListActaComponent implements OnInit {
           //location.reload();
           this.firstLoad = true;
           this.loadModules();
+        }); 
+      }break;
+
+      case 4: { dialogRef = this.dialog.open(addfilesComponent, 
+        { height: '270px', width: '450px',
+          data: {id:id}
+        })
+        dialogRef.afterClosed().subscribe((res: any) => {          
+          //this.firstLoad = true;
+          //this.loadModules();
+          console.log(res);      
         }); 
       }break;
       

@@ -30,8 +30,14 @@ export class InterceptorService implements HttpInterceptor {
     // }
     const headers = new HttpHeaders({
       //     'x-auth-token': '' + tkn,
-      'Content-Type': 'application/json'
+     // 'Content-Type':'application/json'
+
+      /* Otros */
+      //'Content-Type': 'application/x-www-form-urlencoded'
+      //'Content-Type': 'Access-Control-Allow-Origin'
+      //'Content-Type': '*'             
     });
+
     const reqClone = req.clone({ headers });
     return next.handle(reqClone);
   }

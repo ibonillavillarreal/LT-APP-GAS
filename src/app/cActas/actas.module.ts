@@ -13,7 +13,7 @@ import { CarSelecPagosComponent } from './Components/Car-Selec_acta/car-selec-pa
 import { VerItemDetalleComponent } from './Components/Ver-ItemDetail/ver-item-detalle.component';
 import { EditarCantidadComponent } from './Components/Edit-Cantidad/editar-cantidad.component';
 import { TrackingComponent } from './Components/Seg-Tracking/tracking.component';
-import { SeguirTrackComponent } from './Components/Seg-Estaciones/seguir-track.component';
+import { addfilesComponent } from './Components/Add-files/addfiles.component';
 import { ActaRoutingModule } from './actas-routing.module';
 
 
@@ -30,7 +30,7 @@ import { ActaRoutingModule } from './actas-routing.module';
     VerItemDetalleComponent,
     EditarCantidadComponent,
     TrackingComponent,
-    SeguirTrackComponent,    
+    addfilesComponent,    
 
   ],
   imports: [    

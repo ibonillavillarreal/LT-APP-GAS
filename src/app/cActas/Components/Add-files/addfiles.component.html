@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-body">
+
+        <div class="row" style="border-color: #0a46c7;">
+            <div class="col-11">
+                <h4 class="card-title">
+                    <span class="lstick"></span>
+                    Subir Documentos - Seleccione el Acta.doc
+                </h4>
+            </div>
+            <div class="col-1">
+                <h6 class="card-title">
+                    <span class="lstick">
+                        <mat-icon (click)="Cerrar()">🗙</mat-icon>
+                    </span>
+                </h6>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+
+        <div class="col-2"> <mat-icon> folder</mat-icon> </div>
+        <div class="row">
+            <div class="col-10">
+               <!-- <form action="/API/Acta/Subir" method="post" enctype="multipart/form-data"> -->
+                    <input type="file" (change)="onFileChange($event)">
+              <!--  </form>-->
+            </div>
+            <div class="col-1">
+                <button class="btn btn-outline-secondary" 
+                 (click)="onUpload()">
+                 Subir <mat-icon matTooltip="Enviar al Servidor"> cloud_upload</mat-icon>
+                </button>
+            </div>
+            <div class="col-1"> <br></div>
+
+        </div>
+
+
+    </div>
+</div>

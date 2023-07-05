@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   selector: 'car-acuerdos-add',
   templateUrl: './car-acuerdos-add.component.html',
   styleUrls: ['./car-acuerdos-add.component.css']
+                 
 })
 export class carAcuerdosAddComponent implements OnInit {
 
