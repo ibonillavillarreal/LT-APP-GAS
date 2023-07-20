@@ -33,28 +33,20 @@ export class LoginComponent implements OnInit {
 
      console.log(cls); 
    
-     /*  consulta el tkn 
-    
+       //consulta el tkn     
      this.src.getLogin(cls).subscribe(res => {
       console.log("LLEGA"+res)
-      //const tkn_auth= localStorage.getItem('token');
-      // console.log(' TKN-AUTH '+ res.token);
+      const tkn_auth= localStorage.getItem('token');
+      console.log(' TKN-AUTH '+ res.token);
       if(res.auth){
         localStorage.setItem('token',res.token);    
         this.tools.setAuthenticated(true);
         location.reload()
       }else{
-        this.tools.setAuthenticated(true);
+        this.tools.setAuthenticated(false);
         localStorage.removeItem('token')  
       }
     });
-
-      */
-
-       this.tools.setAuthenticated(true);    
-      //this,this.tools.setIsLoading(true);
-      //location.reload()
-
   }
   
 }

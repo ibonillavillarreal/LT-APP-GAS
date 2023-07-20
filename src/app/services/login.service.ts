@@ -22,12 +22,12 @@ export class LoginService {
    };
 
   getLogin(cls:User):Observable<any>{       
-    return this.http.post<User>(this.url + '/login/',JSON.stringify(cls),this.httpOptions).
+    return this.http.post<User>(this.url + 'API/login/',JSON.stringify(cls),this.httpOptions).
     pipe(retry(1),catchError(this.error.handleError));
   }
 
   verify(tkn:string):Observable<boolean>{//si se pone una url como parametro falla la solicitud y el autenticated se pone true arreglarlo
-    return this.http.get<boolean>(this.url + '/verify/'+tkn). 
+    return this.http.get<boolean>(this.url + 'API/verify/'+tkn). 
     pipe(retry(1),catchError(this.error.handleError));
   }
  

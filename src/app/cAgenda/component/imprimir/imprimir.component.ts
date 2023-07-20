@@ -1,16 +1,9 @@
+
 import { Component, ElementRef, Inject, NgZone, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataSource } from '@angular/cdk/collections';
 import { ActivatedRoute, Data, Params } from '@angular/router';
 import { PersonaService } from 'src/app/services/cliente.service';
-import { Items } from '../../../models/Items';
-import { filter, find, first } from 'rxjs/operators';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { AgendaService } from 'src/app/services/agenda.service';
-import {NgxPrintModule} from "ngx-print";  
-import { Cotizacion } from '../../../models/adddCotizacion';
-
 
 
 
@@ -24,20 +17,20 @@ export class ImprimirComponent implements OnInit {
 
   @ViewChild("seleccion") seleccion!: ElementRef;
   public render: boolean = false;
-  public list_detalle:any[] =[];
+  public list_detalle: any[] = [];
   public Proyectos: any[] = [];
   public Terminado: any[] = [];
-  dataSource = new MatTableDataSource(this.list_detalle); 
+  dataSource = new MatTableDataSource(this.list_detalle);
   displayedColumns: string[] = [
     'Cantidad',
     'Descripcion',
     'Precio',
     'PrecioDollar',
-   // 'Iva',
+    // 'Iva',
     'subTotal',
     'subTotalDollar'
-  ];  
- 
+  ];
+
   public id_Cotizacion: any;
   public Documento: any;
   public contacto_pago: any;
@@ -56,91 +49,91 @@ export class ImprimirComponent implements OnInit {
   public iva: any;
   public gran_total: any;
   public id_cliente: any;
-  public data_cliente!:any;
+  public data_cliente!: any;
   public Cotizacion_Completa: any;
   public Maestro_Cotizacion: any;
 
-  
-  constructor(    
+
+  constructor(
     private Aroute: ActivatedRoute,
     //public dialogRef_Imprimir: MatDialogRef<ImprimirComponent>,
     //@Inject(MAT_DIALOG_DATA) public Obj_Print: any,
     private srvCliente: PersonaService,
-    private srvCotizacion: AgendaService  
-  ) {     
+    private srvCotizacion: AgendaService
+  ) {
     this.Aroute.params.subscribe((params: Params) => {
-      console.log('params.id : '+params.id);
+      console.log('params.id : ' + params.id);
       this.id_Cotizacion = params.id;
       this.detalle_cotizacion();
-      
+
     });
   }
   ngOnInit(): void {
-    
-    
+
+
   }
-  async detalle_cotizacion(){
+  async detalle_cotizacion() {
     this.Cotizacion_Completa = (await this.srvCotizacion.getVerAgenda(this.id_Cotizacion).toPromise());
-    
+
     let MAESTRO = JSON.parse(this.Cotizacion_Completa.cotizacion);
-    this.list_detalle = JSON.parse(this.Cotizacion_Completa.cotizacion_detalle); 
+    this.list_detalle = JSON.parse(this.Cotizacion_Completa.cotizacion_detalle);
     this.Proyectos = JSON.parse(this.Cotizacion_Completa.cotizacion_detalle)
     this.Terminado = JSON.parse(this.Cotizacion_Completa.elemento_detalle)
-   
-    if(this.Proyectos){
+
+    if (this.Proyectos) {
       this.joinProyectDetails();
       this.removeTermProyect();
     }
-   
+
     this.id_cliente = MAESTRO.id_cliente;
-    this.dataSource.data = this.list_detalle; 
+    this.dataSource.data = this.list_detalle;
     this.Maestro_Cotizacion = MAESTRO;
-   /* ------------------------------------------------------------------------- */   
-   this.data_cliente         =(await this.srvCliente.getPersonas().toPromise()).filter((f:any)=> f.id_cliente ===Number(this.id_cliente))[0];
-   /* ------------------------------------------------------------------------- */
-   this.nombre_completo_pago =(await this.srvCliente
-                              .getPersona(Number(this.id_cliente)).toPromise()).filter((f:any)=> f.id_cliente ===Number(this.id_cliente))[0];  
-  /* ------------------------------------------------------------------------- */
-  this.Documento = MAESTRO.NumeroCotizacion;
-                          
-  console.log('lista detalle : '+this.list_detalle)
-  console.log(' MAESTRO : ' + JSON.stringify(MAESTRO));
-  console.log(' Documento MAESTRO : '+JSON.stringify(MAESTRO.NumeroCotizacion));
-  console.log(' id cliente  :  '+ this.id_cliente +'  -***** data_cliente - :  ' +JSON.stringify(this.nombre_completo_pago));                                
-  console.log(' datasouce : '+ JSON.stringify(this.dataSource.data));
-  console.log('list_detalle - dataSource :  '+JSON.stringify(this.list_detalle));
-  
+    /* ------------------------------------------------------------------------- */
+    this.data_cliente = (await this.srvCliente.getPersonas().toPromise()).filter((f: any) => f.id_cliente === Number(this.id_cliente))[0];
+    /* ------------------------------------------------------------------------- */
+    this.nombre_completo_pago = (await this.srvCliente
+      .getPersona(Number(this.id_cliente)).toPromise()).filter((f: any) => f.id_cliente === Number(this.id_cliente))[0];
+    /* ------------------------------------------------------------------------- */
+    this.Documento = MAESTRO.NumeroCotizacion;
+
+    console.log('lista detalle : ' + this.list_detalle)
+    console.log(' MAESTRO : ' + JSON.stringify(MAESTRO));
+    console.log(' Documento MAESTRO : ' + JSON.stringify(MAESTRO.NumeroCotizacion));
+    console.log(' id cliente  :  ' + this.id_cliente + '  -***** data_cliente - :  ' + JSON.stringify(this.nombre_completo_pago));
+    console.log(' datasouce : ' + JSON.stringify(this.dataSource.data));
+    console.log('list_detalle - dataSource :  ' + JSON.stringify(this.list_detalle));
+
     this.datos_maestros();
   }
 
-  datos_maestros(){  
+  datos_maestros() {
 
-   this.nombre_cliente = this.data_cliente.razon_social;
-   this.ruc_cliente = this.data_cliente.ruc;
-   this.correo_cliente = this.data_cliente.correo;
-   this.telefono1_cliente = this.data_cliente.telefono1;
-   this.contacto_pago  =  this.nombre_completo_pago.nombres + ' ' + this.nombre_completo_pago.apellidos;
-   this.observaciones = this.Maestro_Cotizacion.Observaciones;
-   this.fecha_cotizacion = this.Maestro_Cotizacion.fecha_registro;
-   this.NumDocumento = this.Documento;
-   this.descripcion_cotizacion = this.Maestro_Cotizacion.DescripcionCotizacion;
-   this.fecha_entrega = this.Maestro_Cotizacion.FechaEntrega;
-   this.moneda = this.Maestro_Cotizacion.moneda;
+    this.nombre_cliente = this.data_cliente.razon_social;
+    this.ruc_cliente = this.data_cliente.ruc;
+    this.correo_cliente = this.data_cliente.correo;
+    this.telefono1_cliente = this.data_cliente.telefono1;
+    this.contacto_pago = this.nombre_completo_pago.nombres + ' ' + this.nombre_completo_pago.apellidos;
+    this.observaciones = this.Maestro_Cotizacion.Observaciones;
+    this.fecha_cotizacion = this.Maestro_Cotizacion.fecha_registro;
+    this.NumDocumento = this.Documento;
+    this.descripcion_cotizacion = this.Maestro_Cotizacion.DescripcionCotizacion;
+    this.fecha_entrega = this.Maestro_Cotizacion.FechaEntrega;
+    this.moneda = this.Maestro_Cotizacion.moneda;
 
-   
-   console.log('Proyectos '+JSON.stringify(this.Proyectos));
-   console.log('Terminado '+JSON.stringify(this.Terminado));
-   
-   //return this.dataSource.data.map((t: any) => t.SubTotal).reduce((acc, value) => acc + value, 0);
 
-   let fp = this.Proyectos.map((t:any)=> Number(t.GranTotal)).reduce((acc, value)=> acc + value,0);   
-   console.log('*****sacando las filas Proyectos  : '+JSON.stringify(fp));
-   let ft = this.Terminado.map((c:any ,t:any)=> (Number(t.Cantidad) * Number(t.GranTotal))).reduce((acc, value)=> acc + value,0);   
-   console.log('*****sacando las filas Terminadas : '+JSON.stringify(ft));    
-   //this.Maestro_Cotizacion.GranTotal = (Number(fp) + Number(ft));
+    console.log('Proyectos ' + JSON.stringify(this.Proyectos));
+    console.log('Terminado ' + JSON.stringify(this.Terminado));
 
-   this.sub_total = this.Maestro_Cotizacion.SubTotal;
-   this.iva = this.Maestro_Cotizacion.IVA;
+    //return this.dataSource.data.map((t: any) => t.SubTotal).reduce((acc, value) => acc + value, 0);
+
+    let fp = this.Proyectos.map((t: any) => Number(t.GranTotal)).reduce((acc, value) => acc + value, 0);
+    console.log('*****sacando las filas Proyectos  : ' + JSON.stringify(fp));
+    let ft = this.Terminado.map((c: any, t: any) => (Number(t.Cantidad) * Number(t.GranTotal))).reduce((acc, value) => acc + value, 0);
+    console.log('*****sacando las filas Terminadas : ' + JSON.stringify(ft));
+    //this.Maestro_Cotizacion.GranTotal = (Number(fp) + Number(ft));
+
+    this.sub_total = this.Maestro_Cotizacion.SubTotal;
+    this.iva = this.Maestro_Cotizacion.IVA;
   }
 
   joinProyectDetails() {
@@ -160,22 +153,22 @@ export class ImprimirComponent implements OnInit {
     }
   }
 
-  cotizacion_en_cordoba():boolean{
-    if(this.moneda =="C$"){
+  cotizacion_en_cordoba(): boolean {
+    if (this.moneda == "C$") {
       return true;
     }
-    else{
+    else {
       return false;
     }
   }
-  
-//vista preliminar 
-imprime(){
-  // window.print();
-}
-  
-//cierre final  
-  closed(){
+
+  //vista preliminar 
+  imprime() {
+    // window.print();
+  }
+
+  //cierre final  
+  closed() {
     this.closed();
   }
 }

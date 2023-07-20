@@ -29,14 +29,17 @@ export class EditAgendaComponent implements OnInit {
 
   public Id_Agenda: number = 0;
   public CodMiembro = 0;
-  Data_AgendaCompleta: any
-  Data_AgendaMaestro: any
-  Data_AgendaAsistencia: any[] = [];
-  list_asistencia: any[] = [];
-  Data_PuntosAgenda: any[] = [];
-  list_PuntosAgenda: any[] = [];
-  DeleteItem_AgendaAsistencia: any[] = [];
-  Delete_PuntosAgenda: any[] = [];
+  public Data_AgendaCompleta: any
+  public Data_AgendaMaestro: any
+  public Data_AgendaAsistencia: any[] = [];
+  public list_asistencia: any[] = [];
+  public Data_PuntosAgenda: any[] = [];
+  public list_PuntosAgenda: any[] = [];
+  public DeleteItem_AgendaAsistencia: any[] = [];
+  public Delete_PuntosAgenda: any[] = [];
+  public list_TipoSesion: any[] = [];
+  public list_Institucion: any[] = [];
+  public list_Consejo: any[] = [];
 
   frmAgenda!: FormGroup
   tools: GlobalUtilities
@@ -86,8 +89,10 @@ export class EditAgendaComponent implements OnInit {
   }
 
   async iniciar_FormAgenda() {
-    this.frmAgenda = this._builder.group({
+    this.frmAgenda = this._builder.group({      
       IdAgenda: ['', Validators.required],
+      TipoSesion: ['', Validators.required],
+      institucion: ['',Validators.required],
       Local: ['', Validators.required],
       DescripcionAgenda: ['', Validators.required],
       FechaRegristro: ['', Validators.required],
@@ -96,15 +101,27 @@ export class EditAgendaComponent implements OnInit {
   }
 
   async getData() {
-    //this.tools.setisLoadingDetails(true)
+    this.tools.setisLoadingDetails(true)
+    this.list_TipoSesion.push(
+      { id: 11, nombre: 'Ordinaria' },
+      { id: 12, nombre: 'Extra-Ordinaria' },
+      { id: 50, nombre: 'Ordinaria-Virtual' },
+      { id: 51, nombre: 'Extra-Ordinaria-Virtual' }
+    )
 
     this.Data_AgendaCompleta = await this.srcAgenda.getVerAgenda(this.Id_Agenda).toPromise();
     this.Data_AgendaMaestro = this.Data_AgendaCompleta.Maestro //Maestro Agenda    
+
+    this.list_Institucion = await this.srcAgenda.getInstitucion().toPromise();            
+    //this.list_Consejo =     await this.src_Agenda.getConsejo().toPromise();            
+
 
     this.frmAgenda.controls['IdAgenda'].setValue(this.Data_AgendaMaestro[0].IdAgenda);
     this.frmAgenda.controls['Local'].setValue(this.Data_AgendaMaestro[0].LOCAL);
 
     this.frmAgenda.controls['DescripcionAgenda'].setValue(this.Data_AgendaMaestro[0].DescripcionAgenda);
+    this.frmAgenda.controls['institucion'].setValue(this.list_Institucion[0].id);
+    this.frmAgenda.controls['TipoSesion'].setValue(this.list_TipoSesion[0].id);
 
 
     // Convert Ctrl de fechas  
@@ -406,6 +423,13 @@ export class EditAgendaComponent implements OnInit {
     // let proyecto = this.Data_AgendaAsistencia.find(x => x.idDetCotizacion === id);
   }
 
+  setComboSesion(id: number) {
+    this.frmAgenda.controls['TipoSesion'].setValue(id);
+  }
+  
+  setComboInstitucion(id: number) {
+    this.frmAgenda.controls['institucion'].setValue(id);
+  }
 
 
 

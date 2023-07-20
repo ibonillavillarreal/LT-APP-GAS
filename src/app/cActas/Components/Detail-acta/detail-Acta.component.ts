@@ -10,9 +10,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Toast } from 'src/app/utils/Toast';
 
-import {saveAs} from 'file-saver';
-import { error } from '@angular/compiler/src/util';
-
 
 
 
@@ -22,16 +19,15 @@ import { error } from '@angular/compiler/src/util';
   styleUrls: ['./detail-Acta.component.css']
 })
 export class DetailActaComponent implements OnInit {
+  
   public tools: GlobalUtilities
   public firstLoad: boolean = true;
-
-  frmActa!: FormGroup
+  public frmActa!: FormGroup;
   public edit_ActaDB: any;
   public list_Acuerdos: any[] = [];
   public Data_Acuerdos: any[] = [];
+  public list_TipoSesion: any[] = [];
   public toast: Toast;
-
-
 
   /***TABLA DE ASISTENCIA - REPRESENTANTES */
   displayedColumnsAcuerdos: string[] = ['IdAcuerdos', 'Acuerdos', 'PuntosAgenda', 'AudioAcuerdo', 'acciones'];
@@ -66,14 +62,26 @@ export class DetailActaComponent implements OnInit {
   //Load Acta 
   async loadModules() {
     this.tools.setisLoadingDetails(true)
-    this.frmActa.controls['IdSesion'].setValue(this.edit_ActaDB.IdSesion);
+    this.list_TipoSesion.push(
+      { id: 11, nombre: 'Ordinaria' },
+      { id: 12, nombre: 'Extra-Ordinaria' },
+      { id: 50, nombre: 'Ordinaria-Virtual' },
+      { id: 51, nombre: 'Extra-Ordinaria-Virtual' }
+    )
+    const id_tipo = this.list_TipoSesion.find((reg)=>reg.nombre==this.edit_ActaDB.TipoSesion).id
+    this.frmActa.controls['TipoSesion'].setValue(id_tipo);
+    //this.frmActa.controls['IdSesion'].setValue(this.edit_ActaDB.IdSesion);
     this.frmActa.controls['TipoSesion'].setValue(this.edit_ActaDB.TipoSesion);
     this.frmActa.controls['IdAgenda'].setValue(this.edit_ActaDB.IdAgenda);
     this.frmActa.controls['localAgenda'].setValue(this.edit_ActaDB.localAgenda);
     this.frmActa.controls['Hora'].setValue(this.edit_ActaDB.Hora);
-    const fecha_Splite = (this.edit_ActaDB.FechaSesion.substring(0, 10)).split('-');  // yyyy-mm-dd
-    const fecha_Sesion = fecha_Splite[0] + '-' + fecha_Splite[1] + '-' + fecha_Splite[2];  /// mm-dd-yyyy    
-    this.frmActa.controls['FechaSesion'].setValue(new Date(fecha_Sesion));
+    
+    
+    var fechaSesion = new Date(this.data.ActaMaestro.FechaSesion);
+    var dias = 1; // Número de días a agregar
+    fechaSesion.setDate(fechaSesion.getDate() + dias);    
+    this.frmActa.controls['FechaSesion'].setValue(new Date(fechaSesion));
+
     this.frmActa.controls['Local'].setValue(this.edit_ActaDB.Local);
     this.frmActa.controls['ActaDedicatoria'].setValue(this.edit_ActaDB.ActaDedicatoria);
 

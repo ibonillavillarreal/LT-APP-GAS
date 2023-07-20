@@ -36,11 +36,23 @@ export class AgendaService {
 
   }
 
+  getInstitucion(): Observable<any[]> {
+    return this.http.get<any[]>(this.url + 'Local/Institucion/')
+      .pipe(retry(1), catchError(this.error.handleError));
+
+  }
+
+  getConsejo(): Observable<any[]> {
+    return this.http.get<any[]>(this.url + 'Local/Consejo/')
+      .pipe(retry(1), catchError(this.error.handleError));
+
+  }
+
   add_Agenda(RegistroCompleto_json: any): Observable<any> {
 
     return this.http.post<any>
       (
-        this.url, JSON.stringify(RegistroCompleto_json)
+        this.url, {RegistroCompleto_json}
       ).pipe(retry(1), catchError(this.error.handleError))
 
 
@@ -50,14 +62,14 @@ export class AgendaService {
 
     return this.http.put<any>
       (
-        this.url, JSON.stringify(RegistroCompleto_json)
+        this.url, {RegistroCompleto_json}
       ).pipe(retry(1), catchError(this.error.handleError))
   }
 
   DelEditMiembroAgenda(i: any): Observable<any> {
     return this.http.post<any>
       (
-        this.url_DelMiembro, JSON.stringify(i)
+        this.url_DelMiembro, {i}
       )
       .pipe(retry(1), catchError(this.error.handleError))
   }

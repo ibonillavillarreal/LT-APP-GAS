@@ -41,12 +41,16 @@ export class AddAgendaComponent implements OnInit {
 
   public CodMiembro = 0;
   public Id_Agenda: any;
-  Data_AgendaCompleta: any
-  Data_AgendaMaestro: any
-  Data_AgendaAsistencia: reg_asistencia[] = [];
-  list_asistencia: any[] = [];
-  Data_PuntosAgenda: puntos_agenda[] = [];
-  list_PuntosAgenda: any[] = [];
+  public Data_AgendaCompleta: any
+  public Data_AgendaMaestro: any
+  public Data_AgendaAsistencia: reg_asistencia[] = [];
+  public list_asistencia: any[] = [];
+  public Data_PuntosAgenda: puntos_agenda[] = [];
+  public list_PuntosAgenda: any[] = [];
+  public list_TipoSesion: any[] = [];
+  public list_Institucion: any[] = [];
+  public list_Consejo: any[] = [];
+  
 
   public tools: GlobalUtilities;
   public frmAgenda!: FormGroup;
@@ -104,6 +108,8 @@ export class AddAgendaComponent implements OnInit {
   async iniciar_FormAgenda() {
     this.frmAgenda = this._builder.group({
       IdAgenda: ['', Validators.required],
+      TipoSesion: ['', Validators.required],
+      institucion: ['',Validators.required],
       Local: ['', Validators.required],
       DescripcionAgenda: ['', Validators.required],
       FechaRegristro: ['', Validators.required],
@@ -113,9 +119,22 @@ export class AddAgendaComponent implements OnInit {
 
   async getData() {
     this.tools.setisLoadingDetails(true)
-    const nroRegAgenda = await this.src_Agenda.getNroRegAgenda().toPromise();
+    this.list_TipoSesion.push(
+      { id: 11, nombre: 'Ordinaria' },
+      { id: 12, nombre: 'Extra-Ordinaria' },
+      { id: 50, nombre: 'Ordinaria-Virtual' },
+      { id: 51, nombre: 'Extra-Ordinaria-Virtual' }
+    ) 
+    
+    this.list_Institucion = await this.src_Agenda.getInstitucion().toPromise();            
+    this.list_Consejo =     await this.src_Agenda.getConsejo().toPromise();            
+
+    const nroRegAgenda = await this.src_Agenda.getNroRegAgenda().toPromise();    
     this.frmAgenda.controls['IdAgenda'].setValue(nroRegAgenda[0][0].newNroIdAgenda);
+    this.frmAgenda.controls['TipoSesion'].setValue(this.list_TipoSesion[0].id);
     this.frmAgenda.controls['FechaRegristro'].setValue(this.fecha_Agendada);
+    this.frmAgenda.controls['institucion'].setValue(this.list_Institucion[0].id);
+    
 
     this.Id_Agenda = nroRegAgenda[0][0].newNroIdAgenda;
 
@@ -176,7 +195,7 @@ export class AddAgendaComponent implements OnInit {
 
             if (res !== undefined) {
 
-              console.log('Registro de retorno -Nuevo '+JSON.stringify(res));
+              //console.log('Registro de retorno -Nuevo '+JSON.stringify(res));
 
               res.forEach((reg: any) => {
                 this.Data_AgendaAsistencia.push(reg);
@@ -218,6 +237,17 @@ export class AddAgendaComponent implements OnInit {
 
   }
 
+  openConsejo(){
+        console.log('el Consejo : '+JSON.stringify(this.list_Consejo));
+        this.list_Consejo.forEach((reg: any) => {
+          let NotaObservacion = 'Ninguna';
+          reg.NotaObservacion = NotaObservacion;
+          this.Data_AgendaAsistencia.push(reg);
+          
+        });
+        this.loadModules_Asistencias();
+
+  }
 
 
   EditaCampo(key: number, CodMiembro: any, Descripcion: any) {
@@ -333,6 +363,13 @@ export class AddAgendaComponent implements OnInit {
     }
 
 
+  }
+  setComboSesion(id: number) {
+    this.frmAgenda.controls['TipoSesion'].setValue(id);
+  }
+  
+  setComboInstitucion(id: number) {
+    this.frmAgenda.controls['institucion'].setValue(id);
   }
 
 

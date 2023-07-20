@@ -6,12 +6,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { DetailActaComponent } from '../Detail-acta/detail-Acta.component';
-import { EditFacturaComponent } from '../Edit-acta/edit-factura.component';
+import { EditActaComponent } from '../Edit-acta/edit-acata.component';
 import { Actas } from 'src/app/services/Acta.service';
 import { SubCatalogoService } from 'src/app/services/subcatalogo.service';
 import { Add_ActasComponent } from '../Add-actas/add-actas.component';
 import { addfilesComponent } from '../Add-files/addfiles.component';
-import { carAcuerdosAddComponent } from '../Car-add-fil/car-acuerdos-add.component';
+
 
 
 
@@ -49,7 +49,7 @@ export class ListActaComponent implements OnInit {
     this.tools.setisLoadingDetails(true)
 
     let data = await this.srcActas.getActaListado().toPromise();    
-    this.list_ActaDB = data;
+    this.list_ActaDB = data;    
     this.dataSourceActa.data = this.list_ActaDB;    
     
     this.Estado_subCatalogo.push({ id: '0', descripcion: 'SIN FILTRO' })
@@ -78,10 +78,10 @@ export class ListActaComponent implements OnInit {
         })
         
       } break;
-      case 2: {
-        dialogRef = this.dialog.open(EditFacturaComponent, 
+      case 2: {        
+        dialogRef = this.dialog.open(EditActaComponent, 
         { height: '780px', width: '1600px', 
-          data: { id: id } 
+        data: { ActaMaestro: this.list_ActaDB.find((reg: any) => { return (reg.CodActas === id) }) }
         })
         dialogRef.afterClosed().subscribe((result: any) => {
           //location.reload();
@@ -99,17 +99,17 @@ export class ListActaComponent implements OnInit {
       }break;
 
       case 4: { dialogRef = this.dialog.open(addfilesComponent, 
-        { height: '270px', width: '450px',
+        { height: '300px', width: '450px',
           data: {id:id}
         })
         dialogRef.afterClosed().subscribe((res: any) => {          
-          //this.firstLoad = true;
-          //this.loadModules();
-          console.log(res);      
+          this.firstLoad = true;
+          this.loadModules();
+          //console.log(res);      
         }); 
       }break;
       
-      default: { dialogRef = this.dialog.open(DetailActaComponent); } break;
+      //default: { dialogRef = this.dialog.open(DetailActaComponent); } break;
     }
   }
 

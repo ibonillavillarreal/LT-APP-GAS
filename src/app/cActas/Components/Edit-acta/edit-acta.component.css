@@ -1,0 +1,46 @@
+
+
+@import url("../../../template.css"); 
+@import url("../../../style/Generales.css"); 
+tr{
+  border-bottom: rgb(202, 200, 200) 1px solid ;  
+}
+td{
+  padding: 10px;
+}
+
+/* a{
+  text-decoration: none;
+} */
+
+a { color: inherit; } 
+
+
+.mat-column-IdAcuerdos{       
+  width: 15% !important;
+  color: black;
+ 
+  }
+  .mat-column-Acuerdos{
+    width: 32% !important;
+    color: black;
+  }   
+  .mat-column-PuntosAgenda{
+    width: 36% !important;
+    color: black;
+  } 
+
+  .mat-column-AudioAcuerdo{
+    width: 17% !important;
+    color: black;
+  }
+  .mat-column-acciones {
+    width: 5% !important;
+    color: black;
+    text-align:left;
+  }
+
+  
+  mat-form-field{
+    width: 100%;
+}

@@ -1,0 +1,11 @@
+
+@import url("../../../template.css");
+@import url("../../../style/Generales.css");
+
+a {
+  color: inherit;
+}
+
+mat-form-field {
+  width: 95%;
+}

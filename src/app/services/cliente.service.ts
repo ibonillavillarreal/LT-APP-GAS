@@ -24,15 +24,15 @@ export class PersonaService {
   }
 
   addPersona(regPersona: any): Observable<any> {
-    return this.http.post<any>(this.url, JSON.stringify(regPersona))
-      .pipe(retry(1), catchError(this.error.handleError))
+    return this.http.post<any>(this.url, {regPersona}).
+    pipe(retry(1), catchError(this.error.handleError))
   }
 
   edtPersona(regPersona: any): Observable<any> {
 
     return this.http.put<number>
       (
-        this.url, JSON.stringify(regPersona)
+        this.url, {regPersona}
       ).pipe(retry(1), catchError(this.error.handleError))
   }
 
@@ -47,9 +47,10 @@ export class PersonaService {
   }
 
   anularPersona(id_User: number): Observable<any> {
+    //console.log('datos : '+JSON.stringify(id_User))
     return this.http.post<any>
       (
-        this.url_Eliminar, JSON.stringify(id_User)
+        this.url_Eliminar,{id_User}
       ).pipe(retry(1), catchError(this.error.handleError))
   }
 

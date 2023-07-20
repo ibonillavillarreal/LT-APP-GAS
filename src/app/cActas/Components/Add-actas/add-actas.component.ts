@@ -11,9 +11,10 @@ import { Toast } from 'src/app/utils/Toast';
 import { __values } from 'tslib';
 import { MatTableDataSource } from '@angular/material/table';
 import { CarItemAddComponent } from '../Car-add-Items/car-item-add.component';
-import { Data } from '@angular/router';
 import { carAcuerdosAddComponent } from '../Car-add-fil/car-acuerdos-add.component';
-import { concat } from 'rxjs';
+
+//import { Data } from '@angular/router';
+//import { concat } from 'rxjs';
 
 
 
@@ -71,6 +72,7 @@ export class Add_ActasComponent implements OnInit {
     this.tools.setisLoadingDetails(true)
 
     this.new_ActaID = await this.srcNuevaActa.getNroActa().toPromise();
+    this.newFrmActa.controls['CodActas'].setValue(0);
     this.newFrmActa.controls['IdSesion'].setValue(this.new_ActaID);
     this.newFrmActa.controls['TipoSesion'].setValue(11);
 
@@ -110,6 +112,7 @@ export class Add_ActasComponent implements OnInit {
 
   async FormularioActa() {
     this.newFrmActa = this._builder.group({
+      CodActas: [''],
       CodAgenda: ['', Validators.required],
       IdSesion: ['', Validators.required],
       TipoSesion: ['', Validators.required],
@@ -240,11 +243,13 @@ export class Add_ActasComponent implements OnInit {
     } else if (this.Data_Acuerdos.length === 0) {
       this.toast.showToast("ACUERDOS VACIOS O INCONSISTENCIA DE DATOS  - ❌", "ERROR DE ACCION");
     } else {
-
+            
       const Acta_ful = {
         Acta_Maestro: this.newFrmActa.value,
         Acta_Detalle: this.Data_Acuerdos
       }
+      //console.log(' Aqui Reg Acta_ful  : ' + JSON.stringify(Acta_ful));
+
 
       this.srcNuevaActa.Add_Json_Acta(Acta_ful).subscribe((res: any) => {
 

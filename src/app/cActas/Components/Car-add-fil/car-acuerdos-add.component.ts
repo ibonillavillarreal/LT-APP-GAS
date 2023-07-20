@@ -8,10 +8,12 @@ import { Toast } from 'src/app/utils/Toast';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
-  selector: 'car-acuerdos-add',
-  templateUrl: './car-acuerdos-add.component.html',
-  styleUrls: ['./car-acuerdos-add.component.css']
+  selector: 'app-car-acuerdos-add',
+  templateUrl: 'car-acuerdos-add.component.html',    
+  styleUrls: ['./car-acuerdos-add.compoment.css'],
+  
                  
 })
 export class carAcuerdosAddComponent implements OnInit {
@@ -85,6 +87,7 @@ export class carAcuerdosAddComponent implements OnInit {
     }else{
 
       this.dataPuntosDeAcuerdo = {
+        CodAcuerdo: 0,
         CodAgendaDetalles: idDetalle,
         IdAcuerdos: this.data.Id_Acuerdo,
         Acuerdos: this.frmPuntosAgenda.controls['Acuerdos'].value,

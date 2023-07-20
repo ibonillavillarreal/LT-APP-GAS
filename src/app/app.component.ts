@@ -32,18 +32,18 @@ export class AppComponent implements  OnInit {
     .subscribe(event => {
 
          if (event.id === 1 && event.url === event.urlAfterRedirects) {
-        //     //SIEMPRE QUE RECARGA SE REINICIA LA CLASE SINGELTON
-        //     let tkn = ''+localStorage.getItem('token')
-        //   this.src.verify(tkn).subscribe( (data:boolean)=>{
-        //        console.log('TOKEN VALIDO '+data);
-        //        this.tools.setAuthenticated(true);
-        //        this.reload = false;
-        //   })
+          //SIEMPRE QUE RECARGA SE REINICIA LA CLASE SINGELTON
+          //  let tkn = '123'  // +localStorage.getItem('token')
+          //  this.src.verify(tkn).subscribe( (data:boolean)=>{
+          //  console.log('TOKEN VALIDO '+data);
+          //  this.tools.setAuthenticated(true);
+          //  this.reload = false;
+          // })
                 
          }  
-              console.log('Donde debe de ir el TOKEN VALIDO ');
-              this.tools.setAuthenticated(true);
-               this.reload = false;
+             console.log('Donde debe de ir el TOKEN VALIDO ');
+             this.tools.setAuthenticated(true);
+             this.reload = false;
 
      })
        

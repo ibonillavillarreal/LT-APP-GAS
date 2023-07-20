@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,6 +29,7 @@ export class DetailsAgendaComponent implements OnInit {
   list_asistencia: any[] = [];
   Data_PuntosAgenda: any[] = [];
   list_PuntosAgenda: any[] = [];
+  public list_TipoSesion: any[] = [];
   frmAgenda!: FormGroup
   tools: GlobalUtilities
   public toast: Toast;
@@ -76,6 +77,8 @@ export class DetailsAgendaComponent implements OnInit {
   iniciar_FormAgenda() {
     this.frmAgenda = this._builder.group({
       IdAgenda: [''],
+      TipoSesion: ['', Validators.required],
+      institucion: [''],
       Local: [''],
       DescripcionAgenda: [''],
       FechaRegristro: [''],
@@ -85,12 +88,20 @@ export class DetailsAgendaComponent implements OnInit {
 
   async getData() {
     this.tools.setisLoadingDetails(true)
-
+    this.list_TipoSesion.push(
+      { id: 11, nombre: 'Ordinaria' },
+      { id: 12, nombre: 'Extra-Ordinaria' },
+      { id: 50, nombre: 'Ordinaria-Virtual' },
+      { id: 51, nombre: 'Extra-Ordinaria-Virtual' }
+    )    
     this.Data_AgendaCompleta = await this.src_Agenda.getVerAgenda(this.id_Agenda).toPromise();
     this.Data_AgendaMaestro = this.Data_AgendaCompleta.Maestro //Maestro Agenda        
-
+    
     this.CodAgenda = this.Data_AgendaMaestro[0].CodAgenda;
+    const id_tipo = this.list_TipoSesion.find((reg)=>reg.id==this.Data_AgendaMaestro[0].TipoSesion).nombre
     this.frmAgenda.controls['IdAgenda'].setValue(this.Data_AgendaMaestro[0].IdAgenda);
+    this.frmAgenda.controls['TipoSesion'].setValue(id_tipo);
+    this.frmAgenda.controls['institucion'].setValue(this.Data_AgendaMaestro[0].idlocalTxt);
     this.frmAgenda.controls['Local'].setValue(this.Data_AgendaMaestro[0].LOCAL);
     this.frmAgenda.controls['DescripcionAgenda'].setValue(this.Data_AgendaMaestro[0].DescripcionAgenda);
     const fechaBaseGet: Date = (new Date(this.Data_AgendaMaestro[0].FechaRegristro));

@@ -1,0 +1,27 @@
+<h2>Edite el Acuerdo </h2>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="form" #formDirective="ngForm">
+      <div class="row">
+        <div class="col-5">
+          <mat-form-field appearance="legacy">
+            <mat-label>Id Acuerdo(*)</mat-label>
+            <input matInput placeholder="Codigo de Acuerdo" formControlName="IdAcuerdo" readonly="true">
+
+          </mat-form-field>
+        </div>
+        <div class="col-12">
+          <mat-form-field appearance="legacy">
+            <mat-label>Acuerdo(*)</mat-label>
+            <input matInput placeholder="Descripción del Acuerdo" formControlName="Acuerdo" readonly="false">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="edit(form.value)">Guardar</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="Cerrarfrm()"> Cerrar</button>
+      </div>
+    </form>
+  </div>
+</div>
