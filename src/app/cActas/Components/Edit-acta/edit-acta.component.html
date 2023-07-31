@@ -142,9 +142,14 @@
                                         </ng-container>
 
                                         <ng-container matColumnDef="acciones">
-                                            <th mat-header-cell *matHeaderCellDef></th>
-                                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                            <th mat-header-cell *matHeaderCellDef> 
+                                                <span matTooltip="Agregar Acuerdos con Puntos de Agendas "
+                                                    (click)="EditaCampo(2,0,0)">
+                                                    <mat-icon> add_circle </mat-icon>
+                                                </span>
+                                            </th>
 
+                                            <td mat-cell *matCellDef="let element" style="text-align: right;">
                                                 <!-- (click)="EditaSonido(1,element.CodAcuerdo )" class="pointer" -->
                                                 <span (click)="EditaCampo(1,element.IdAcuerdos, element.Acuerdos)"
                                                     style="color: #198754;" matTooltip="Acuerdo Audio">

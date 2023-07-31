@@ -236,3 +236,9 @@ input, h1{
 
 
 
+/* Check para generar Actas */
+.example-margin {
+  margin: 0 12px;
+  color: blue;
+}
+

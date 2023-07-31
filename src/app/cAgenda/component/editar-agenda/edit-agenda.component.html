@@ -115,7 +115,12 @@
                             <mat-tab-group animationDuration="0ms">
                                 <mat-tab label="ASISTENCIAS Y EXPOSITORES">
                                     <div class="row col-12">
-                                        <div class="col-9"></div>
+                                        <div class="col-7"></div>
+                                        <div class="col-2">
+                                            <span class="btn btn-outline-secondary" (click)="openConsejo()">
+                                                <i class="bi bi-plus-lg"></i>Consejo
+                                            </span>
+                                        </div>
                                         <div class="col-3">
                                             <button type="button" class="btn btn-outline-secondary"
                                                 (click)="openForm(1,0)">
@@ -246,7 +251,7 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-liosa" [disabled]="frmAgenda.invalid">
                             GUARDAR
-                        </button>
+                        </button>                        
                     </div>
                 </div>
             </form>

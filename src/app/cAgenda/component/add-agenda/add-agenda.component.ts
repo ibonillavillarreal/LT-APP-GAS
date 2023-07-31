@@ -41,6 +41,7 @@ export class AddAgendaComponent implements OnInit {
 
   public CodMiembro = 0;
   public Id_Agenda: any;
+  public lanzaActa: boolean = false;
   public Data_AgendaCompleta: any
   public Data_AgendaMaestro: any
   public Data_AgendaAsistencia: reg_asistencia[] = [];
@@ -318,6 +319,17 @@ export class AddAgendaComponent implements OnInit {
     return list_resultante;
   }
 
+  /* true para Genera Acta  */
+  GenerarActa(ky:boolean){
+    if (ky){
+      this.lanzaActa = true;
+      //this.toast.showToast('Activadp ✔️ ', 'Aceptar')
+    }else{
+      this.lanzaActa = false;
+      //this.toast.showToast('Apagado ❌', 'Aceptar')
+    }
+  }
+
   /* Sumit del formulario */
   enviar(values: any, formDirective: FormGroupDirective) {
 
@@ -327,6 +339,8 @@ export class AddAgendaComponent implements OnInit {
     if (nRegAsistencia > 0 && nRegPuntAgenda > 0) {
       let IdUsuario: number = 1
       values.IdUsuario = IdUsuario
+      values.lanzaActa = this.lanzaActa
+      
       let enviar_Registro_Json =
       {
         Master_Agenda: values,

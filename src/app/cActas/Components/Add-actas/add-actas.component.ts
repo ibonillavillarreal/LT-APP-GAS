@@ -253,7 +253,7 @@ export class Add_ActasComponent implements OnInit {
 
       this.srcNuevaActa.Add_Json_Acta(Acta_ful).subscribe((res: any) => {
 
-        console.log('Respuesta  res : ' + JSON.stringify(res));
+       // console.log('Respuesta  res : ' + JSON.stringify(res));
       });
       
       this.dialoRef.close();

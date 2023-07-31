@@ -101,7 +101,7 @@ export class EditAgendaComponent implements OnInit {
   }
 
   async getData() {
-    this.tools.setisLoadingDetails(true)
+    //this.tools.setisLoadingDetails(false)
     this.list_TipoSesion.push(
       { id: 11, nombre: 'Ordinaria' },
       { id: 12, nombre: 'Extra-Ordinaria' },
@@ -113,15 +113,18 @@ export class EditAgendaComponent implements OnInit {
     this.Data_AgendaMaestro = this.Data_AgendaCompleta.Maestro //Maestro Agenda    
 
     this.list_Institucion = await this.srcAgenda.getInstitucion().toPromise();            
-    //this.list_Consejo =     await this.src_Agenda.getConsejo().toPromise();            
+    this.list_Consejo =     await this.srcAgenda.getConsejo().toPromise();            
 
 
     this.frmAgenda.controls['IdAgenda'].setValue(this.Data_AgendaMaestro[0].IdAgenda);
     this.frmAgenda.controls['Local'].setValue(this.Data_AgendaMaestro[0].LOCAL);
-
     this.frmAgenda.controls['DescripcionAgenda'].setValue(this.Data_AgendaMaestro[0].DescripcionAgenda);
-    this.frmAgenda.controls['institucion'].setValue(this.list_Institucion[0].id);
-    this.frmAgenda.controls['TipoSesion'].setValue(this.list_TipoSesion[0].id);
+
+    console.log('Agenda : '+JSON.stringify(this.Data_AgendaMaestro[0]));
+    console.log('Agenda : '+(this.Data_AgendaMaestro[0].idLocal));
+    this.frmAgenda.controls['TipoSesion'].setValue(this.Data_AgendaMaestro[0].TipoSesion);
+    const idlocal:Number = this.Data_AgendaMaestro[0].idLocal
+    this.frmAgenda.controls['institucion'].setValue(this.Data_AgendaMaestro[0].idLocal); 
 
 
     // Convert Ctrl de fechas  
@@ -389,7 +392,7 @@ export class EditAgendaComponent implements OnInit {
       };
 
       
-      //console.log('EDITANDO AGENDA  : ' + JSON.stringify(enviar_Registro_Json));
+      console.log('EDITANDO AGENDA  : ' + JSON.stringify(enviar_Registro_Json));
 
       this.srcAgenda.editAgenda(enviar_Registro_Json).subscribe(res => {
         if (res) {
@@ -430,7 +433,17 @@ export class EditAgendaComponent implements OnInit {
   setComboInstitucion(id: number) {
     this.frmAgenda.controls['institucion'].setValue(id);
   }
+  openConsejo(){
+    //console.log('el Consejo : '+JSON.stringify(this.list_Consejo));
+    this.list_Consejo.forEach((reg: any) => {
+      let NotaObservacion = 'Ninguna';
+      reg.NotaObservacion = NotaObservacion;
+      this.Data_AgendaAsistencia.push(reg);
+      
+    });
+    this.loadModules_Asistencias();
 
+}
 
 
 

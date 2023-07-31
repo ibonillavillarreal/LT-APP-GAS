@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Toast } from 'src/app/utils/Toast';
 import { __values } from 'tslib';
 import { EditarAcuerdosComponent } from '../Edit-acuerdos/editar-acuerdos.component';
+import { carAcuerdosAddComponent } from '../Car-add-fil/car-acuerdos-add.component';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-edit-factura',
@@ -27,6 +29,9 @@ export class EditActaComponent implements OnInit {
   public list_Acuerdos: any[] = [];
   public Data_Acuerdos: any[] = [];
   public list_TipoSesion: any[] = [];
+  public list_PuntosDeAgenda: any[] = [];
+  public Cod_Agendas: any;
+  public Id_Acuerdo: any;
   public toast: Toast;
 
   /***TABLA DE ASISTENCIA - REPRESENTANTES */
@@ -40,27 +45,28 @@ export class EditActaComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private srcActa: Actas,
     private srcActaDetalle: Actas, private _builder: FormBuilder, public dialog2: MatDialog,
-    private _snackbar: MatSnackBar , private dialoRef: MatDialogRef<EditActaComponent>
+    private _snackbar: MatSnackBar, private dialoRef: MatDialogRef<EditActaComponent>,
+    private srcNuevaActa: Actas, public dialog: MatDialog,
   ) {
     this.toast = new Toast(this._snackbar);
     this.tools = GlobalUtilities.getInstance();
     this.edit_ActaDB = data.ActaMaestro;
-    console.log(' Pasado por la Data : ' + JSON.stringify(this.data.ActaMaestro));
+   // console.log(' Pasado por la Data : ' + JSON.stringify(this.data.ActaMaestro));
 
     this.iniciar_FormActa();
     this.loadModules();
   }
   ngOnInit(): void {
-    this.datos();    
+    this.datos();
   }
 
   async datos() {
     this.firstLoad = true;
     this.tools.setisLoadingDetails(true)
-    
+
     var fechaSesion = new Date(this.data.ActaMaestro.FechaSesion);
     var dias = 1; // Número de días a agregar
-    fechaSesion.setDate(fechaSesion.getDate() + dias);    
+    fechaSesion.setDate(fechaSesion.getDate() + dias);
     this.frmEditActa.controls['FechaSesion'].setValue(fechaSesion);
     this.frmEditActa.controls['Hora'].setValue(this.data.ActaMaestro.Hora);
 
@@ -70,9 +76,9 @@ export class EditActaComponent implements OnInit {
       { id: 50, nombre: 'Ordinaria-Virtual' },
       { id: 51, nombre: 'Extra-Ordinaria-Virtual' }
     )
-    const id_tipo = this.list_TipoSesion.find((reg)=>reg.nombre==this.data.ActaMaestro.TipoSesion).id
+    const id_tipo = this.list_TipoSesion.find((reg) => reg.nombre == this.data.ActaMaestro.TipoSesion).id
     this.frmEditActa.controls['TipoSesion'].setValue(id_tipo);
-    this.frmEditActa.controls['local'].setValue(this.data.ActaMaestro.local);
+    this.frmEditActa.controls['Local'].setValue(this.data.ActaMaestro.Local);
     this.frmEditActa.controls['ActaDedicatoria'].setValue(this.data.ActaMaestro.ActaDedicatoria);
 
     setTimeout(() => {
@@ -100,6 +106,7 @@ export class EditActaComponent implements OnInit {
     this.tools.setisLoadingDetails(true)
     this.frmEditActa.controls['CodActas'].setValue(this.edit_ActaDB.CodActas);
     this.frmEditActa.controls['CodAgenda'].setValue(this.edit_ActaDB.CodAgenda);
+    this.Cod_Agendas = this.edit_ActaDB.CodAgenda;
     this.frmEditActa.controls['IdSesion'].setValue(this.edit_ActaDB.IdSesion);
     this.frmEditActa.controls['TipoSesion'].setValue(this.edit_ActaDB.TipoSesion);
     this.frmEditActa.controls['IdAgenda'].setValue(this.edit_ActaDB.IdAgenda);
@@ -124,7 +131,8 @@ export class EditActaComponent implements OnInit {
   async get_DetalleAcuerdos() {
     this.Data_Acuerdos = await this.srcActaDetalle.getDetalleAcuerdos(this.edit_ActaDB.CodActas).toPromise();
     //console.log('AQUI : this.Data_Acuerdos  ' + JSON.stringify(this.Data_Acuerdos)) //PuntosAgenda
-    this.dataSourceeEditaAgendaAcuerdos.data = this.Data_Acuerdos;
+    this.Data_Acuerdos = [];
+    this.dataSourceeEditaAgendaAcuerdos.data = this.list_Acuerdos || [];
   }
 
   ngAfterViewInit() {
@@ -136,7 +144,8 @@ export class EditActaComponent implements OnInit {
   getPaginatorData(event: any) {
   }
 
-  EditaCampo(type: number, IdAcuerdo: number, AcuerdosDescripcion: number) {
+  async EditaCampo(type: number, IdAcuerdo: number, AcuerdosDescripcion: number) {
+    let dialogRef;
     switch (type) {
       case 1: {
         let Acuerdos_Ref = this.dialog2.open(EditarAcuerdosComponent,
@@ -151,6 +160,46 @@ export class EditActaComponent implements OnInit {
             let IndexAcuerdo = this.Data_Acuerdos.findIndex((reg_acuerdos: any) => reg_acuerdos.IdAcuerdos == IdAcuerdo);
             let fila_Acuerdo = this.Data_Acuerdos[IndexAcuerdo];
             fila_Acuerdo.Acuerdos = res_Acuerdo.Acuerdo;
+          }
+        });
+
+      } break;
+      case 2: {
+
+        this.list_PuntosDeAgenda = await this.srcNuevaActa.postgetPuntosDeAgenda(this.Cod_Agendas).toPromise();
+        this.Id_Acuerdo = await this.srcNuevaActa.getNroIdAcuerdo().toPromise();
+       // console.log('valor this.Id_Acuerdo : ' + JSON.stringify(this.Id_Acuerdo))
+
+        let txtAcuerdos = this.Id_Acuerdo.substring(0, 8);
+        let txtNumeros = this.Id_Acuerdo.substring(8, 11);
+        let nVal = Number(txtNumeros) - 1;
+        //let nfilas = (this.list_Acuerdos === null ) ? 0:1;
+        let nfilas = (this.dataSourceeEditaAgendaAcuerdos.data.length === 0 ) ? 0:this.dataSourceeEditaAgendaAcuerdos.data.length;
+        nVal = nVal + nfilas + 1;
+        let strVal;
+        if (nVal < 10) {
+          strVal = txtAcuerdos + '00' + nVal;
+        } else if (nVal < 100) {
+          strVal = txtAcuerdos + '0' + nVal;
+        } else {
+          strVal = txtAcuerdos + '' + nVal;
+        }
+        this.Id_Acuerdo = strVal;
+
+        dialogRef = this.dialog.open(carAcuerdosAddComponent,
+          {
+            height: '600px', width: '1200px',
+            data: { list_PuntosDeAgenda: this.list_PuntosDeAgenda, Id_Acuerdo: this.Id_Acuerdo }
+          })
+        dialogRef.afterClosed().subscribe((res: any) => {
+          if (res === undefined) {
+            this.toast.showToast("ACCION CANCELADA CORRECTAMENTE  ✔️", "Aceptar");
+          } else {
+            //console.log('Acuerdos con pto-Agenda',JSON.stringify(res))
+            //this.list_Acuerdos.push(res);            
+            this.Data_Acuerdos.push(res);
+            this.list_Acuerdos=this.Data_Acuerdos;
+            this.dataSourceeEditaAgendaAcuerdos.data = this.list_Acuerdos;
           }
         });
 
@@ -177,12 +226,12 @@ export class EditActaComponent implements OnInit {
         Acta_Maestro: this.frmEditActa.value,
         Acta_Detalle: this.Data_Acuerdos
       }
-      console.log(' Antes del Servicio Guardar  : ' + JSON.stringify(Acta_ful));
+     // console.log(' Antes del Servicio Guardar  : ' + JSON.stringify(Acta_ful));
 
       this.srcActa.Add_Json_Acta(Acta_ful).subscribe((res: any) => {
         this.cerrar();
       });
-      
+
     }
 
   }
