@@ -75,11 +75,9 @@ export class AddAgendaComponent implements OnInit {
   // CONSTRUCTOR - INJECTOR 
   constructor(
     private _builder: FormBuilder, private _snackbar: MatSnackBar,
-    private srvCliente: PersonaService, public ngZone: NgZone,
-    private srvMonedas: MonedaService, public dialog: MatDialog,
-    public dialog2: MatDialog, private srcItem: ItemService,
-    private src_Agenda: AgendaService, private router: Router,
-    public srcAgenda: AgendaService
+    private srvCliente: PersonaService, public ngZone: NgZone, private srvMonedas: MonedaService, public dialog: MatDialog,
+    public dialog2: MatDialog, private srcItem: ItemService, private src_Agenda: AgendaService, private router: Router,
+    public srcAgenda: AgendaService,  private dialoRef: MatDialogRef<AddAgendaComponent>
   ) {
     this.tools = GlobalUtilities.getInstance();
     this.toast = new Toast(this._snackbar);
@@ -296,6 +294,9 @@ export class AddAgendaComponent implements OnInit {
     }
 
 
+  }
+  cerrar() {           
+    this.dialoRef.close();    
   }
 
   delete_filaGrid_Asistencia(CodMiembro: any) {

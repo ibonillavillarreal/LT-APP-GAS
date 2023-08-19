@@ -8,22 +8,23 @@
      border-radius: 30px;
      box-shadow: 12px 12px 22px #0D2379;
      margin-top: 5%;
+     margin-bottom: 7%;
 }
 
 img{    
-    margin-top: 20%;
-    margin-left: 5%;    
-    margin-bottom: 10%;    
-    padding: 1%;
-    padding-left: 5%;
-    border-top-left-radius: 30px;
+    margin-top: 13%;
+    margin-left: 5%;      
+    padding-left: 3%;;
+    border-top-left-radius: 35px;
     border-bottom-left-radius: 35px;    
     box-shadow: 12px 12px 22px grey;
-    height: 30%;
+    height: 35%;
+    
 }
 
 .btn1{
-    margin: 2%;
+    margin-top: 15%;
+    margin-bottom: 15%;
     margin-right: 10%;
     border: none;
     outline: none;
@@ -37,3 +38,30 @@ img{
     border-radius: 15%;
     
 }
+.mybutton {
+    border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+    padding: 10px; /*espacio alrededor texto*/
+    background-color: #2e518b; /*color botón*/
+    color: #ffffff; /*color texto*/
+    text-decoration: none; /*decoración texto*/
+    text-transform: uppercase; /*capitalización texto*/
+    font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+    border-radius: 50px; /*bordes redondos*/
+  }
+
+
+.mat-stepper-horizontal {
+    margin-left: 1%;
+    padding-left: 2%;
+    margin-top: 3px;
+    max-width: 98%;
+    border-radius: 2%;
+    
+  }
+  
+  .mat-mdc-form-field {
+    border-radius: 15%;
+    margin-top: 3px;
+ 
+  }
+  

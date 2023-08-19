@@ -70,7 +70,7 @@ export class DetailActaComponent implements OnInit {
     )
     const id_tipo = this.list_TipoSesion.find((reg)=>reg.nombre==this.edit_ActaDB.TipoSesion).id
     this.frmActa.controls['TipoSesion'].setValue(id_tipo);
-    //this.frmActa.controls['IdSesion'].setValue(this.edit_ActaDB.IdSesion);
+    this.frmActa.controls['IdSesion'].setValue(this.edit_ActaDB.IdSesion);
     this.frmActa.controls['TipoSesion'].setValue(this.edit_ActaDB.TipoSesion);
     this.frmActa.controls['IdAgenda'].setValue(this.edit_ActaDB.IdAgenda);
     this.frmActa.controls['localAgenda'].setValue(this.edit_ActaDB.localAgenda);
@@ -97,7 +97,7 @@ export class DetailActaComponent implements OnInit {
 
   async get_DetalleAcuerdos() {
     this.Data_Acuerdos = await this.srcActaDetalle.getDetalleAcuerdos(this.edit_ActaDB.CodActas).toPromise();
-    console.log('this.Data_Acuerdos  ' + JSON.stringify(this.Data_Acuerdos)) //PuntosAgenda
+    console.log('AQUI Detail : this.Data_Acuerdos :  ' + JSON.stringify(this.Data_Acuerdos)) //PuntosAgenda
     this.dataSourceAgendaAcuerdos.data = this.Data_Acuerdos;
   }
 

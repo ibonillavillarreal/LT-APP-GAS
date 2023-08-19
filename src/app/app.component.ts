@@ -8,6 +8,7 @@ import { filter } from 'rxjs/operators';
 import { LoginService } from './services/login.service';
 import { GlobalUtilities } from './utils/GlobalUtilities'; 
 
+
 @Component({
   selector: 'app-root',
   templateUrl:'./app.component.html',
@@ -17,6 +18,9 @@ export class AppComponent implements  OnInit {
 
   title = 'SIGA';
   reload:boolean = false;
+  public ModuloActivado!:number;
+  public AuthModule!:Number[];
+
   private tools:GlobalUtilities
   @ViewChild(MatSidenav) sidenav!:MatSidenav;
 
@@ -32,50 +36,48 @@ export class AppComponent implements  OnInit {
     .subscribe(event => {
 
          if (event.id === 1 && event.url === event.urlAfterRedirects) {
+             console.log('Donde debe de ir el TOKEN VALIDO ');
+             //Datos Modulares       
+             let _AuthModule =   localStorage.getItem('AuthModule');
+             let _ModuloActivado =JSON.stringify(localStorage.getItem('ModuloActivado')).toString().replace(/['"]+/g, '').trim();             
+             this.ModuloActivado = parseInt(_ModuloActivado);
+             console.log('modulo activado numerico : '+this.ModuloActivado);
+
           //SIEMPRE QUE RECARGA SE REINICIA LA CLASE SINGELTON
-          //  let tkn = '123'  // +localStorage.getItem('token')
+            let tkn = localStorage.getItem('token')
           //  this.src.verify(tkn).subscribe( (data:boolean)=>{
           //  console.log('TOKEN VALIDO '+data);
           //  this.tools.setAuthenticated(true);
           //  this.reload = false;
           // })
-                
-         }  
-             console.log('Donde debe de ir el TOKEN VALIDO ');
-             this.tools.setAuthenticated(true);
-             this.reload = false;
 
+               if(tkn==='123'){
+                  this.tools.setAuthenticated(true);
+                  this.reload = true;                                    
+                  
+               }else
+               {
+                this.tools.setAuthenticated(false);
+                  this.reload = false;
+               }
+         }  
+         
      })
        
-                if (this.tools.IsAuthenticated()){
-                  console.log(' IF valor de autenticacion : '+this.tools.IsAuthenticated());
-                    this.tools.setAuthenticated(true);   // false me manda al login 
-                    this.reload = true;  
-                }else{
-                  console.log('Else valor de autenticacion : '+this.tools.IsAuthenticated());
-                  this.tools.setAuthenticated(false);   // false me manda al login 
-                  this.reload = false;
-                }
-       
-    
   }   
 
 
   ngOnInit() {
     /** spinner starts on init */    
-    this.spinnerSevice.show();
-    
+    this.spinnerSevice.show();    
     /** spinner ends after 5 seconds */
     setTimeout(() => { this.spinnerSevice.hide(); }, 1000);       
   }
 
-
-  ngAfterViewInit(){
-
- 
+  
+  ngAfterViewInit(){ 
     this.obs.observe(['(max-width: 1300px)']).subscribe((res) =>{   //700px
-
-          console.log('Resolucion: ' +JSON.stringify(res));
+          console.log('Etnra a la Resolucion: ' +JSON.stringify(res));
 
         if(res.matches ===false || res.matches === true){
             if(this.tools.IsAuthenticated()){
@@ -112,6 +114,9 @@ export class AppComponent implements  OnInit {
 
   IsAuthenticated(){   
     return this.tools.IsAuthenticated();
+  }
+  isModuloActivado(){    
+    return this.ModuloActivado;
   }
 
   Isreload(){    

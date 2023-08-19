@@ -10,6 +10,7 @@ import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { SubCatalogoService } from 'src/app/services/subcatalogo.service';
 import { EditAgendaComponent } from '../editar-agenda/edit-agenda.component';
 import { EliminarAgenda } from '../Eliminar-Agenda/eliminar-agenda.component';
+import { AddAgendaComponent } from '../add-agenda/add-agenda.component';
 
 
 @Component({
@@ -76,7 +77,15 @@ async cargando(){
   openForm(type: number, id: number) {
     let dialogRef;
     switch (type) {
-      //case 1: { dialogRef = this.dialog.open(AddAgendaComponent,  { height: '780px', width: '1200px' }) } break;
+      case 1: { dialogRef = this.dialog.open(AddAgendaComponent,  
+        { height: '790px', width: '1300px', 
+         disableClose: false, autoFocus: false 
+      }) 
+      dialogRef.afterClosed().subscribe((result: any) => {        
+        this.firstLoad = true;
+        this.loadModules();
+      }); 
+      } break;
       case 2: { dialogRef = this.dialog.open(EditAgendaComponent, 
         { height: '790px', width: '1300px', 
         data: { CodAgenda: id },

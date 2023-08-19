@@ -1,51 +1,164 @@
-<div class="col-10" style="padding-left:6% ; padding-top:6%;">
-        
-    <section class="Form my-5 mx-5">
-        <div class="row g-6" style="padding-right:3%;">   
-    
-            <div class="col-lg-5">
-                <img src="../../../assets/logo-cnu.png" class="img-fluid" alt="GAS">
-            </div>
-            
-            <div class="col-lg-6 px-1 pt-1">
-                <br>       
-                <form [formGroup]="login" (ngSubmit)="enviar(login.value)" style="align-items:right;">
-                    <div class="form-row">
-                        <div class="col-lg-15">
-                            <div class="input-group mb-1">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text my-3 p-3" id="basic-addon1"> <i class="material-icons">account_circle</i></span>
-                                </div>
-                                
-                                <input #user_email autocomplete="off" formControlName="user" class="form-control my-3 p-3" data-val="true" data-val-required="El campo Correo electronico es obligatorio." id="Email" name="Email" placeholder="Correo" required="" type="text" value="" />
-                                <span class="field-validation-valid text-danger" data-valmsg-for="Email" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-lg-15">
-                            <div class="input-group mb-10">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text my-3 p-3" id="basic-addon1"><i class="material-icons">vpn_key</i></span>
-                                </div>
-                                
-                                <input #psw autocomplete="off" formControlName="psw" class="form-control my-3 p-3" data-val="true" data-val-required="El campo Contraseña es obligatorio." id="Password" name="Password" placeholder="*******" required="" type="password" />
-                                <span class="field-validtion-valid texta-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-lg-4" style="text-align: center;">
-                            <button type="submit" class="btn1"> Iniciar Sesión 🔐 </button>
-                        </div>
-                    </div>                               
-                </form>            
-            </div>     
-    
-        </div>
-    
-        
-    </section>    
-    
-</div>
+<div class="col-12" class="px-1 pt-1" style="padding-left:1% ; padding-top:1%; padding-right:1%;">
 
+    <section class="Form my-2 mx-6">
+        <mat-horizontal-stepper linear #stepper>
+            <mat-step [stepControl]="firstFormGroup" [completed]="false">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Inicio</ng-template>
+                    <div style="display: none;">
+                        <input formControlName="firstCtrl">
+                    </div>
+
+                    <div class="row g-10" style="padding-right:10%; padding-top:3%;">
+                        <div class="col-lg-6">
+                            <img src="../../../assets/logo-cnu.png" class="img-fluid" alt="GAS">
+                        </div>
+
+                        <div class="col-lg-6 px-1 pt-1">
+                            <br>
+                            <form [formGroup]="login" (ngSubmit)="enviar(login.value)" style="align-items:right;">
+                                <div class="form-row">
+                                    <div class="col-lg-15">
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text my-3 p-3" id="basic-addon1"> <i
+                                                        class="material-icons">account_circle</i></span>
+                                            </div>
+
+                                            <input #user_email autocomplete="off" formControlName="user"
+                                                class="form-control my-3 p-3" data-val="true"
+                                                data-val-required="El campo Correo electronico es obligatorio."
+                                                id="Email" name="Email" placeholder="Correo" required type="text" />
+                                            <span class="field-validation-valid text-danger" data-valmsg-for="Email"
+                                                data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-15">
+                                        <div class="input-group mb-10">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text my-3 p-3" id="basic-addon1"><i
+                                                        class="material-icons">vpn_key</i></span>
+                                            </div>
+
+                                            <input #psw autocomplete="off" formControlName="psw"
+                                                class="form-control my-3 p-3" data-val="true"
+                                                data-val-required="El campo Contraseña es obligatorio." id="Password"
+                                                name="Password" placeholder="*******" required type="password" />
+                                            <span class="field-validtion-valid texta-danger" data-valmsg-for="Password"
+                                                data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-4" style="text-align: center;">
+                                        <button type="button" class="btn1" 
+                                        [disabled]="login.invalid" 
+                                        (click)="matStepClicked(stepper,1,0)">GO 🔐
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="secondFormGroup" [editable]="false">
+                <form [formGroup]="secondFormGroup">
+
+                    <ng-template matStepLabel>Modulos</ng-template>
+                    <div style="display: flex;">
+                        <div class="col-1" style="margin-left: 1%;">
+                            <button mat-raised-button (click)="stepper.reset()" 
+                            style="display: flex; align-items: center; padding-top: 11px;">
+                                <h3>Reiniciar</h3>
+                            </button>
+                        </div>
+                        <div class="col-4" style="padding-top: 1%;">
+                            <h3 class="card-title"> Listados de todos los sistemas CNU-SIGI.</h3>
+                        </div>
+                    </div>
+                    <!-- ------------------------------------------------------------ -->
+                            <div class="col-5" class="row">
+                                <div style="margin: 1%;">
+                                    <h2 class="card-title"> Sistema para la Gestión de Actas - 1 de 100 </h2>
+                                    <h3 class="card-title"> Automatizar el control de cuplimientos de los acuerdos ... </h3>
+                                    <div class="col-lg-2" style="text-align: left;">
+                                        <button class="mybutton"
+                                         (click)="matStepClicked(stepper,2,1)"
+                                         > Opened - GAS
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- ------------------------------------------------------------ -->
+
+                    <!-- ------------------------------------------------------------ -->
+                            <div class="col-5" class="row" >
+                                <div style="margin: 1%;">
+                                    <h2 class="card-title"> DETALLES SISTEMA 2 de 100 </h2>
+                                    <h3 class="card-title"> Proposito del modulo ... </h3>
+                                    <div class="col-lg-2" style="text-align: left;">
+                                        <button class="mybutton"
+                                         (click)="matStepClicked(stepper,2,2)"
+                                         > Opened - modulo 
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- ------------------------------------------------------------ -->
+
+                    <!-- ------------------------------------------------------------ -->
+                            <div class="col-5" class="row" >
+                                <div style="margin: 1%;">
+                                    <h2 class="card-title"> DETALLES SISTEMA 3 de 100 </h2>
+                                    <h3 class="card-title"> Proposito del modulo ... </h3>
+                                    <div class="col-lg-2" style="text-align: left;">
+                                        <button class="mybutton"
+                                         (click)="matStepClicked(stepper,2,3)"
+                                         > Opened - modulo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- ------------------------------------------------------------ -->
+
+                    <!-- ------------------------------------------------------------ -->
+                            <div class="col-5" class="row" >
+                                <div style="margin: 1%;">
+                                    <h2 class="card-title"> DETALLES SISTEMA 4 de 100 </h2>
+                                    <h3 class="card-title"> Proposito del modulo ... </h3>
+                                    <div class="col-lg-2" style="text-align: left;">
+                                        <button class="mybutton"
+                                         (click)="matStepClicked(stepper,2,4)"
+                                         > Opened - modulo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- ------------------------------------------------------------ -->
+
+                    <!-- ------------------------------------------------------------ -->
+                            <div class="col-5"  class="row" >
+                                <div style="margin: 1%;">
+                                    <h2 class="card-title"> DETALLES SISTEMA 5 de 100 </h2>
+                                    <h3 class="card-title"> Proposito del modulo ... </h3>
+                                    <div class="col-lg-2" style="text-align: left;">
+                                        <button class="mybutton"
+                                         (click)="matStepClicked(stepper,2,5)"
+                                         > Opened - modulo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- ------------------------------------------------------------ -->
+                </form>
+
+            </mat-step>
+        </mat-horizontal-stepper>
+
+    </section>
+
+</div>

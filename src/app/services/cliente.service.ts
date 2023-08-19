@@ -8,6 +8,7 @@ import { SP_Persona_Get } from 'src/app/models/SP_Cliente_Get_W';
 import { ErrorService } from './error.service';
 import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +20,10 @@ export class PersonaService {
   ) { }
 
   getPersonas(): Observable<Cliente[]> {
+
+console.log('ruta   '+this.url);
+
+
     return this.http.get<Cliente[]>(this.url).
       pipe(retry(1), catchError(this.error.handleError));
   }

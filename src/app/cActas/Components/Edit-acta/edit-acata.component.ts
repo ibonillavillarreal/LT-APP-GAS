@@ -130,9 +130,12 @@ export class EditActaComponent implements OnInit {
 
   async get_DetalleAcuerdos() {
     this.Data_Acuerdos = await this.srcActaDetalle.getDetalleAcuerdos(this.edit_ActaDB.CodActas).toPromise();
-    //console.log('AQUI : this.Data_Acuerdos  ' + JSON.stringify(this.Data_Acuerdos)) //PuntosAgenda
-    this.Data_Acuerdos = [];
-    this.dataSourceeEditaAgendaAcuerdos.data = this.list_Acuerdos || [];
+    console.log('AQUI Editar: this.Data_Acuerdos : ' + JSON.stringify(this.Data_Acuerdos)) //PuntosAgenda
+    if(this.Data_Acuerdos === null){
+        this.Data_Acuerdos = [];
+      }
+    this.list_Acuerdos = this.Data_Acuerdos;    
+    this.dataSourceeEditaAgendaAcuerdos.data = this.list_Acuerdos;
   }
 
   ngAfterViewInit() {

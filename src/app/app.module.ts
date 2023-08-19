@@ -34,7 +34,7 @@ import { LoginComponent } from './auth/login/login.component';
 
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS, 
       useClass: InterceptorService,
       multi: true
     }

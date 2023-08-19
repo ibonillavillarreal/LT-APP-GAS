@@ -17,7 +17,7 @@ mat-sidenav{
 }
 mat-sidenav-container{
     height: calc(96vh);     
-    background: #000f03fb ;  
+    background: hwb(132 3% 52% / 0.984) ;  
 }
 
 .fondo-Gas{        
@@ -26,12 +26,32 @@ mat-sidenav-container{
     height: 98%;
     width: 98%;    
     margin-top:0.5%; 
-    margin-left:1.5%; 
+    margin-left:1%; 
     padding:0.2px;    
     background-image:url("../assets/BACKGROUND.jpg");        
     background-repeat: no-repeat;
     background-size: 100% 110%;  
     
+}
+.fondo-Generic{        
+
+    height: 50%;
+    width:  50%;    
+    margin-top:  20%; 
+    margin-left: 35%; 
+    padding:0.2px;    
+    background-image:url("../assets/logo-cnu.jpg");        
+    background-repeat: no-repeat;
+    background-size: 50% 50%;  
+    opacity: 0.6;
+}
+
+.mybutton {
+  background-color: #4CAF50; 
+  width: 500px;
+  color: white;
+  text-align: center;
+  padding: 5px 25px;
 }
 
 .content{
