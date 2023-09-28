@@ -3,7 +3,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AgendaService } from 'src/app/services/agenda.service';
+import { AgendaService } from 'src/app/services/srv_Mod1_siga/agenda.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { Toast } from 'src/app/utils/Toast';
 

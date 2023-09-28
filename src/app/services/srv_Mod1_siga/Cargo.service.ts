@@ -2,11 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable} from "rxjs";
 import { catchError, retry } from "rxjs/operators";
-import { Claustro } from "../models/Claustro";
-import { Grado } from "../models/Grado";
-import { Cargo } from "../models/Pais";
-import { ErrorService } from "./error.service";
-import { DICTIONARYKEYS } from "../utils/DICTIONARYKEYS";
+import { Claustro } from "../../models/Claustro";
+import { Grado } from "../../models/Grado";
+import { Cargo } from "../../models/Pais";
+import { ErrorService } from "../zer_otros/error.service";
+import { DICTIONARYKEYS } from "../../utils/DICTIONARYKEYS";
 
 @Injectable({
     providedIn: 'root'

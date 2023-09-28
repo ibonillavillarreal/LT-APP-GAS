@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PersonaService } from 'src/app/services/cliente.service';
-import { DepartamentoService } from 'src/app/services/departamento.service';
-import { ClaustroService } from 'src/app/services/municipio.service';
-import { CargoService } from 'src/app/services/Cargo.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
+import { DepartamentoService } from 'src/app/services/srv_Mod1_siga/departamento.service';
+import { ClaustroService } from 'src/app/services/srv_Mod1_siga/municipio.service';
+import { CargoService } from 'src/app/services/srv_Mod1_siga/Cargo.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 
 @Component({

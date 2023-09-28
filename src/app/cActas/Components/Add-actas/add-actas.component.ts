@@ -1,7 +1,7 @@
 
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Actas } from 'src/app/services/Acta.service';
+import { Actas } from 'src/app/services/srv_Mod1_siga/Acta.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';

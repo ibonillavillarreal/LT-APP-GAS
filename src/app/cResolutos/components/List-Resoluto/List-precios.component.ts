@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { vnPrecios } from 'src/app/services/vnPrecios.service';
+import { vnPrecios } from 'src/app/services/zer_otros/vnPrecios.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { DeletResolutoComponent } from '../Delet-Resoluto/delet-resoluto.component';
 import { EditResolutoComponent } from '../Edit-Campo-Resoluto/edit-resoluto.component';

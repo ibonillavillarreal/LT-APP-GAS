@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PersonaService } from 'src/app/services/cliente.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { Toast } from 'src/app/utils/Toast';
 

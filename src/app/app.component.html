@@ -1,20 +1,31 @@
 <!-- MODULO #1 : GAS -->
 <!---------------------------------------------------------------->
-<div *ngIf="isModuloActivado()===1">
-  <div *ngIf="IsAuthenticated()"><!--ESTA Auth-->
+<div *ngIf="isModuloActivado() === 1">
+  <div *ngIf="IsAuthenticated()">
+    <!--ESTA Auth-->
 
-    <span style="cursor: pointer;" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened">
-        menu
-      </mat-icon>
-      <mat-icon *ngIf="sidenav.opened">
-        close
-      </mat-icon>
+    <span
+      style="cursor: pointer"
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </span>
 
     <mat-sidenav-container>
-      <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened>
-        <img class="avatar mat-elevation-z8" src="../assets/CNULogo.png" routerLink="/localhost" />
+      <mat-sidenav
+        #sidenav="matSidenav"
+        class="mat-elevation-z8"
+        mode="side"
+        opened
+      >
+        <img
+          class="avatar mat-elevation-z8"
+          src="../assets/CNULogo.png"
+          (click)="goBack()"
+        />
         <h3 class="name">SIGA-CNU</h3>
         <p class="designation">Sistema de Gestión de Actas</p>
 
@@ -22,7 +33,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> Miembros
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -35,7 +46,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> Agendas
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -48,7 +59,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> Actas
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -61,7 +72,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> Resoluciones
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -74,7 +85,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> Cumplimiento
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -87,7 +98,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>account_circle</mat-icon> Sesión
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -96,10 +107,7 @@
             </span>
           </mat-expansion-panel>
         </mat-accordion>
-
       </mat-sidenav>
-
-
 
       <!-- TODO: Slida al Escritorio Router Outlet  -->
       <mat-sidenav-content>
@@ -112,41 +120,71 @@
     </mat-sidenav-container>
 
     <div>
-      <footer class="footer-gas"> SIGA-CNU </footer>
+      <footer class="footer-gas">SIGA-CNU</footer>
     </div>
   </div>
 </div>
 <!---------------------------------------------------------------->
-<!-- MODULO #2 : En espera -->
+<!-- MODULO #2 : Sistema Nacional de Estadisticas de las IES -->
 <!---------------------------------------------------------------->
-<div *ngIf="isModuloActivado()===2">
-  <div *ngIf="IsAuthenticated()"><!--ESTA Auth-->
+<div *ngIf="isModuloActivado() === 2">
+  <div *ngIf="IsAuthenticated()">
+    <!--ESTA Auth-->
 
-    <span style="cursor: pointer;" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened">
-        menu
-      </mat-icon>
-      <mat-icon *ngIf="sidenav.opened">
-        close
-      </mat-icon>
+    <span
+      style="cursor: pointer"
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </span>
 
     <mat-sidenav-container>
-      <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened>
-        <img class="avatar mat-elevation-z8" src="../assets/logo-cnu.png" routerLink="/localhost" />
-        <h3 class="name"> MODULO #2</h3>
-        <p class="designation">MODULO EN CONSTRUCCION</p>
+      <mat-sidenav
+        #sidenav="matSidenav"
+        class="mat-elevation-z8"
+        mode="side"
+        opened
+      >
+        <img
+          class="avatar mat-elevation-z8"
+          src="../assets/CNULogo.png"
+          (click)="goBack()"
+        />
+        <h3 class="name">SINEIES</h3>
+        <p class="designation">Sistema Nacional de</p>
+        <p class="designation">Estadisticas de las IES</p>
 
         <mat-divider></mat-divider>
+          <mat-accordion multi>
+            <mat-panel-title style="color: #fff">
+              <span routerLink="compendio" class="accordion-item">
+                <mat-icon>book </mat-icon> COMPENDIO 
+              </span>
+            </mat-panel-title>
+          </mat-accordion>
+        <mat-divider></mat-divider>
+
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
-                <mat-icon>people_alt</mat-icon> MENU-GENERICO
+              <mat-panel-title style="color: #fff">
+                <mat-icon>bookmark</mat-icon> PROCESOS
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <span routerLink="/localhost" class="accordion-item">
-              <mat-icon>list</mat-icon>Listado
+            <span routerLink="formacion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+              <mat-icon>list</mat-icon> Formación
+            </span>
+            <span routerLink="extension" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+              <mat-icon>list</mat-icon> Extensión
+            </span>
+            <span routerLink="investigacion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+              <mat-icon>list</mat-icon> Investigación
+            </span>
+            <span routerLink="gestion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+              <mat-icon>list</mat-icon> Gestión Universitaria
             </span>
           </mat-expansion-panel>
         </mat-accordion>
@@ -154,7 +192,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>account_circle</mat-icon> Sesión
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -163,52 +201,62 @@
             </span>
           </mat-expansion-panel>
         </mat-accordion>
-
       </mat-sidenav>
-
-
 
       <!-- TODO: Slida al Escritorio Router Outlet  -->
       <mat-sidenav-content>
         <div class="fondo-Generic position-absolute">
           <div class="content">
+            
             <router-outlet></router-outlet>
+
           </div>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
 
     <div>
-      <footer class="footer-gas"> CNU </footer>
+      <footer class="footer-gas" style="padding-left: 20%;">       CNU  --  SINEIES</footer>
     </div>
   </div>
 </div>
 <!---------------------------------------------------------------->
 <!-- MODULO #3 : En espera -->
 <!---------------------------------------------------------------->
-<div *ngIf="isModuloActivado()===3">
-  <div *ngIf="IsAuthenticated()"><!--ESTA Auth-->
+<div *ngIf="isModuloActivado() === 3">
+  <div *ngIf="IsAuthenticated()">
+    <!--ESTA Auth-->
 
-    <span style="cursor: pointer;" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened">
-        menu
-      </mat-icon>
-      <mat-icon *ngIf="sidenav.opened">
-        close
-      </mat-icon>
+    <span
+      style="cursor: pointer"
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </span>
 
     <mat-sidenav-container>
-      <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened>
-        <img class="avatar mat-elevation-z8" src="../assets/CNULogo.png" routerLink="/localhost" />
+      <mat-sidenav
+        #sidenav="matSidenav"
+        class="mat-elevation-z8"
+        mode="side"
+        opened
+      >
+        <img
+          class="avatar mat-elevation-z8"
+          src="../assets/CNULogo.png"
+          (click)="goBack()"
+        />
         <h3 class="name">MODULO #3</h3>
-        <p class="designation">MODULO EN CONSTRUCCION </p>
+        <p class="designation">MODULO EN CONSTRUCCION</p>
 
         <mat-divider></mat-divider>
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> MENU-GENERICO
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -221,7 +269,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>account_circle</mat-icon> Sesión
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -230,10 +278,7 @@
             </span>
           </mat-expansion-panel>
         </mat-accordion>
-
       </mat-sidenav>
-
-
 
       <!-- TODO: Slida al Escritorio Router Outlet  -->
       <mat-sidenav-content>
@@ -246,7 +291,7 @@
     </mat-sidenav-container>
 
     <div>
-      <footer class="footer-gas"> CNU </footer>
+      <footer class="footer-gas">CNU</footer>
     </div>
   </div>
 </div>
@@ -254,29 +299,40 @@
 <!---------------------------------------------------------------->
 <!-- MODULO #4 : En espera -->
 <!---------------------------------------------------------------->
-<div *ngIf="isModuloActivado()===4">
-  <div *ngIf="IsAuthenticated()"><!--ESTA Auth-->
+<div *ngIf="isModuloActivado() === 4">
+  <div *ngIf="IsAuthenticated()">
+    <!--ESTA Auth-->
 
-    <span style="cursor: pointer;" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened">
-        menu
-      </mat-icon>
-      <mat-icon *ngIf="sidenav.opened">
-        close
-      </mat-icon>
+    <span
+      style="cursor: pointer"
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </span>
 
     <mat-sidenav-container>
-      <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened>
-        <img class="avatar mat-elevation-z8" src="../assets/CNULogo.png" routerLink="/localhost" />
+      <mat-sidenav
+        #sidenav="matSidenav"
+        class="mat-elevation-z8"
+        mode="side"
+        opened
+      >
+        <img
+          class="avatar mat-elevation-z8"
+          src="../assets/CNULogo.png"
+          (click)="goBack()"
+        />
         <h3 class="name">MODULO #4</h3>
-        <p class="designation">MODULO EN CONSTRUCCION </p>
+        <p class="designation">MODULO EN CONSTRUCCION</p>
 
         <mat-divider></mat-divider>
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> MENU-GENERICO
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -289,7 +345,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>account_circle</mat-icon> Sesión
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -298,9 +354,7 @@
             </span>
           </mat-expansion-panel>
         </mat-accordion>
-
       </mat-sidenav>
-
 
       <!-- TODO: Slida al Escritorio Router Outlet  -->
       <mat-sidenav-content>
@@ -313,7 +367,7 @@
     </mat-sidenav-container>
 
     <div>
-      <footer class="footer-gas"> CNU </footer>
+      <footer class="footer-gas">CNU</footer>
     </div>
   </div>
 </div>
@@ -321,29 +375,40 @@
 <!---------------------------------------------------------------->
 <!-- MODULO #5 : En espera -->
 <!---------------------------------------------------------------->
-<div *ngIf="isModuloActivado()===5">
-  <div *ngIf="IsAuthenticated()"><!--ESTA Auth-->
+<div *ngIf="isModuloActivado() === 5">
+  <div *ngIf="IsAuthenticated()">
+    <!--ESTA Auth-->
 
-    <span style="cursor: pointer;" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened">
-        menu
-      </mat-icon>
-      <mat-icon *ngIf="sidenav.opened">
-        close
-      </mat-icon>
+    <span
+      style="cursor: pointer"
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </span>
 
     <mat-sidenav-container>
-      <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened>
-        <img class="avatar mat-elevation-z8" src="../assets/CNULogo.png" routerLink="/localhost" />
+      <mat-sidenav
+        #sidenav="matSidenav"
+        class="mat-elevation-z8"
+        mode="side"
+        opened
+      >
+        <img
+          class="avatar mat-elevation-z8"
+          src="../assets/CNULogo.png"
+          (click)="goBack()"
+        />
         <h3 class="name">MODULO #5</h3>
-        <p class="designation">MODULO EN CONSTRUCCION </p>
+        <p class="designation">MODULO EN CONSTRUCCION</p>
 
         <mat-divider></mat-divider>
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>people_alt</mat-icon> MENU-GENERICO
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -356,7 +421,7 @@
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff;">
+              <mat-panel-title style="color: #fff">
                 <mat-icon>account_circle</mat-icon> Sesión
               </mat-panel-title>
             </mat-expansion-panel-header>
@@ -365,9 +430,7 @@
             </span>
           </mat-expansion-panel>
         </mat-accordion>
-
       </mat-sidenav>
-
 
       <!-- TODO: Slida al Escritorio Router Outlet  -->
       <mat-sidenav-content>
@@ -380,15 +443,14 @@
     </mat-sidenav-container>
 
     <div>
-      <footer class="footer-gas"> CNU </footer>
+      <footer class="footer-gas">CNU</footer>
     </div>
   </div>
 </div>
 
-
 <!---------------------------------------------------------------->
 
-<div *ngIf="!IsAuthenticated()" style="background-color: #ececca; height: 100%;">
+<div *ngIf="!IsAuthenticated()" style="background-color: #ececca; height: 100%">
   <div *ngIf="!Isreload()">
     <app-login></app-login>
   </div>

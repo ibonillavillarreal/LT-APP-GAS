@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ContactoService } from 'src/app/services/contacto.service';
+import { ContactoService } from 'src/app/services/srv_Mod1_siga/contacto.service';
 import { Toast } from 'src/app/utils/Toast';
 
 @Component({

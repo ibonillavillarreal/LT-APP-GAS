@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from 'src/app/models/User';
 import { Observable} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ErrorService } from './error.service';
-import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
+import { ErrorService } from '../zer_otros/error.service';
+import { DICTIONARYKEYS } from '../../utils/DICTIONARYKEYS';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,14 @@ export class LoginService {
        'Content-Type': 'application/json'
      })
    };
+
+   // dado un usuario saber si exite para dar pase 
+   getVerifyLogin(json_cls:any):Observable<any>{          
+    return this.http.post<any>(this.url+'/API/Usuario/get/',{json_cls},this.httpOptions).
+    pipe(retry(1),catchError(this.error.handleError));
+  }
+
+
 
   getLogin(cls:User):Observable<any>{       
     return this.http.post<User>(this.url + 'API/login/',JSON.stringify(cls),this.httpOptions).

@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { ErrorService } from './error.service';
-import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
+import { ErrorService } from '../zer_otros/error.service';
+import { DICTIONARYKEYS } from '../../utils/DICTIONARYKEYS';
 
 
 @Injectable({

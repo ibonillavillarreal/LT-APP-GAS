@@ -10,23 +10,27 @@ import { ImprimirComponent } from './cAgenda/component/imprimir/imprimir.compone
 import { AddResolutoComponent } from './cResolutos/components/add-Resoluto/add-resoluto.component';
 import { ListActaComponent } from './cActas/Components/List-acta/list-acta.component';
 import { Add_ActasComponent } from './cActas/Components/Add-actas/add-actas.component';
+import { AppComponent } from './app.component';
+import { CompendioComponent } from './Mod2EstCompendio/compendio/compendio.component';
+import { FormacionComponent } from './Mod2EstCompendio/procesos/Formacion/formacion.component';
+import { IframeCompendioComponent } from './Mod2EstCompendio/compendio/iframe-compendio/iframe-compendio.component';
 
 
 const routes: Routes = [
 
   /* Rutas vacia -- validar contra permisos */
   {
-    path: "localhost",
+    path: "",
+    redirectTo: "",
     pathMatch: 'full',
     component: Component, 
-    redirectTo: "",
   },
 
   {
-    path: "",
+    path: "localhost",
     pathMatch: 'full',
     component: Component,
-
+    
   },
 
   /*Personas*/
@@ -100,11 +104,20 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () => import('./cResolutos/Resoluto.module').then(O => O.Resolutos_Module)
   },
+
   {
     path: 'Precio/add',
     component: AddResolutoComponent
 
   },
+
+
+   /**** COMPENDIO PARA EL MODULO DE EST  ******/       
+     {
+       path:'compendio',
+       component:CompendioComponent,              
+     },
+     
 
 ];
 

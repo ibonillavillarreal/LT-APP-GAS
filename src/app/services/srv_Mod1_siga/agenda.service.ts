@@ -3,8 +3,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
-import { ErrorService } from './error.service';
-import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
+import { ErrorService } from '../zer_otros/error.service';
+import { DICTIONARYKEYS } from '../../utils/DICTIONARYKEYS';
 import { Observable } from 'rxjs';
 
 

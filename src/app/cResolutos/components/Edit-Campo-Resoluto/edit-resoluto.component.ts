@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { vnPrecios } from 'src/app/services/vnPrecios.service';
+import { vnPrecios } from 'src/app/services/zer_otros/vnPrecios.service';
 
 @Component({
   selector: 'app-edit-resoluto',

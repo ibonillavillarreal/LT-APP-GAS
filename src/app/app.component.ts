@@ -5,8 +5,10 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { filter } from 'rxjs/operators';
-import { LoginService } from './services/login.service';
+import { LoginService } from './services/srv_ini_Login/login.service';
 import { GlobalUtilities } from './utils/GlobalUtilities'; 
+import { Location } from '@angular/common';
+
 
 
 @Component({
@@ -18,8 +20,8 @@ export class AppComponent implements  OnInit {
 
   title = 'SIGA';
   reload:boolean = false;
-  public ModuloActivado!:number;
-  public AuthModule!:Number[];
+  public AuthModule!:Number[]; // todos los modulos para presentar en el stepper
+  public ModuloActivado!:number; // El click modulo seleccionado por el usuario
 
   private tools:GlobalUtilities
   @ViewChild(MatSidenav) sidenav!:MatSidenav;
@@ -27,7 +29,8 @@ export class AppComponent implements  OnInit {
   constructor(private spinnerSevice: NgxSpinnerService,
               private obs:BreakpointObserver,
               private route:Router,
-              private src:LoginService)
+              private src:LoginService,
+              private locationUrl :Location )
   {
     this.tools = GlobalUtilities.getInstance();
     this.tools.setIsLoading(false) //false  era el valor anterior
@@ -105,8 +108,13 @@ export class AppComponent implements  OnInit {
 
 
   }
-
-
+  
+  goBack(){
+    this.route.navigate(['']);        
+    this.locationUrl.go('')
+    location.reload();
+  }
+  
   logOut(){
     localStorage.removeItem('token')
     location.reload();

@@ -5,8 +5,8 @@ import { Cliente } from 'src/app/models/Cliente';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SP_Persona_Get } from 'src/app/models/SP_Cliente_Get_W';
-import { ErrorService } from './error.service';
-import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
+import { ErrorService } from '../zer_otros/error.service';
+import { DICTIONARYKEYS } from '../../utils/DICTIONARYKEYS';
 
 
 @Injectable({

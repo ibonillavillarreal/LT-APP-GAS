@@ -2,14 +2,14 @@
 import { Component, Inject, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
-import { ItemService } from 'src/app/services/Item.service';
+import { ItemService } from 'src/app/services/srv_Mod1_siga/Item.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Toast } from 'src/app/utils/Toast';
-import { PersonaService } from 'src/app/services/cliente.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
 
 
 @Component({

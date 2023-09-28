@@ -1,0 +1,76 @@
+<!-- <a routerLink='/iframe'> Click </a>          -->
+<div class="row" style="margin-left: 10px;">
+  <div class="col-1"></div>
+
+  <div class="col-12">
+    <div class="col-lg-16 col-md-16">
+      <div class="card" style="border-color: brown;">
+        <div class="card-body mat-elevation-z3">
+          <div class="row col-12">
+            <div class="col-5">
+              <h2 class="card-title"><span class="lstick"></span>COMPENDIO</h2>
+            </div>
+            <div class="col-6">
+              <!-- *ngIf="tools.getisLoadingDetails()" -->
+              <!-- <mat-spinner [diameter]="50"></mat-spinner> -->
+            </div>
+            <div class="col-1">
+              <h6 class="card-title">
+                <span class="lstick">
+                  <mat-icon routerLink="">✖️</mat-icon>
+                </span>
+              </h6>
+            </div>
+          </div>
+
+          <!-- *ngIf="!tools.getisLoadingDetails()" -->
+
+          <div>
+            <mat-tab-group >
+              <mat-tab label="EXTENCIÓN">
+                <div>
+                  <iframe src="../../../assets/docs/presentacion_extension.pdf"
+                    style="display: block;background: #000; border: 1px; height: 85vh; width: 100%;" frameborder="0">
+                  </iframe>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="FORMACIÓN">
+                <div>
+                    <iframe src="../../../assets/docs/presentacion_formacion.pdf"
+                    style="display: block;background: #000; border: 1px; height: 85vh; width: 100%;" frameborder="0">
+                  </iframe>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="GESTIÓN">
+                <div>
+                    <iframe src="../../../assets/docs/presentacion_gestion_universitaria.pdf"
+                    style="display: block;background: #000; border: 1px; height: 85vh; width: 100%;" frameborder="0">
+                  </iframe>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="IVESTIGACIÓN">
+                <div>
+                    <iframe src="../../../assets/docs/presentacion_investigacion.pdf"
+                    style="display: block;background: #000; border: 1px; height: 85vh; width: 100%;" frameborder="0">
+                  </iframe>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+            <br>
+          </div>
+          <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2">
+              <button class="mat-button" mat-raised-button>
+                <mat-icon>list_alt</mat-icon>Imprimir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

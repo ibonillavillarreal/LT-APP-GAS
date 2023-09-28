@@ -14,11 +14,11 @@ import { MatSort } from '@angular/material/sort';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { Toast } from 'src/app/utils/Toast';
-import { PersonaService } from 'src/app/services/cliente.service';
-import { MonedaService } from '../../../services/Moneda.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
+import { MonedaService } from '../../../services/zer_otros/Moneda.service';
 import { AddItemComponent } from '../add-item/add-item.component';
-import { ItemService } from '../../../services/Item.service';
-import { AgendaService } from 'src/app/services/agenda.service';
+import { ItemService } from '../../../services/srv_Mod1_siga/Item.service';
+import { AgendaService } from 'src/app/services/srv_Mod1_siga/agenda.service';
 import { EditafilaCampoComponent } from '../editFilaUso/editfila-Campo.component';
 import { AddItemSComponent } from '../add-item-puntos/add-itemPuntos.component';
 

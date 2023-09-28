@@ -3,7 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { Actas } from 'src/app/services/Acta.service';
+import { Actas } from 'src/app/services/srv_Mod1_siga/Acta.service';
 import { Toast } from 'src/app/utils/Toast';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

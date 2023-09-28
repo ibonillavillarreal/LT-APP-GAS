@@ -30,9 +30,10 @@
     background-color: #e15361;
     border-color: #740618;
   }
-  .card{    
-    border-color: #740618;
+  .card{        
+    border-color: #740618;    
   }
+
   .card-title{
     color: #000;    
     font-weight: bold;
@@ -74,11 +75,11 @@
   }
   /**OPACIDAD AL 100 LA TAB SELECCIONADA**/
   ::ng-deep.mat-tab-label-active{
-    opacity: 1.0!important;
+    opacity: 1!important;
   }
 /**CHECKBOX COLOR**/
   ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
-    opacity: 0.03 !important;
+    opacity: 0.03 !important;    
     background-color: #D30F30!important;
   }
 

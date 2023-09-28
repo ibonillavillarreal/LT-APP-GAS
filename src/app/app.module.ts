@@ -6,30 +6,31 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { InterceptorService } from './interceptors/interceptor.service';
 import { SharedModule } from './shared/Material.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
+import { CompendioModule } from './Mod2EstCompendio/compendio.module';
 
 
 @NgModule({
-  declarations: [
+  declarations: [    
     AppComponent,
-    LoginComponent,
-
-
+    LoginComponent,      
+    
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
+  imports: [    
+    BrowserModule,   
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
     SharedModule,
-    MatProgressSpinnerModule    
+    MatProgressSpinnerModule,        
+    
+    AppRoutingModule,
+    CompendioModule,            
   ],
 
   providers: [

@@ -5,7 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Toast } from 'src/app/utils/Toast';
-import { ItemService } from 'src/app/services/Item.service';
+import { ItemService } from 'src/app/services/srv_Mod1_siga/Item.service';
 
 
 @Component({

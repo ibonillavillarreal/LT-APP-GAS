@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Actas } from 'src/app/services/Acta.service';
+import { Actas } from 'src/app/services/srv_Mod1_siga/Acta.service';
 
 
 @Component({

@@ -1,9 +1,9 @@
 
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { Actas } from 'src/app/services/Acta.service';
+import { Actas } from 'src/app/services/srv_Mod1_siga/Acta.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
-import { AgendaService } from 'src/app/services/agenda.service';
+import { AgendaService } from 'src/app/services/srv_Mod1_siga/agenda.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';

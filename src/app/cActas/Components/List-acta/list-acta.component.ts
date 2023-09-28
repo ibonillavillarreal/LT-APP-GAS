@@ -7,8 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { DetailActaComponent } from '../Detail-acta/detail-Acta.component';
 import { EditActaComponent } from '../Edit-acta/edit-acata.component';
-import { Actas } from 'src/app/services/Acta.service';
-import { SubCatalogoService } from 'src/app/services/subcatalogo.service';
+import { Actas } from 'src/app/services/srv_Mod1_siga/Acta.service';
+import { SubCatalogoService } from 'src/app/services/srv_Mod1_siga/subcatalogo.service';
 import { Add_ActasComponent } from '../Add-actas/add-actas.component';
 import { addfilesComponent } from '../Add-files/addfiles.component';
 

@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
-import { DICTIONARYKEYS } from "../utils/DICTIONARYKEYS";
-import { ErrorService } from "./error.service";
+import { DICTIONARYKEYS } from "../../utils/DICTIONARYKEYS";
+import { ErrorService } from "../zer_otros/error.service";
 
 @Injectable({
     providedIn: 'root'

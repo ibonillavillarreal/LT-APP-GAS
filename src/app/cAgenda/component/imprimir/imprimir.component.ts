@@ -2,8 +2,8 @@
 import { Component, ElementRef, Inject, NgZone, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Data, Params } from '@angular/router';
-import { PersonaService } from 'src/app/services/cliente.service';
-import { AgendaService } from 'src/app/services/agenda.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
+import { AgendaService } from 'src/app/services/srv_Mod1_siga/agenda.service';
 
 
 

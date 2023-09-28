@@ -4,8 +4,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { ErrorService } from "./error.service";
-import { Monedas } from '../models/Moneda';
-import { DICTIONARYKEYS } from "../utils/DICTIONARYKEYS";
+import { Monedas } from '../../models/Moneda';
+import { DICTIONARYKEYS } from "../../utils/DICTIONARYKEYS";
 
 @Injectable({
     providedIn: 'root'

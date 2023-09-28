@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 import { Cargo } from 'src/app/models/Cargo';
 import { Claustro } from 'src/app/models/Claustro';
 import { SP_Persona_Get } from 'src/app/models/SP_Cliente_Get_W';
-import { PersonaService } from 'src/app/services/cliente.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Toast } from 'src/app/utils/Toast';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CargoService } from 'src/app/services/Cargo.service';
-import { DepartamentoService } from 'src/app/services/departamento.service';
-import { ClaustroService } from 'src/app/services/municipio.service';
-import { SubCatalogoService } from 'src/app/services/subcatalogo.service';
+import { CargoService } from 'src/app/services/srv_Mod1_siga/Cargo.service';
+import { DepartamentoService } from 'src/app/services/srv_Mod1_siga/departamento.service';
+import { ClaustroService } from 'src/app/services/srv_Mod1_siga/municipio.service';
+import { SubCatalogoService } from 'src/app/services/srv_Mod1_siga/subcatalogo.service';
 import { Grado } from 'src/app/models/Grado';
 
 @Component({

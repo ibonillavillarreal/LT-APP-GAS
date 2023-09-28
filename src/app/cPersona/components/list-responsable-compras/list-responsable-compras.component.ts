@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Contacto } from 'src/app/models/Contacto';
-import { ContactoService } from 'src/app/services/contacto.service';
+import { ContactoService } from 'src/app/services/srv_Mod1_siga/contacto.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { AnularPersonaComponent } from '../anular-contacto/anular-contacto.component';
 import { EditContactoComponent } from '../edit-contacto/edit-contacto.component';

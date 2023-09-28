@@ -1,12 +1,12 @@
 import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { PersonaService } from 'src/app/services/cliente.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
 import { Cargo } from 'src/app/models/Pais';
 import { Claustro } from 'src/app/models/Claustro';
 import { Toast } from 'src/app/utils/Toast';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CargoService } from 'src/app/services/Cargo.service';
+import { CargoService } from 'src/app/services/srv_Mod1_siga/Cargo.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Grado } from 'src/app/models/Grado';
 @Component({

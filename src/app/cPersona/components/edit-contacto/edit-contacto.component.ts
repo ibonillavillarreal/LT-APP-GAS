@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Contacto } from 'src/app/models/Contacto';
-import { ContactoService } from 'src/app/services/contacto.service';
+import { ContactoService } from 'src/app/services/srv_Mod1_siga/contacto.service';
 import { Toast } from 'src/app/utils/Toast';
 
 @Component({

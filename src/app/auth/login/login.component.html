@@ -4,6 +4,7 @@
         <mat-horizontal-stepper linear #stepper>
             <mat-step [stepControl]="firstFormGroup" [completed]="false">
                 <form [formGroup]="firstFormGroup">
+
                     <ng-template matStepLabel>Inicio</ng-template>
                     <div style="display: none;">
                         <input formControlName="firstCtrl">
@@ -53,9 +54,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col-lg-4" style="text-align: center;">
-                                        <button type="button" class="btn1" 
-                                        [disabled]="login.invalid" 
-                                        (click)="matStepClicked(stepper,1,0)">GO 🔐
+                                        <button type="button" class="btn1" [disabled]="login.invalid"
+                                            (click)="matStepClicked(stepper,1)">GO 🔐
                                         </button>
                                     </div>
                                 </div>
@@ -66,93 +66,36 @@
             </mat-step>
 
             <mat-step [stepControl]="secondFormGroup" [editable]="false">
-                <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Modulos</ng-template>
 
-                    <ng-template matStepLabel>Modulos</ng-template>
-                    <div style="display: flex;">
-                        <div class="col-1" style="margin-left: 1%;">
-                            <button mat-raised-button (click)="stepper.reset()" 
+
+                <div style="display: flex;">
+                    <div class="col-1" style="margin-left: 1%;">
+                        <button mat-raised-button (click)="matStepClicked(stepper,2)"
                             style="display: flex; align-items: center; padding-top: 11px;">
-                                <h3>Reiniciar</h3>
-                            </button>
-                        </div>
-                        <div class="col-4" style="padding-top: 1%;">
-                            <h3 class="card-title"> Listados de todos los sistemas CNU-SIGI.</h3>
-                        </div>
+                            <h3>Reiniciar</h3>
+                        </button>
                     </div>
-                    <!-- ------------------------------------------------------------ -->
-                            <div class="col-5" class="row">
-                                <div style="margin: 1%;">
-                                    <h2 class="card-title"> Sistema para la Gestión de Actas - 1 de 100 </h2>
-                                    <h3 class="card-title"> Automatizar el control de cuplimientos de los acuerdos ... </h3>
-                                    <div class="col-lg-2" style="text-align: left;">
-                                        <button class="mybutton"
-                                         (click)="matStepClicked(stepper,2,1)"
-                                         > Opened - GAS
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                    <!-- ------------------------------------------------------------ -->
+                    <div class="col-4" style="padding-top: 1%; margin-left: 4%;">
+                        <h3 class="card-title"> Listados de todos los sistemas CNU-SIGFI.</h3>
+                    </div>
+                </div>
+
+
+                <form [formGroup]="secondFormGroup" #bodyContenedor>
 
                     <!-- ------------------------------------------------------------ -->
-                            <div class="col-5" class="row" >
-                                <div style="margin: 1%;">
-                                    <h2 class="card-title"> DETALLES SISTEMA 2 de 100 </h2>
-                                    <h3 class="card-title"> Proposito del modulo ... </h3>
-                                    <div class="col-lg-2" style="text-align: left;">
-                                        <button class="mybutton"
-                                         (click)="matStepClicked(stepper,2,2)"
-                                         > Opened - modulo 
-                                        </button>
-                                    </div>
-                                </div>
+                    <!-- <div class="col-5" class="row">
+                        <div style="margin: 1%;">
+                            <h2 class="card-title"> Sistema para la Gestión de Actas - 1 de 100 </h2>
+                            <h3 class="card-title"> Automatizar el control de cuplimientos de los acuerdos ... </h3>
+                            <div class="col-lg-2" style="text-align: left;">
+                                <button class="mybutton" (click)="goModulo(0)"> Opened - GAS
+                                </button>
                             </div>
+                        </div>
+                    </div> -->
                     <!-- ------------------------------------------------------------ -->
-
-                    <!-- ------------------------------------------------------------ -->
-                            <div class="col-5" class="row" >
-                                <div style="margin: 1%;">
-                                    <h2 class="card-title"> DETALLES SISTEMA 3 de 100 </h2>
-                                    <h3 class="card-title"> Proposito del modulo ... </h3>
-                                    <div class="col-lg-2" style="text-align: left;">
-                                        <button class="mybutton"
-                                         (click)="matStepClicked(stepper,2,3)"
-                                         > Opened - modulo
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                    <!-- ------------------------------------------------------------ -->
-
-                    <!-- ------------------------------------------------------------ -->
-                            <div class="col-5" class="row" >
-                                <div style="margin: 1%;">
-                                    <h2 class="card-title"> DETALLES SISTEMA 4 de 100 </h2>
-                                    <h3 class="card-title"> Proposito del modulo ... </h3>
-                                    <div class="col-lg-2" style="text-align: left;">
-                                        <button class="mybutton"
-                                         (click)="matStepClicked(stepper,2,4)"
-                                         > Opened - modulo
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                    <!-- ------------------------------------------------------------ -->
-
-                    <!-- ------------------------------------------------------------ -->
-                            <div class="col-5"  class="row" >
-                                <div style="margin: 1%;">
-                                    <h2 class="card-title"> DETALLES SISTEMA 5 de 100 </h2>
-                                    <h3 class="card-title"> Proposito del modulo ... </h3>
-                                    <div class="col-lg-2" style="text-align: left;">
-                                        <button class="mybutton"
-                                         (click)="matStepClicked(stepper,2,5)"
-                                         > Opened - modulo
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                     <!-- ------------------------------------------------------------ -->
                 </form>
 

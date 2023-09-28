@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { PersonaService } from 'src/app/services/cliente.service';
+import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddClienteComponent } from '../add-persona/add-persona.component';
 import { EditPersonaComponent } from '../edit-cliente/edit-cliente.component';

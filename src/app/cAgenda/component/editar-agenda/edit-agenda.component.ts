@@ -13,7 +13,7 @@ import { Toast } from 'src/app/utils/Toast';
 import { AddItemSComponent } from '../add-item-puntos/add-itemPuntos.component';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { EditafilaCampoComponent } from '../editFilaUso/editfila-Campo.component';
-import { AgendaService } from 'src/app/services/agenda.service';
+import { AgendaService } from 'src/app/services/srv_Mod1_siga/agenda.service';
 import { Time } from '@angular/common';
 
 

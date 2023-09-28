@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable} from 'rxjs';
 import { ErrorService } from './error.service';
-import { DICTIONARYKEYS } from '../utils/DICTIONARYKEYS';
+import { DICTIONARYKEYS } from '../../utils/DICTIONARYKEYS';
 
 
 @Injectable({

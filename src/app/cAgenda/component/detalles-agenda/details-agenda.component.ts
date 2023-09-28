@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Data, NavigationStart, Params, Router, RouterLink, Routes } from '@angular/router';
-import { AgendaService } from 'src/app/services/agenda.service';
+import { AgendaService } from 'src/app/services/srv_Mod1_siga/agenda.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { Toast } from 'src/app/utils/Toast';
 
