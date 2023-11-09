@@ -1,0 +1,44 @@
+@import url("../../../template.css"); 
+@import url("../../../style/Generales.css"); 
+
+a { color: inherit; } 
+
+.mat-column-Codigo{
+    width: 10% !important;
+    color:black;
+  }
+  .mat-column-Versionn{
+      width: 10% !important;
+      color:black;
+  }
+  .mat-column-Numero_horas{
+    width: 13% !important;
+    text-align:left;
+    color:black;
+  }  
+  .mat-column-Numero_semanas{
+    width: 13% !important;
+    color:black;
+  }  
+  .mat-column-Numero_asignaturas{
+    width: 13% !important;
+    color:black;
+  }  
+  .mat-column-Numero_creditos{
+    width: 13% !important;
+    color:black;
+  }  
+  .mat-column-Numero_periodos{
+    width: 13% !important;
+    color:black;
+  }  
+
+  .mat-column-acciones {
+    width: 25% !important;
+    text-align:left;
+    color:black;
+  }
+  
+.ancho{
+  width: 100% !important;  
+}

@@ -1,0 +1,36 @@
+<h2>AGREGAR UNA FACULTAD</h2>
+
+
+<form
+  [formGroup]="frm_facultad_tb"
+  #formDirective="ngForm"
+  (ngSubmit)="enviar(frm_facultad_tb.value, formDirective)"
+>
+  <mat-tab-group>
+    <br />
+    <mat-tab label="Datos Específicos">
+        <mat-form-field appearance="legacy">
+            <mat-label>Codigo*</mat-label>
+            <input matInput placeholder="Codigo" formControlName="Codigo"/>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Nombre*</mat-label>
+            <input matInput placeholder="Nombre" formControlName="Nombre"/>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Siglas*</mat-label>
+            <input matInput placeholder="Siglas" formControlName="Siglas"/>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Estado*</mat-label>
+            <input matInput placeholder="Estado" formControlName="Estado"/>
+        </mat-form-field>
+       
+        <div class="modal-footer">
+          <button type="submit" [disabled]="frm_facultad_tb.invalid"  class="btn btn-liosa"> Registrar </button>
+        </div>
+    </mat-tab>
+
+
+  </mat-tab-group>
+</form>

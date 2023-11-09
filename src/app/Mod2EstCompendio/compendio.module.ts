@@ -24,9 +24,8 @@ import { SharedModule } from '../shared/Material.module';
   ],
   imports: [
     CommonModule,   
-    CompendioRoutingModule,
-    CommonModule,
     SharedModule,    
+    CompendioRoutingModule,
   ]
 })
 export class CompendioModule { }

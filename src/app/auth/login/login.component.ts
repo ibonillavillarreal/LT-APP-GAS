@@ -73,7 +73,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   lafunction(elements: number) {
     switch (elements) {
       case (0):
-        this.borrador_ModuloAcceso();
+        
+        //this.borrador_ModuloAcceso();
         //console.log('elements: ', elements);
         break;
     }
@@ -140,6 +141,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       case 2: {
         this.borrador_ModuloAcceso();
         stepper.reset();
+        
         break;
 
       }
@@ -158,35 +160,33 @@ export class LoginComponent implements OnInit, AfterViewInit {
     
     const elTextoSistema = ''+ (this.ModuleRol.find(o => o.CodModulo === nModulo).NombreDescriptivoHTML);
     const elTextoBoton = '' + (this.ModuleRol.find(o => o.CodModulo === nModulo).Nombre);
-    const btnEstilo = '' +
-      'border: 1px solid #2e518b;' +
-      'padding: 10px;' +
-      'background-color: #2e518b;' +
-      'color: #ffffff;' +
-      'text-decoration: none;' +
-      'text-transform: uppercase;' +
-      'font-family: ' + 'Helvetica' + ', sans-serif;' +
-      'border-radius: 50px;'
+    // const btnEstilo = '' +
+    //   'border: 1px solid #2e518b;' +
+    //   'padding: 10px;' +
+    //   'background-color: #2e518b;' +
+    //   'color: #ffffff;' +
+    //   'text-decoration: none;' +
+    //   'text-transform: uppercase;' +
+    //   'font-family: ' + 'Helvetica' + ', sans-serif;'
 
     this.elTexto = '' +
-      '<div style="margin: 1%;" #div2>' +
-      '<h2 class="card-title"> Modulo - ' + nModulo + ' de 100 </h2>' +
-      '<h3 class="card-title">' + elTextoSistema + '</h3>' +
-      '<div class="col-lg-2" style="text-align: left;">' +
-      '<button class="btn-element"; style="' + btnEstilo + ';"">' + elTextoBoton + '' +
-      '</button>' +
-      '</div>' +
-      '</div>'
+      //'<div style="margin: 1%; background-color: rgb(205,205,205); color: white;" #div2>' +
+      //'<h2 style="text-align: center; background-color: rgb(205,205,205); color: white;"> '+ elTextoSistema + '</h2>'
+      // '<h3 class="card-title"> </h3>' +
+      // '<div class="col-lg-2" style="text-align: left;">' +
+      '<button class="btn-element" style="text-align: center; background-color: rgb(13,35,121); color: white;">' + elTextoSistema + '</button>'
+      // '</div>' +
+      //'</div>'
 
     const target = this.render.parentNode(this.contenedor.nativeElement);
-    const createDiv = this.render.createElement("DIV");
+    const createDiv = this.render.createElement("div");
     this.render.addClass(createDiv, "divGenerado");
-    this.render.addClass(createDiv, "col-5");
+    this.render.addClass(createDiv, "col-12");
     this.render.addClass(createDiv, "row");
-    this.render.setStyle(createDiv, 'width', '100%');
+    this.render.setStyle(createDiv, 'width', '30%');    
     createDiv.innerHTML = this.elTexto;
-    this.render.listen(createDiv, 'click', () => this.goModulo(nModulo));
     this.render.appendChild(target, createDiv);
+    this.render.listen(createDiv, 'click',() => this.goModulo(nModulo));
 
 
     // let button: HTMLButtonElement = document.querySelector("btn-element");  

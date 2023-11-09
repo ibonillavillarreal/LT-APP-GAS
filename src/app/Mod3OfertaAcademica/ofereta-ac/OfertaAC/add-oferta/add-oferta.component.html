@@ -1,0 +1,268 @@
+<h2>AGREGAR OFERTA ACADÉMICA</h2>
+
+<!-- (ngSubmit)="enviar(frm_oferta_tb.value, formDirective)" -->
+<form
+  [formGroup]="frm_oferta_tb"
+  #formDirective="ngForm"
+  (ngSubmit)="save_frm(formDirective)"
+>
+  <mat-tab-group>
+    <br />
+
+    <mat-tab label="Datos de la carrera">
+      <mat-form-field appearance="legacy">
+        <mat-label>Código de la carrera*</mat-label>
+        <input matInput placeholder="Código" formControlName="Codigo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nombre de la carrera*</mat-label>
+        <input matInput placeholder="carrera" formControlName="Nombre" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <div class="row col-6">
+          <div class="col-1">
+            <mat-datepicker #basicDatepicker></mat-datepicker>
+            <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+          </div>
+          <div class="col-5">
+            <br>
+            <mat-label> Fecha de aprobación CU* </mat-label>
+          </div>
+        </div>
+        <input [matDatepicker]="basicDatepicker" matInput
+            placeholder="Fecha de aprobación"
+            type="datetime"
+            formControlName="Fecha_aprobacion_CU"
+        >        
+        <!-- <input
+          matInput
+          placeholder="Fecha de aprobación"
+          type="datetime"
+          formControlName="Fecha_aprobacion_CU"
+        /> -->
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Número de resolución CNU*</mat-label>
+        <input matInput 
+        placeholder='Número de resolución'
+        formControlName="Numero_resolucion_CNU" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Status*</mat-label>
+        <mat-select
+          #selectgradoacademico
+          (selectionChange)="setCombo(4,$event.value)"
+          placeholder="Status"
+          formControlName="Id_status"
+        >
+          <mat-option *ngFor="let item of list_status" [value]="item.id">{{
+            item.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nombre del título*</mat-label>
+        <input matInput placeholder="Nombre del título" formControlName="Nombre_titulo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Cupos*</mat-label>
+        <input matInput placeholder="Cupos" formControlName="Cupos" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Duración en años*</mat-label>
+        <input matInput placeholder="Duración en años" formControlName="Duracion_anios" />
+      </mat-form-field>
+    </mat-tab>
+
+
+
+    <mat-tab label="Datos Generales">
+      <br />
+      <mat-form-field appearance="legacy">
+        <mat-label>Facultad*</mat-label>
+        <mat-select
+          #selectcargo
+          (selectionChange)="setCombo(1,$event.value)"
+          placeholder="Facultad" formControlName="Id_facultad"
+        >
+          <mat-option *ngFor="let item of list_facultad" [value]="item.id">{{
+            item.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nivel de formación*</mat-label>
+        <mat-select
+          #slectclaustro
+          (selectionChange)="setCombo(2,$event.value)"
+          placeholder="Nivel de Formación" formControlName="Id_Nivel_Formacion"
+        >
+          <mat-option
+            *ngFor="let item of list_Nivel_Formacion"
+            [value]="item.id"
+            >{{ item.nombre }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Área del conocimiento*</mat-label>
+        <mat-select
+          #selectgradoacademico
+          (selectionChange)="setCombo(3,$event.value)"
+          placeholder="Área del conocimiento" formControlName="Id_area_conocimiento"
+        >
+          <mat-option *ngFor="let item of list_area_conocimiento" [value]="item.id">{{
+            item.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Programa especial*</mat-label>
+        <mat-select
+          #selectgradoacademico
+          (selectionChange)="setCombo(7,$event.value)"
+          placeholder="programa Especial" formControlName="Id_programa_especial"
+        >
+          <mat-option *ngFor="let item of list_programa_especial" [value]="item.id">{{
+            item.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label appearance="legacy">Enfoque curricular*</mat-label>
+        <mat-select
+          #selectNombre
+          (selectionChange)="setCombo(9,$event.value)"
+          placeholder="Enfoque curricular" formControlName="Id_Nombre_ec"
+        >
+          <mat-option *ngFor="let item of list_Nombre_ec" [value]="item.id">{{ 
+            item.nombre 
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      
+      <mat-form-field appearance="legacy">
+      <mat-label appearance="legacy">Modalidad*</mat-label>
+      <mat-select
+        #selectNombre
+        (selectionChange)="setCombo(9,$event.value)"
+        placeholder="Modalidad" formControlName="Id_Nombre_mo"
+      >
+        <mat-option *ngFor="let item of list_Nombre_mo" [value]="item.id">
+          {{ item.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      
+    <mat-form-field appearance="legacy">
+      <mat-label appearance="legacy">Régimen académico*</mat-label>
+      <mat-select
+        #selectNombre
+        (selectionChange)="setCombo(10,$event.value)"
+        placeholder="Régimen académico" formControlName="Id_Nombre_ra"
+      >
+        <mat-option *ngFor="let item of list_Nombre_ra" [value]="item.id">
+          {{ item.nombre }}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+      
+
+      <mat-form-field appearance="legacy">
+      <mat-label appearance="legacy">Turno*</mat-label>
+      <!-- <input matInput formControlName="Turno" /> -->
+      <mat-select
+        #selectNombre
+        (selectionChange)="setCombo(9,$event.value)"
+        placeholder="Turno" formControlName="Id_Nombre_tur"
+      >
+        <mat-option *ngFor="let item of list_Nombre_tur" [value]="item.id">
+          {{ item.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    </mat-tab>
+
+
+
+    <mat-tab label="Otros">
+      <br />
+      <mat-form-field appearance="legacy">
+        <mat-label>Colaboración nacional*</mat-label>
+        <input matInput formControlName="Colaboracion_nacional" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nombre de la institución*</mat-label>
+        <mat-select
+          #selectgradoacademico
+          (selectionChange)="setCombo(8,$event.value)"
+          placeholder="Nombre de la institución" formControlName="Id_ies"
+        >
+          <mat-option *ngFor="let item of list_ies" [value]="item.id">{{
+            item.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Alcance de la carrera*</mat-label>
+        <input matInput formControlName="Alcance_carrera" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Vinculación convenio*</mat-label>
+        <mat-select
+          #selectgradoacademico
+          (selectionChange)="setCombo(5,$event.value)"
+          formControlName="Id_vinculacion_convenio"
+        >
+          <mat-option *ngFor="let item of list_vinculacion_convenio" [value]="item.id">{{
+            item.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nombre de la entidad*</mat-label>
+        <input matInput formControlName="Nombre_entidad" />
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>País de la carrera*</mat-label>
+        <mat-select
+          #selectgradoacademico
+          (selectionChange)="setCombo(6,$event.value)"
+          formControlName="Id_pais"
+        >
+          <mat-option *ngFor="let item of list_pais" [value]="item.id">{{
+            item.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="modal-footer">
+        <button
+          type="submit"
+          [disabled]="frm_oferta_tb.invalid"
+          class="btn btn-liosa"
+        >
+          Registrar
+        </button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</form>

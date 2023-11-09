@@ -1,0 +1,71 @@
+
+@import url("../../../template.css"); 
+@import url("../../../style/Generales.css"); 
+
+a { color: inherit; } 
+
+#tb_carrera th{
+    font-weight: bold !important;
+    color: black !important;
+}
+
+.mat-column-Codigo 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-Nombre 
+{ 
+    width: 9% !important;
+    color:black;
+    ;
+}
+.mat-column-Fecha_aprobacion_CU 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-Numero_resolucion_CNU 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-Nombre_titulo 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-Cupos 
+{ 
+    width: 5% !important;
+    color:black;
+}
+.mat-column-Duracion_anios 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-Colaboracion_nacional 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-Alcance_carrera 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-Nombre_entidad 
+{ 
+    width: 9% !important;
+    color:black;
+}
+.mat-column-acciones {
+  width: 13% !important;
+  text-align:left;
+}
+
+
+.ancho{
+  width: 100% !important;  
+}

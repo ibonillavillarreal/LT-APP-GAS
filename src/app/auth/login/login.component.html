@@ -5,7 +5,7 @@
             <mat-step [stepControl]="firstFormGroup" [completed]="false">
                 <form [formGroup]="firstFormGroup">
 
-                    <ng-template matStepLabel>Inicio</ng-template>
+                    <ng-template matStepLabel></ng-template>
                     <div style="display: none;">
                         <input formControlName="firstCtrl">
                     </div>
@@ -66,18 +66,16 @@
             </mat-step>
 
             <mat-step [stepControl]="secondFormGroup" [editable]="false">
-                <ng-template matStepLabel>Modulos</ng-template>
+                <ng-template matStepLabel></ng-template>
 
-
+                
+                <!-- (click)="matStepClicked(stepper,2)" -->
                 <div style="display: flex;">
                     <div class="col-1" style="margin-left: 1%;">
-                        <button mat-raised-button (click)="matStepClicked(stepper,2)"
+                        <button mat-raised-button 
                             style="display: flex; align-items: center; padding-top: 11px;">
                             <h3>Reiniciar</h3>
                         </button>
-                    </div>
-                    <div class="col-4" style="padding-top: 1%; margin-left: 4%;">
-                        <h3 class="card-title"> Listados de todos los sistemas CNU-SIGFI.</h3>
                     </div>
                 </div>
 

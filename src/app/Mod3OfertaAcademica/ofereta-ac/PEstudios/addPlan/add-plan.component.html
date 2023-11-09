@@ -1,0 +1,51 @@
+<h2>AGREGAR PLAN DE ESTUDIO</h2>
+
+<form
+  [formGroup]="frm_oferta_tb"
+  #formDirective="ngForm"
+  (ngSubmit)="enviar(frm_oferta_tb.value, formDirective)"
+>
+  <mat-tab-group>
+    <br />
+    <mat-tab label="Registro del Plan">
+      <mat-form-field appearance="legacy">
+        <mat-label>Código*</mat-label>
+        <input matInput formControlName="Codigo" />
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Versión*</mat-label>
+        <input matInput formControlName="Versionn" />
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Número de horas*</mat-label>
+        <input matInput formControlName="Numero_horas" />
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Número de semanas*</mat-label>
+        <input matInput formControlName="Numero_semanas" />
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Número de asignaturas*</mat-label>
+        <input matInput formControlName="Numero_asignaturas" />
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Número de créditos*</mat-label>
+        <input matInput formControlName="Numero_creditos" />
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Número períodos*</mat-label>
+        <input matInput formControlName="Numero_periodos" />
+      </mat-form-field>
+
+      <div class="modal-footer">
+        <button
+          type="submit"
+          [disabled]="frm_oferta_tb.invalid"
+          class="btn btn-liosa"
+        >
+          Registrar
+        </button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</form>

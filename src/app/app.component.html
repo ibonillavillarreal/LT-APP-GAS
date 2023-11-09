@@ -160,7 +160,7 @@
         <mat-divider></mat-divider>
           <mat-accordion multi>
             <mat-panel-title style="color: #fff">
-              <span routerLink="compendio" class="accordion-item">
+              <span routerLink="compendio/compendio" class="accordion-item">
                 <mat-icon>book </mat-icon> COMPENDIO 
               </span>
             </mat-panel-title>
@@ -174,16 +174,16 @@
                 <mat-icon>bookmark</mat-icon> PROCESOS
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <span routerLink="formacion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+            <span routerLink="compendio/formacion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
               <mat-icon>list</mat-icon> Formación
             </span>
-            <span routerLink="extension" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+            <span routerLink="compendio/extension" class="accordion-item" style="background-color:rgb(4, 4, 102);">
               <mat-icon>list</mat-icon> Extensión
             </span>
-            <span routerLink="investigacion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+            <span routerLink="compendio/investigacion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
               <mat-icon>list</mat-icon> Investigación
             </span>
-            <span routerLink="gestion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
+            <span routerLink="compendio/gestion" class="accordion-item" style="background-color:rgb(4, 4, 102);">
               <mat-icon>list</mat-icon> Gestión Universitaria
             </span>
           </mat-expansion-panel>
@@ -249,22 +249,61 @@
           src="../assets/CNULogo.png"
           (click)="goBack()"
         />
-        <h3 class="name">MODULO #3</h3>
-        <p class="designation">MODULO EN CONSTRUCCION</p>
+        <h3 class="name">MÓDULO OA</h3>
+        <p class="designation">OFERTA ACADÉMICA</p>
 
         <mat-divider></mat-divider>
+        
+        <mat-accordion multi>  
+          <mat-expansion-panel class="primary-gas">
+            <mat-expansion-panel-header>
+              <mat-panel-title style="color: #fff; text-align: left;">
+                <span routerLink="Of/PlanEstudios" class="accordion-item"style="background-color:rgb(4, 4, 102);">
+                  <mat-icon>book </mat-icon> PLANES DE ESTUDIO
+                </span>
+              </mat-panel-title>                
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>          
+        </mat-accordion>
+
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
             <mat-expansion-panel-header>
-              <mat-panel-title style="color: #fff">
-                <mat-icon>people_alt</mat-icon> MENU-GENERICO
-              </mat-panel-title>
+              <mat-panel-title style="color: #fff; text-align: left;">
+                <span routerLink="Of/Oferta" class="accordion-item"style="background-color:rgb(4, 4, 102);">
+                  <mat-icon>book </mat-icon>OFERTA ACADÉMICA  
+                </span>
+              </mat-panel-title>              
             </mat-expansion-panel-header>
-            <span routerLink="/localhost" class="accordion-item">
-              <mat-icon>list</mat-icon>Listado
-            </span>
           </mat-expansion-panel>
         </mat-accordion>
+
+        <mat-accordion multi>
+          <mat-expansion-panel class="primary-gas">
+            <mat-expansion-panel-header>
+              <mat-panel-title style="color: #fff;text-align: left;">
+                <span routerLink="Of/Facultades" class="accordion-item"style="background-color:rgb(4, 4, 102);">
+                  <mat-icon>book </mat-icon>FACULTADES Y SEDES  
+                </span>
+              </mat-panel-title>              
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion multi>
+          <mat-expansion-panel class="primary-gas">
+            <mat-expansion-panel-header>
+              <mat-panel-title style="color: #fff; text-align: left;">
+                <span routerLink="Of/Ies" class="accordion-item"style="background-color:rgb(4, 4, 102);">
+                  <mat-icon>book </mat-icon>INSTITUCIÓN   
+                </span>
+              </mat-panel-title>              
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        
+        <mat-divider></mat-divider>
 
         <mat-accordion multi>
           <mat-expansion-panel class="primary-gas">
@@ -278,10 +317,11 @@
             </span>
           </mat-expansion-panel>
         </mat-accordion>
+
       </mat-sidenav>
 
       <!-- TODO: Slida al Escritorio Router Outlet  -->
-      <mat-sidenav-content>
+      <mat-sidenav-content style="padding-left: 10px;">
         <div class="fondo-Generic position-absolute">
           <div class="content">
             <router-outlet></router-outlet>

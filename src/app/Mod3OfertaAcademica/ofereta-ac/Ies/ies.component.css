@@ -1,0 +1,51 @@
+@import url("../../../template.css"); 
+@import url("../../../style/Generales.css"); 
+
+a { color: inherit; } 
+
+.mat-column-Codigo{ 
+  width: 12% !important; 
+  font-weight: bold;
+  color:black;
+}
+.mat-column-RUC{ 
+  width: 12% !important; 
+  font-weight: bold;
+  color:black;
+}
+.mat-column-CodMigob{ 
+  width: 12% !important; 
+  font-weight: bold;
+  color:black;
+}
+.mat-column-Nombre{ 
+  width: 12% !important; 
+  font-weight: bold;
+  color:black;
+}
+
+.mat-column-Siglas{ 
+  width: 12% !important; 
+  font-weight: bold;
+  color:black;
+}
+.mat-column-Anio_fundacion{ 
+  width: 12% !important; 
+  font-weight: bold;
+  color:black;
+}
+.mat-column-Estado{ 
+  width: 12% !important; 
+  font-weight: bold;
+  color:black;
+}
+.mat-column-acciones{ 
+  width: 12% !important; 
+  font-weight: bold;
+}
+
+
+  
+.ancho{
+  width: 95% !important;  
+}

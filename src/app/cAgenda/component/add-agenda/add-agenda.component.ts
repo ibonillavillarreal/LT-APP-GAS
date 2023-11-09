@@ -15,7 +15,7 @@ import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { Toast } from 'src/app/utils/Toast';
 import { PersonaService } from 'src/app/services/srv_Mod1_siga/cliente.service';
-import { MonedaService } from '../../../services/zer_otros/Moneda.service';
+import { MonedaService } from '../../../services/z_error_services/Moneda.service';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { ItemService } from '../../../services/srv_Mod1_siga/Item.service';
 import { AgendaService } from 'src/app/services/srv_Mod1_siga/agenda.service';

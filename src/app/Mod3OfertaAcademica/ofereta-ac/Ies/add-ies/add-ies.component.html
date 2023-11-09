@@ -1,0 +1,62 @@
+<h2>AGREGAR IES</h2>
+
+<form
+  [formGroup]="frm_Ies_tb"
+  #formDirective="ngForm"
+  (ngSubmit)="enviar(frm_Ies_tb.value, formDirective)"
+>
+  <mat-tab-group>
+    <mat-tab label="Datos IES">
+      <br />
+
+      <mat-form-field appearance="legacy"> 
+        <mat-label>Clasificación de las IES*</mat-label> 
+        <mat-select #selectClasificacion_IES
+          (selectionChange)="setComboFacultad($event.value)"formControlName="Id_Clasificacion_IES">
+          <mat-option *ngFor="let item of list_Clasificacion_IES" [value]="item.id">{{item.nombre}}</mat-option>
+        </mat-select>      
+    </mat-form-field>
+    
+    <mat-form-field appearance="legacy"> 
+        <mat-label>Código*
+    </mat-label> 
+        <input matInput placeholder="Codigo" formControlName="Codigo"/>
+    </mat-form-field>
+    
+    <mat-form-field appearance="legacy"> 
+        <mat-label>RUC*
+    </mat-label> 
+        <input matInput placeholder="RUC" formControlName="RUC"/>
+    </mat-form-field>
+    
+    <mat-form-field appearance="legacy"> 
+        <mat-label>Código del Migob*
+    </mat-label> 
+        <input matInput placeholder="CodMigob" formControlName="CodMigob"/>
+    </mat-form-field>
+    
+    <mat-form-field appearance="legacy"> 
+        <mat-label>Nombre*
+    </mat-label> 
+        <input matInput placeholder="Nombre" formControlName="Nombre"/>
+    </mat-form-field>
+    
+    <mat-form-field appearance="legacy"> 
+        <mat-label>Siglas*
+    </mat-label> 
+        <input matInput placeholder="Siglas" formControlName="Siglas"/>
+    </mat-form-field>
+    
+    <mat-form-field appearance="legacy"> 
+        <mat-label>Año de fundación*
+    </mat-label> 
+        <input matInput placeholder="Anio_fundacion" formControlName="Anio_fundacion"/>
+    </mat-form-field>
+          
+      <div class="modal-footer">
+        <button type="submit" [disabled]="frm_Ies_tb.invalid" class="btn btn-liosa">Registrar </button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</form>
+

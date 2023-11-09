@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { Contacto } from "src/app/models/Contacto";
-import { ErrorService } from "../zer_otros/error.service";
+import { ErrorService } from "../z_error_services/error.service";
 import { DICTIONARYKEYS } from "../../utils/DICTIONARYKEYS";
 
 @Injectable({

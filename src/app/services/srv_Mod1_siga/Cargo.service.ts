@@ -5,7 +5,7 @@ import { catchError, retry } from "rxjs/operators";
 import { Claustro } from "../../models/Claustro";
 import { Grado } from "../../models/Grado";
 import { Cargo } from "../../models/Pais";
-import { ErrorService } from "../zer_otros/error.service";
+import { ErrorService } from "../z_error_services/error.service";
 import { DICTIONARYKEYS } from "../../utils/DICTIONARYKEYS";
 
 @Injectable({

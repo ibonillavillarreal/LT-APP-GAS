@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { Claustro } from "../../models/Claustro";
 import { DICTIONARYKEYS } from "../../utils/DICTIONARYKEYS";
-import { ErrorService } from "../zer_otros/error.service";
+import { ErrorService } from "../z_error_services/error.service";
 
 @Injectable({
     providedIn: 'root'

@@ -114,10 +114,16 @@ const routes: Routes = [
 
    /**** COMPENDIO PARA EL MODULO DE EST  ******/       
      {
-       path:'compendio',
-       component:CompendioComponent,              
+       path:'compendio',                
+       loadChildren: () => import('./Mod2EstCompendio/compendio.module').then(Comp => Comp.CompendioModule) 
      },
      
+     /**** MODULO DE LAS OFERTAS ACADEMICAS  ******/       
+     {
+      path:'Of',                
+      loadChildren: () => import('./Mod3OfertaAcademica/ofereta-ac.module').then(Of => Of.OferetaACModule) 
+    },
+    
 
 ];
 

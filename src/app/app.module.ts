@@ -11,13 +11,17 @@ import { SharedModule } from './shared/Material.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-import { CompendioModule } from './Mod2EstCompendio/compendio.module';
+
+
+
 
 
 @NgModule({
   declarations: [    
     AppComponent,
-    LoginComponent,      
+    LoginComponent,
+    
+    
     
   ],
   imports: [    
@@ -30,7 +34,7 @@ import { CompendioModule } from './Mod2EstCompendio/compendio.module';
     MatProgressSpinnerModule,        
     
     AppRoutingModule,
-    CompendioModule,            
+    //CompendioModule,            
   ],
 
   providers: [

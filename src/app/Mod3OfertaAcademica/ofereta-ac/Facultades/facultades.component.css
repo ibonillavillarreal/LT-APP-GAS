@@ -1,0 +1,34 @@
+@import url("../../../template.css"); 
+@import url("../../../style/Generales.css"); 
+
+a { color: inherit; } 
+
+.mat-column-Codigo{ 
+  width: 20% !important; 
+  color: black;
+  font-weight: bold;
+}
+.mat-column-Nombre{ 
+  width: 30% !important; 
+  color: black;
+  font-weight: bold;
+}
+.mat-column-Siglas{ 
+  width: 20% !important; 
+  color: black;
+  font-weight: bold;
+}
+.mat-column-Estado{ 
+  width: 15% !important; 
+  color: black;
+  font-weight: bold;
+}
+.mat-column-acciones{ 
+  width: 15% !important; 
+  color: black;
+  font-weight: bold;
+}
+
+.ancho{
+  width: 95% !important;  
+}

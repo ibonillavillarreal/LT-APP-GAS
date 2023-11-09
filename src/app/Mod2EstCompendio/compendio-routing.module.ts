@@ -6,41 +6,45 @@ import { FormacionComponent } from './procesos/Formacion/formacion.component';
 import { ExtencionComponent } from './procesos/Extencion/extencion.component';
 import { GestionuniComponent } from './procesos/GestionUni/gestionuni.component';
 import { InvestigacionComponent } from './procesos/Investigacion/investigacion.component';
+import { CompendioModule } from './compendio.module';
+import { CompendioComponent } from './compendio/compendio.component';
 
 
 /**** LOS COMPENDIO PARA EL MODULO DE EST  ******/
 const routes: Routes = [  
   {
-    path:'iframe',
-    component:IframeCompendioComponent, 
-    //loadChildren: () => import('./compendio/iframe-compendio/iframe-compendio.component').then(e => e.IframeCompendioComponent)
-
-  },    
-   {
-    path: 'extension',
-    component: ExtencionComponent,
-    pathMatch: 'full',
-    // loadChildren: () => import('./procesos/Extencion/extencion.component').then(e => e.ExtencionComponent)
-  },  
-  {
-    path: 'formacion',
-    component: FormacionComponent,
-    pathMatch: 'full',
-    // loadChildren: () => import('./procesos/Formacion/formacion.component').then(f => f.FormacionComponent)
-  },
-  {
-    path: 'gestion',
-    component: GestionuniComponent,
-    pathMatch: 'full',
-    // loadChildren: () => import('./procesos/GestionUni/gestionuni.component').then(g => g.GestionuniComponent)
-  },
-  {
-    path: 'investigacion',
-    component: InvestigacionComponent,
-    pathMatch: 'full',
-    // loadChildren: () => import('./compendio/iframe-compendio/iframe-compendio.component').then(i => i.IframeCompendioComponent)
-  }, 
-
+    path:'',  
+    //component: CompendioComponent,
+    children:[
+      {
+        path:'compendio',        
+        component:CompendioComponent         
+      },
+      {
+        path:'iframe',        
+        component:IframeCompendioComponent         
+      },      
+      {
+        path: 'formacion',
+        component: FormacionComponent,
+        pathMatch: 'full',        
+      },
+      {
+        path:'extension',        
+        component:ExtencionComponent         
+      },
+      {
+        path: 'investigacion',
+        component: InvestigacionComponent,
+        pathMatch: 'full'        
+      }, 
+      {
+        path: 'gestion',
+        component: GestionuniComponent,
+        pathMatch: 'full',        
+      },     
+    ]
+  }
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { vnPrecios } from 'src/app/services/zer_otros/vnPrecios.service';
+import { vnPrecios } from 'src/app/services/z_error_services/vnPrecios.service';
 import { GlobalUtilities } from 'src/app/utils/GlobalUtilities';
 import { MatDialog } from '@angular/material/dialog';
 import { EditResolutoComponent } from '../Edit-Campo-Resoluto/edit-resoluto.component';
